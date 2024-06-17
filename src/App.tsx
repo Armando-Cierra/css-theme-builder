@@ -1,5 +1,11 @@
-// import { Button } from '@/components';
+import { Button } from '@/components';
 
 export default function App() {
-  return <h1>Hellow World</h1>;
+  return (
+    <main>
+      <Button variant="default" interactiveSemantic="success">
+        Example
+      </Button>
+    </main>
+  );
 }

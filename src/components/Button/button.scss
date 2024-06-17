@@ -1,3 +1,75 @@
+@mixin interactiveSemantics {
+  &.button_interactiveSemantic--success {
+    &:hover {
+      background: var(--theme_success);
+      color: #151515;
+    }
+  }
+  &.button_interactiveSemantic--warning {
+    &:hover {
+      background: var(--theme_warning);
+      color: #ffffff;
+    }
+  }
+  &.button_interactiveSemantic--danger {
+    &:hover {
+      background: var(--theme_danger);
+      color: #ffffff;
+    }
+  }
+}
+
 .button {
   border: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  &:focus-visible {
+    box-shadow: 0 0 0 4px var(--outline);
+  }
+}
+
+.button--default {
+  background: var(--theme_background_3);
+  color: var(--theme_text);
+  &:hover {
+    background: var(--theme_background_4);
+  }
+  &.button--isSelected {
+    background: var(--theme_background_4);
+  }
+  @include interactiveSemantics();
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--theme_text);
+  &:hover {
+    background: var(--theme_background_3);
+  }
+  &.button--isSelected {
+    background: var(--theme_background_3);
+  }
+  @include interactiveSemantics();
+}
+
+.button--contrast {
+  background: var(--theme_background_contrast_3);
+  color: var(--theme_text_contrast);
+  &:hover {
+    background: var(--theme_background_contrast_2);
+  }
+  &.button--isSelected {
+    background: var(--theme_background_contrast_2);
+  }
+  @include interactiveSemantics();
+}
+
+.button.button--iconOnly {
+  width: 27px;
+  height: 27px;
+  justify-content: center;
 }

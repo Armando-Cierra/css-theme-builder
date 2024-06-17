@@ -29,7 +29,7 @@ export const Button = ({
         'button--iconOnly': iconOnly,
         'button--isSelected': isSelected,
         [`button--${variant}`]: variant,
-        [`button_interactive--${interactiveSemantic}`]: variant,
+        [`button_interactiveSemantic--${interactiveSemantic}`]: variant,
         [customClassName as string]: customClassName,
       })}
       {...buttonProps}

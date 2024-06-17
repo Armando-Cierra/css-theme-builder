@@ -15,12 +15,17 @@
 }
 
 :root:has(body.dark) {
+  --outline: rgba(83, 88, 239, 0.75);
+
   --theme_background_1: #151515;
   --theme_background_2: #1e1e1e;
   --theme_background_3: #313131;
   --theme_background_4: #484848;
 
-  --theme_background_contrast_1: #ffffff;
+  --theme_background_contrast_1: #f3f3f3;
+  --theme_background_contrast_2: #ffffff;
+  --theme_background_contrast_3: #e8e8e8;
+  --theme_background_contrast_4: #d0d0d0;
 
   --theme_text: #ffffff;
   --theme_text_muted: #a1a1a1;
@@ -49,6 +54,8 @@
 }
 
 :root:has(body.light) {
+  --outline: rgba(40, 46, 235, 0.75);
+
   --theme_background_1: #f3f3f3;
   --theme_background_2: #ffffff;
   --theme_background_3: #e8e8e8;
