@@ -1,0 +1,83 @@
+:root {
+  --font_montserrat: 'Montserrat', sans-serif;
+
+  --font_size_small: 0.8rem;
+  --font_size_body: 1rem;
+  --font_size_heading_1: 1.313rem;
+  --font_size_heading_2: 1.688rem;
+  --font_size_heading_3: 2.25rem;
+  --font_size_display_1: 2.938rem;
+  --font_size_display_2: 3.813rem;
+  --font_size_display_3: 5rem;
+
+  --font_weight_regular: 400;
+  --font_weight_bold: 700;
+}
+
+:root:has(body.dark) {
+  --theme_background_1: #151515;
+  --theme_background_2: #1e1e1e;
+  --theme_background_3: #313131;
+  --theme_background_4: #484848;
+
+  --theme_background_contrast_1: #ffffff;
+
+  --theme_text: #ffffff;
+  --theme_text_muted: #a1a1a1;
+
+  --theme_text_contrast: #151515;
+  --theme_text_contrast_muted: #5b5b5b;
+
+  --theme_border: #363636;
+  --theme_border_active: #484848;
+
+  --theme_info_background: #17182f;
+  --theme_info: #5358ef;
+  --theme_info_active: #282eeb;
+
+  --theme_success_background: #1e2d18;
+  --theme_success: #81e259;
+  --theme_success_active: #61db30;
+
+  --theme_danger_background: #2d1618;
+  --theme_danger: #e14b58;
+  --theme_danger_active: #e14b58;
+
+  --theme_warning_background: #302a17;
+  --theme_warning: #fbd351;
+  --theme_warning_active: #fac825;
+}
+
+:root:has(body.light) {
+  --theme_background_1: #f3f3f3;
+  --theme_background_2: #ffffff;
+  --theme_background_3: #e8e8e8;
+  --theme_background_4: #d0d0d0;
+
+  --theme_background_contrast_1: #151515;
+
+  --theme_text: #151515;
+  --theme_text_muted: #5b5b5b;
+
+  --theme_text_contrast: #ffffff;
+  --theme_text_contrast_muted: #a1a1a1;
+
+  --theme_border: #e8e8e8;
+  --theme_border_active: #d0d0d0;
+
+  --theme_info_background: #d4d5fb;
+  --theme_info: #282eeb;
+  --theme_info_active: #2429c0;
+
+  --theme_success_background: #dff8d6;
+  --theme_success: #61db30;
+  --theme_success_active: #52b32b;
+
+  --theme_danger_background: #f7d2d5;
+  --theme_danger: #d91e2e;
+  --theme_danger_active: #b21c29;
+
+  --theme_warning_background: #fef4d3;
+  --theme_warning: #fac825;
+  --theme_warning_active: #cca422;
+}
