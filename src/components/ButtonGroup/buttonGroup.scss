@@ -1,0 +1,21 @@
+.buttonGroup {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--theme_border);
+  border-radius: 8px;
+  .button {
+    position: relative;
+    border-radius: 0;
+    z-index: 0;
+    &:first-of-type {
+      border-radius: 8px 0 0 8px;
+    }
+    &:last-of-type {
+      border-radius: 0 8px 8px 0;
+    }
+    &:focus-visible {
+      z-index: 1;
+    }
+  }
+}
