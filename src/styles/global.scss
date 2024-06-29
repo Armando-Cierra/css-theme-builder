@@ -14,7 +14,12 @@
 body {
   min-height: 100dvh;
   background: var(--theme_background_1);
+  color: var(--theme_text);
+  font-family: var(--font_montserrat);
+  font-size: var(--text_size_body);
+  font-weight: var(--text_weight_regular);
 }
+
 a,
 p,
 h1,

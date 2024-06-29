@@ -1,0 +1,53 @@
+.inlineNotification {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  .inlineNotification_icon {
+    flex-shrink: 0;
+  }
+  .inlineNotification_contentBox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    .inlineNotification_contentBox_text {
+      width: 100%;
+      flex-grow: 1;
+    }
+    .inlineNotification_contentBox_exitButton {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.inlineNotification--info {
+  background: var(--theme_info_background);
+  .inlineNotification_icon {
+    color: var(--theme_info);
+  }
+}
+
+.inlineNotification--success {
+  background: var(--theme_success_background);
+  .inlineNotification_icon {
+    color: var(--theme_success);
+  }
+}
+
+.inlineNotification--warning {
+  background: var(--theme_warning_background);
+  .inlineNotification_icon {
+    color: var(--theme_warning);
+  }
+}
+
+.inlineNotification--danger {
+  background: var(--theme_danger_background);
+  .inlineNotification_icon {
+    color: var(--theme_danger);
+  }
+}

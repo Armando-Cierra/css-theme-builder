@@ -30,6 +30,10 @@
   &:focus-visible {
     box-shadow: 0 0 0 4px var(--outline);
   }
+  svg {
+    flex-shrink: 0;
+    max-width: 24px;
+  }
 }
 
 .button--default {
