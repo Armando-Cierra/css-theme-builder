@@ -28,7 +28,7 @@
   gap: 4px;
   cursor: pointer;
   &:focus-visible {
-    box-shadow: 0 0 0 4px var(--outline);
+    box-shadow: 0 0 0 4px var(--theme_outline);
   }
   svg {
     flex-shrink: 0;

@@ -1,0 +1,39 @@
+.input {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 250px;
+  height: 44px;
+  .input_control {
+    width: 100%;
+    height: 100%;
+    background: var(--theme_background_1);
+    border: 1px solid var(--theme_border);
+    border-radius: 8px;
+    padding: 12px;
+    &:hover {
+      border-color: var(--theme_border_active);
+    }
+    &:focus {
+      border-color: var(--theme_info);
+      box-shadow: 0 0 0 1px var(--theme_info);
+    }
+  }
+  .input_control--hasIcon {
+    padding-left: calc(16px + 24px);
+  }
+  .input_control--hasCleanAction {
+    padding-right: calc(16px + 27px);
+  }
+
+  .input_cleanButton,
+  .input_icon {
+    position: absolute;
+  }
+  .input_icon {
+    left: 8px;
+  }
+  .input_cleanButton {
+    right: 8px;
+  }
+}

@@ -15,7 +15,7 @@
 }
 
 :root:has(body.dark) {
-  --outline: rgba(83, 88, 239, 0.75);
+  --theme_outline: rgba(83, 88, 239, 0.75);
 
   --theme_background_1: #151515;
   --theme_background_2: #1e1e1e;
@@ -54,7 +54,7 @@
 }
 
 :root:has(body.light) {
-  --outline: rgba(40, 46, 235, 0.75);
+  --theme_outline: rgba(40, 46, 235, 0.75);
 
   --theme_background_1: #f3f3f3;
   --theme_background_2: #ffffff;

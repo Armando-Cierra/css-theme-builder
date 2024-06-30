@@ -1,36 +1,18 @@
-import { InlineNotification } from '@/components';
+import { Tooltip } from 'react-tooltip';
+import { IconMailFilled } from '@tabler/icons-react';
+import { Input } from '@/components';
 
 export default function App() {
   return (
-    <main>
-      <InlineNotification variant="info">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea molestias
-        quos voluptatem qui, voluptate at laborum culpa assumenda soluta porro
-        et commodi, aliquid quas voluptatibus unde, excepturi facere
-        consequatur! Unde.
-      </InlineNotification>
-      <br />
-      <InlineNotification variant="success">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea molestias
-        quos voluptatem qui, voluptate at laborum culpa assumenda soluta porro
-        et commodi, aliquid quas voluptatibus unde, excepturi facere
-        consequatur! Unde.
-      </InlineNotification>
-      <br />
-      <InlineNotification variant="warning">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea molestias
-        quos voluptatem qui, voluptate at laborum culpa assumenda soluta porro
-        et commodi, aliquid quas voluptatibus unde, excepturi facere
-        consequatur! Unde.
-      </InlineNotification>
-      <br />
-      <InlineNotification variant="danger">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea molestias
-        quos voluptatem qui, voluptate at laborum culpa assumenda soluta porro
-        et commodi, aliquid quas voluptatibus unde, excepturi facere
-        consequatur! Unde.
-      </InlineNotification>
-      <br />
-    </main>
+    <>
+      <Tooltip id="css-builder-tooltip" />
+      <main>
+        <Input
+          icon={<IconMailFilled />}
+          placeholder="lorem ipsum"
+          onClean={() => console.log('hello')}
+        />
+      </main>
+    </>
   );
 }

@@ -16,13 +16,14 @@ interface Props
   > {
   children: string;
   variant?: 'info' | 'warning' | 'danger' | 'success';
-  onClose?: () => void;
+  onClose?: (e: React.MouseEvent) => void;
 }
 
 export const InlineNotification = ({
   className: customClassName,
   children,
   variant = 'info',
+  onClose,
   ...rest
 }: Props) => {
   const getIcon = () => {
@@ -42,6 +43,8 @@ export const InlineNotification = ({
     return variants[variant]();
   };
 
+  const handleClick = (e: React.MouseEvent) => onClose?.(e);
+
   return (
     <div
       className={classNames('inlineNotification', {
@@ -57,6 +60,7 @@ export const InlineNotification = ({
           className="inlineNotification_contentBox_exitButton"
           variant="ghost"
           iconOnly
+          onClick={handleClick}
         >
           <IconX />
         </Button>
