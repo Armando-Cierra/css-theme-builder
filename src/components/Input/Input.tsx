@@ -1,4 +1,5 @@
 import {
+  ChangeEvent,
   cloneElement,
   DetailedHTMLProps,
   InputHTMLAttributes,
@@ -16,17 +17,19 @@ interface Props
     HTMLInputElement
   > {
   icon?: ReactNode;
-  value?: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onClean?: () => void;
 }
 
 export const Input = ({
   className: customClassName,
   icon,
-  value,
+  value: controlledValue,
   onClean,
   ...rest
 }: Props) => {
+  const value = controlledValue ?? '';
   const handleClick = () => onClean?.();
 
   return (
@@ -51,7 +54,7 @@ export const Input = ({
         value={value}
         {...rest}
       />
-      {onClean && (
+      {onClean && value.length > 0 && (
         <Button
           className="input_cleanButton"
           iconOnly

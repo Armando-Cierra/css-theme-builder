@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background: var(--theme_background_blur);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal_card {
+    width: 100%;
+    max-width: 800px;
+    height: fit-content;
+    padding: 32px;
+    border-radius: 24px;
+    background: var(--theme_background_2);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .modal_header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      .modal_title {
+        font-size: var(--font_size_heading_3);
+        font-weight: var(--font_weight_bold);
+      }
+      .modal_description {
+        color: var(--theme_text_muted);
+      }
+    }
+  }
+}
