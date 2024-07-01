@@ -1,0 +1,22 @@
+.toolbar {
+  height: 64px;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    .toolbar_controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .toolbar_controls_colorModeBox {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+  }
+}

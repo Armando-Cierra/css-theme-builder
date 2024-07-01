@@ -55,7 +55,7 @@
     background: var(--theme_background_3);
   }
   &.button--isSelected {
-    background: var(--theme_background_3);
+    background: var(--theme_background_4);
   }
   @include interactiveSemantics();
 }
