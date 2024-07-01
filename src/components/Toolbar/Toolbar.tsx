@@ -1,10 +1,11 @@
 import { IconBrightnessHalf, IconSun, IconMoon } from '@tabler/icons-react';
 import { Logotype, Button, ButtonGroup } from '@/components';
+import { tooltipID } from '@/utils';
 import { useToolbar } from './useToolbar';
 import './toolbar.scss';
 
 export const Toolbar = () => {
-  const { pathname, theme, changeTheme, changeLanguage, activeLang } =
+  const { t, pathname, theme, changeTheme, changeLanguage, activeLang } =
     useToolbar();
 
   return (
@@ -14,6 +15,8 @@ export const Toolbar = () => {
         <div className="toolbar_controls">
           <div className="toolbar_controls_colorModeBox">
             <Button
+              data-tooltip-id={tooltipID}
+              data-tooltip-content={t('toolbar.auto')}
               iconOnly
               variant="ghost"
               isSelected={theme === 'auto'}
@@ -22,6 +25,8 @@ export const Toolbar = () => {
               <IconBrightnessHalf />
             </Button>
             <Button
+              data-tooltip-id={tooltipID}
+              data-tooltip-content={t('toolbar.light')}
               iconOnly
               variant="ghost"
               isSelected={theme === 'light'}
@@ -30,6 +35,8 @@ export const Toolbar = () => {
               <IconSun />
             </Button>
             <Button
+              data-tooltip-id={tooltipID}
+              data-tooltip-content={t('toolbar.dark')}
               iconOnly
               variant="ghost"
               isSelected={theme === 'dark'}
@@ -40,12 +47,16 @@ export const Toolbar = () => {
           </div>
           <ButtonGroup>
             <Button
+              data-tooltip-id={tooltipID}
+              data-tooltip-content="English"
               isSelected={activeLang === 'en'}
               onClick={changeLanguage('en')}
             >
               EN
             </Button>
             <Button
+              data-tooltip-id={tooltipID}
+              data-tooltip-content="Español"
               isSelected={activeLang === 'es'}
               onClick={changeLanguage('es')}
             >

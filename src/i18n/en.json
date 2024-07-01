@@ -1,3 +1,18 @@
 {
-  "test": "Test"
+  "general": {
+    "accept": "Accept",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "addFavorite": "Add To Favorites",
+    "removeFavorite": "Remove From Favorites",
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "discardChanges": "Discard Changes"
+  },
+  "toolbar": {
+    "auto": "System Based Mode",
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  }
 }
