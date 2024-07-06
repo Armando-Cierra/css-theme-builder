@@ -1,19 +1,24 @@
 import { ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Toolbar } from '../Toolbar';
+import { useLocation } from 'react-router-dom';
+import './template.scss';
+import classNames from 'classnames';
 
 interface Props {
   children: ReactNode;
 }
 
 export const Template = ({ children }: Props) => {
-  const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   return (
-    <div className="template">
+    <div
+      className={classNames('template', {
+        'template--home': pathname === '/',
+      })}
+    >
       <Toolbar />
-      <main>{children}</main>
-      <p>{t('test')}</p>
+      <main className="template_mainBox">{children}</main>
     </div>
   );
 };

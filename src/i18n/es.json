@@ -11,8 +11,8 @@
     "discardChanges": "Descartar Cambios"
   },
   "toolbar": {
-    "auto": "System Based Mode",
-    "light": "Light Mode",
-    "dark": "Dark Mode"
+    "auto": "Modo Basado en el Sistema",
+    "light": "Modo Claro",
+    "dark": "Modo Oscuro"
   }
 }

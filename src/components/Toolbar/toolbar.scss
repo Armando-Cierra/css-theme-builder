@@ -6,8 +6,9 @@
   align-items: center;
   justify-content: center;
   .container {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     .toolbar_controls {
       display: flex;
       align-items: center;

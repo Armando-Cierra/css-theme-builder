@@ -1,7 +1,13 @@
 .logotype {
   height: 36px;
   color: var(--theme_text);
+  position: absolute;
+  top: -5px;
+  left: 0;
+  transition: ease-in-out 0.5s;
 }
-.logotype--detached {
-  height: 100px;
+.logotype--isDetached {
+  height: 80px;
+  top: calc(75px + 64px);
+  left: calc(50% - 162px);
 }
