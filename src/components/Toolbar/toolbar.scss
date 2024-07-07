@@ -3,21 +3,22 @@
   width: 100%;
   padding: 0 24px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  .container {
-    position: relative;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  -webkit-app-region: drag;
+  .toolbar_controls {
     display: flex;
-    justify-content: flex-end;
-    .toolbar_controls {
+    align-items: center;
+    gap: 8px;
+    .toolbar_controls_colorModeBox {
       display: flex;
       align-items: center;
-      gap: 8px;
-      .toolbar_controls_colorModeBox {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
+      gap: 4px;
     }
+  }
+  .button,
+  .windowsControlButton {
+    -webkit-app-region: no-drag;
   }
 }

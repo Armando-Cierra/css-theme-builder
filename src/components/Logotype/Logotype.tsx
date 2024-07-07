@@ -3,9 +3,10 @@ import './logotype.scss';
 
 interface Props {
   isDetached?: boolean;
+  isOnMac?: boolean;
 }
 
-export const Logotype = ({ isDetached }: Props) => {
+export const Logotype = ({ isDetached, isOnMac }: Props) => {
   return (
     <svg
       viewBox="0 0 937 232"
@@ -13,6 +14,7 @@ export const Logotype = ({ isDetached }: Props) => {
       xmlns="http://www.w3.org/2000/svg"
       className={classNames('logotype', {
         'logotype--isDetached': isDetached,
+        'logotype--isOnMac': isOnMac,
       })}
     >
       <g clipPath="url(#clip0_2_3)">

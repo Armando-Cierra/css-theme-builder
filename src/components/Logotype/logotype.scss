@@ -2,12 +2,18 @@
   height: 36px;
   color: var(--theme_text);
   position: absolute;
-  top: -5px;
-  left: 0;
+  top: 15px;
+  left: 24px;
   transition: ease-in-out 0.5s;
+  &.logotype--isOnMac {
+    left: 90px;
+  }
 }
 .logotype--isDetached {
   height: 80px;
   top: calc(75px + 64px);
   left: calc(50% - 162px);
+  &.logotype--isOnMac {
+    left: calc(50% - 162px);
+  }
 }
