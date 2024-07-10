@@ -19,12 +19,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "src",
+
+    /* Aliases */
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
-
-  "include": ["src"],
+  "include": ["src", "electron"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
