@@ -6,3 +6,4 @@ export * from './Modal';
 export * from './Template';
 export * from './Toolbar';
 export * from './Logotype';
+export * from './Card';

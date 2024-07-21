@@ -36,6 +36,7 @@ select {
   font-family: var(--font_montserrat);
   font-size: var(--text_size_body);
   font-weight: var(--text_weight_regular);
+  text-decoration: none;
 }
 
 p {
@@ -62,6 +63,6 @@ svg {
   max-width: 1440px;
 }
 
-.react-tooltip{
+.react-tooltip {
   z-index: 1000;
 }

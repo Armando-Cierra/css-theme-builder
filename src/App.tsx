@@ -2,7 +2,7 @@ import { Tooltip } from 'react-tooltip';
 import { Template } from '@/components';
 import { tooltipID, tooltipStyles } from '@/utils';
 import { Route, Routes } from 'react-router-dom';
-import { Home, Test } from '@/views';
+import { Home, Editor, SavedThemes } from '@/views';
 
 export default function App() {
   return (
@@ -11,7 +11,8 @@ export default function App() {
       <Template>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/editor" element={<Editor />} />
+          <Route path="/saved-themes" element={<SavedThemes />} />
         </Routes>
       </Template>
     </>

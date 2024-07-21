@@ -1,2 +1,3 @@
 export * from './Home';
-export * from './Test';
+export * from './Editor';
+export * from './SavedThemes';
