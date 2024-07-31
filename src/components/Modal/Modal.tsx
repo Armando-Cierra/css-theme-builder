@@ -6,7 +6,7 @@ import { Content, Description, Title } from './modules';
 import { useModal } from './useModal';
 import './modal.scss';
 
-interface Props {
+export interface ModalProps {
   className?: string;
   children: ReactNode;
   isOpen?: boolean;
@@ -14,7 +14,12 @@ interface Props {
 }
 
 export const Modal = Object.assign(
-  ({ isOpen, children, className: customClassName, onCloseModal }: Props) => {
+  ({
+    isOpen,
+    children,
+    className: customClassName,
+    onCloseModal,
+  }: ModalProps) => {
     const { title, description, content, handleClick } = useModal(
       children,
       onCloseModal,

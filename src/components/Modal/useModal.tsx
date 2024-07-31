@@ -13,8 +13,8 @@ export const useModal = (children: ReactNode, onCloseModal?: () => void) => {
     }
   });
 
-  const handleClick = () => {
-    onCloseModal?.();
+  const handleClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).className === 'modal') onCloseModal?.();
   };
 
   return { title, description, content, handleClick };

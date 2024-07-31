@@ -60,8 +60,6 @@ export const useToolbar = () => {
     setLang(lang);
   };
 
-  console.log({ isElectron, isMac, isWindows });
-
   return {
     t,
     pathname,

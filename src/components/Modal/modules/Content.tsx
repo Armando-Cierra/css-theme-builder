@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 interface Props
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  children: string;
+  children: ReactNode;
 }
 
 export const Content = ({ children, className: customClassName }: Props) => {

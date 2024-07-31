@@ -8,6 +8,7 @@ interface Props
     HTMLButtonElement
   > {
   variant?: 'default' | 'ghost' | 'contrast';
+  isFullWidth?: boolean;
   isSelected?: boolean;
   interactiveSemantic?: 'default' | 'warning' | 'danger' | 'success';
   children: ReactNode;
@@ -17,6 +18,7 @@ interface Props
 export const Button = ({
   className: customClassName,
   variant = 'default',
+  isFullWidth = false,
   interactiveSemantic = 'default',
   isSelected = false,
   iconOnly = false,
@@ -27,6 +29,7 @@ export const Button = ({
     <button
       className={classNames('button', {
         'button--iconOnly': iconOnly,
+        'button--isFullWidth': isFullWidth,
         'button--isSelected': isSelected,
         [`button--${variant}`]: variant,
         [`button_interactiveSemantic--${interactiveSemantic}`]: variant,

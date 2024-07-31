@@ -20,10 +20,12 @@
 }
 
 .button {
+  width: fit-content;
   border: none;
   padding: 4px 8px;
   border-radius: 8px;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   gap: 4px;
   cursor: pointer;
@@ -34,6 +36,10 @@
     flex-shrink: 0;
     max-width: 24px;
   }
+}
+
+.button--isFullWidth {
+  width: 100%;
 }
 
 .button--default {

@@ -7,9 +7,28 @@ interface Props
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   icon: ReactNode;
   text: string;
-  linksTo: string;
+  linksTo?: string;
   isInnerLink?: boolean;
 }
+
+const CardContent = ({
+  className: customClassName,
+  icon,
+  text,
+  ...rest
+}: Props) => {
+  return (
+    <div
+      className={classNames('card', {
+        [customClassName as string]: customClassName,
+      })}
+      {...rest}
+    >
+      {icon}
+      <span>{text}</span>
+    </div>
+  );
+};
 
 export const Card = ({
   className: customClassName,
@@ -19,33 +38,38 @@ export const Card = ({
   isInnerLink = false,
   ...rest
 }: Props) => {
+  if (linksTo && isInnerLink)
+    return (
+      <Link to={linksTo}>
+        <CardContent
+          className={customClassName}
+          icon={icon}
+          text={text}
+          {...rest}
+        />
+      </Link>
+    );
+
+  if (linksTo)
+    return (
+      <a href={linksTo} target="_blank">
+        <CardContent
+          className={customClassName}
+          icon={icon}
+          text={text}
+          {...rest}
+        />
+      </a>
+    );
+
   return (
-    <>
-      {isInnerLink ? (
-        <Link to={linksTo}>
-          <div
-            className={classNames('card', {
-              [customClassName as string]: customClassName,
-            })}
-            {...rest}
-          >
-            {icon}
-            <span>{text}</span>
-          </div>
-        </Link>
-      ) : (
-        <a href={linksTo} target="_blank">
-          <div
-            className={classNames('card', {
-              [customClassName as string]: customClassName,
-            })}
-            {...rest}
-          >
-            {icon}
-            <span>{text}</span>
-          </div>
-        </a>
-      )}
-    </>
+    <button>
+      <CardContent
+        className={customClassName}
+        icon={icon}
+        text={text}
+        {...rest}
+      />
+    </button>
   );
 };
