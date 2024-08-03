@@ -1,4 +1,5 @@
 import { Modal, ModalProps, Button } from '@/components';
+import './newThemeModal.scss';
 
 type CustomModalProps = Omit<ModalProps, 'children'>;
 interface Props extends CustomModalProps {
@@ -23,7 +24,7 @@ export const NewThemeModal = ({ isOpen, onCreateTheme, ...rest }: Props) => {
           Select the type of theme that matches the better with your project
           needs.
         </Modal.Description>
-        <Modal.Content>
+        <Modal.Content className="newThemeModal">
           <div className="section">
             <div className="textContent">
               <span>Simple</span>

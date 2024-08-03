@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import FocusLock from 'react-focus-lock';
 import { motion, AnimatePresence } from 'framer-motion';
 import classNames from 'classnames';
 import { spring } from '@/utils';
@@ -20,46 +21,47 @@ export const Modal = Object.assign(
     className: customClassName,
     onCloseModal,
   }: ModalProps) => {
-    const { title, description, content, handleClick } = useModal(
-      children,
-      onCloseModal,
-    );
+    const { title, description, content, handleClick, handleKeyDown } =
+      useModal(children, onCloseModal);
 
     return (
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            className="modal"
-            onClick={handleClick}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              ...spring,
-              animate: { duration: 1 },
-              exit: { duration: 0.5, delay: 0.5 },
-            }}
-          >
+          <FocusLock>
             <motion.div
-              className={classNames('modal_card', {
-                [customClassName as string]: customClassName,
-              })}
-              initial={{ y: -50 }}
-              animate={{ y: 0 }}
-              exit={{ y: -50 }}
+              className="modal"
+              onClick={handleClick}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{
                 ...spring,
-                animate: { duration: 0.5, delay: 0.5 },
-                exit: { duration: 0.5 },
+                animate: { duration: 1 },
+                exit: { duration: 0.5, delay: 0.5 },
               }}
+              onKeyDown={handleKeyDown}
             >
-              <div className="modal_header">
-                {title}
-                {description}
-              </div>
-              {content}
+              <motion.div
+                className={classNames('modal_card', {
+                  [customClassName as string]: customClassName,
+                })}
+                initial={{ y: -50 }}
+                animate={{ y: 0 }}
+                exit={{ y: -50 }}
+                transition={{
+                  ...spring,
+                  animate: { duration: 0.5, delay: 0.5 },
+                  exit: { duration: 0.5 },
+                }}
+              >
+                <div className="modal_header">
+                  {title}
+                  {description}
+                </div>
+                {content}
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </FocusLock>
         )}
       </AnimatePresence>
     );
