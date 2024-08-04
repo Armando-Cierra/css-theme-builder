@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.10.0",
+    "chroma-js": "^2.6.0",
     "classnames": "^2.5.1",
     "framer-motion": "^11.2.14",
     "i18next": "^23.11.5",
@@ -24,6 +25,7 @@
     "react-tooltip": "^5.27.1"
   },
   "devDependencies": {
+    "@types/chroma-js": "^2.4.4",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",

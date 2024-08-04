@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
 export const useToolbar = () => {
+  const navigate = useNavigate();
   const isElectron = navigator.userAgent.toLowerCase().includes('electron');
   const getPlatform = () => {
     //@ts-expect-error | checks if userAgentData is available on the browser. This is abeta feature and that's why TS is not detecting it as an existing type.
@@ -60,6 +61,8 @@ export const useToolbar = () => {
     setLang(lang);
   };
 
+  const navigateToHome = () => navigate('/');
+
   return {
     t,
     pathname,
@@ -70,5 +73,6 @@ export const useToolbar = () => {
     isElectron,
     isMac,
     isWindows,
+    navigateToHome,
   };
 };

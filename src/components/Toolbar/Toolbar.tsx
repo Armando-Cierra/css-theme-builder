@@ -14,12 +14,17 @@ export const Toolbar = () => {
     activeLang,
     isElectron,
     isMac,
+    navigateToHome,
     // isWindows,
   } = useToolbar();
 
   return (
     <section className="toolbar">
-      <Logotype isDetached={pathname === '/'} isOnMac={isElectron && isMac} />
+      <Logotype
+        isDetached={pathname === '/'}
+        isOnMac={isElectron && isMac}
+        onClick={navigateToHome}
+      />
       <div className="toolbar_controls">
         <div className="toolbar_controls_colorModeBox">
           <Button

@@ -37,7 +37,7 @@ export const Modal = Object.assign(
               transition={{
                 ...spring,
                 animate: { duration: 1 },
-                exit: { duration: 0.5, delay: 0.5 },
+                exit: { duration: 0.5 },
               }}
               onKeyDown={handleKeyDown}
             >
@@ -45,12 +45,12 @@ export const Modal = Object.assign(
                 className={classNames('modal_card', {
                   [customClassName as string]: customClassName,
                 })}
-                initial={{ y: -50 }}
-                animate={{ y: 0 }}
-                exit={{ y: -50 }}
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -50, opacity: 0 }}
                 transition={{
                   ...spring,
-                  animate: { duration: 0.5, delay: 0.5 },
+                  animate: { duration: 0.5 },
                   exit: { duration: 0.5 },
                 }}
               >

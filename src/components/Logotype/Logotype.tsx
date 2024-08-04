@@ -1,12 +1,13 @@
+import { SVGProps } from 'react';
 import classNames from 'classnames';
 import './logotype.scss';
 
-interface Props {
+interface Props extends SVGProps<SVGSVGElement> {
   isDetached?: boolean;
   isOnMac?: boolean;
 }
 
-export const Logotype = ({ isDetached, isOnMac }: Props) => {
+export const Logotype = ({ isDetached, isOnMac, ...rest }: Props) => {
   return (
     <svg
       viewBox="0 0 937 232"
@@ -16,6 +17,7 @@ export const Logotype = ({ isDetached, isOnMac }: Props) => {
         'logotype--isDetached': isDetached,
         'logotype--isOnMac': isOnMac,
       })}
+      {...rest}
     >
       <g clipPath="url(#clip0_2_3)">
         <path
