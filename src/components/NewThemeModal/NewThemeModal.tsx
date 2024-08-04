@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { Modal, ModalProps, Button } from '@/components';
 import './newThemeModal.scss';
+import { ThemeType } from '@/types';
 
 type CustomModalProps = Omit<ModalProps, 'children'>;
 interface Props extends CustomModalProps {}
 
 export const NewThemeModal = ({ isOpen, onCloseModal, ...rest }: Props) => {
   const navigate = useNavigate();
-  const handleThemeCreation = (themeType: 'simple' | 'dual') => () => {
+  const handleThemeCreation = (themeType: ThemeType) => () => {
     onCloseModal?.();
     setTimeout(() => {
       navigate('/editor', { state: { theme: undefined, type: themeType } });
@@ -16,7 +17,7 @@ export const NewThemeModal = ({ isOpen, onCloseModal, ...rest }: Props) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} {...rest}>
+      <Modal isOpen={isOpen} onCloseModal={onCloseModal} {...rest}>
         <Modal.Title>New Theme</Modal.Title>
         <Modal.Description>
           Select the type of theme that matches the better with your project

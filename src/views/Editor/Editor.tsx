@@ -5,6 +5,8 @@ import { Button } from '@/components';
 import './editor.scss';
 
 export const Editor = () => {
+  // const { theme, themeType } = useEditor();
+
   return (
     <motion.div
       initial={{

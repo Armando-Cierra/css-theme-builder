@@ -1,8 +1,6 @@
-export type ColorRamp = {
-  rampValue: number;
-  contrastPercentage: number;
-  colorValue: string;
-};
+export type ThemeType = 'simple' | 'dual';
+
+export type ColorMode = 'light' | 'dark';
 
 export type ColorVariable = {
   name: string;
@@ -11,15 +9,16 @@ export type ColorVariable = {
 
 export interface CustomColor {
   name: string;
-  colorRamp: ColorRamp[];
+  colorRamp: string[];
   //Color Ramp Abstraction
   variants: ColorVariable[];
   background: ColorVariable;
 }
 
 type ThemeContent = {
+  contrastPercentages: number[];
   baseColor: {
-    colorRamp: ColorRamp[];
+    colorRamp: string[];
     //Color Ramp Abstraction
     backgorunds: ColorVariable[];
     constrastBackgorunds: ColorVariable[];
@@ -28,6 +27,7 @@ type ThemeContent = {
     borders: ColorVariable[];
     contrastBorders: ColorVariable[];
   };
+  semanticColors: CustomColor[];
   customColors: CustomColor[];
 };
 

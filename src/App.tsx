@@ -10,7 +10,6 @@ import { ThemesContext } from '@/context';
 export default function App() {
   const { themesCollection, addTheme, removeTheme } = useApp();
   const location = useLocation();
-
   return (
     <ThemesContext.Provider value={{ themesCollection, addTheme, removeTheme }}>
       <Tooltip style={tooltipStyles} id={tooltipID} />
