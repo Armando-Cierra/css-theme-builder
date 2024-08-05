@@ -20,8 +20,8 @@ type ThemeContent = {
   baseColor: {
     colorRamp: string[];
     //Color Ramp Abstraction
-    backgorunds: ColorVariable[];
-    constrastBackgorunds: ColorVariable[];
+    backgrounds: ColorVariable[];
+    constrastbackgrounds: ColorVariable[];
     text: ColorVariable[];
     contrastText: ColorVariable[];
     borders: ColorVariable[];

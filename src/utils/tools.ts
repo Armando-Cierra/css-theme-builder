@@ -47,15 +47,22 @@ export const getColorScale = (settings?: {
 
 export const getInitialSettingsForTheme = (type: ThemeType) => {
   const baseColorScale = getColorScale();
+  const invertedaseColorScale = getColorScale().reverse();
+
   const successColorScale = getColorScale();
+  const invertedSuccessColorScale = getColorScale().reverse();
+
   const warningColorScale = getColorScale();
+  const invertedWarningColorScale = getColorScale().reverse();
+
   const dangerColorScale = getColorScale();
+  const invertedDangerColorScale = getColorScale().reverse();
 
   const lightTheme = {
     contrastPercentages: defaultContrastPercentages,
     baseColor: {
       colorRamp: baseColorScale,
-      backgorunds: [
+      backgrounds: [
         {
           name: 'background_1',
           value: baseColorScale[0],
@@ -69,7 +76,7 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
           value: baseColorScale[2],
         },
       ],
-      constrastBackgorunds: [
+      constrastbackgrounds: [
         {
           name: 'background_contrast_1',
           value: baseColorScale[baseColorScale.length - 1],
@@ -134,11 +141,11 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
             value: successColorScale[6],
           },
           {
-            name: 'interactive_1',
+            name: 'success_hover',
             value: successColorScale[7],
           },
           {
-            name: 'interactive_2',
+            name: 'success_active',
             value: successColorScale[8],
           },
         ],
@@ -152,15 +159,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         colorRamp: dangerColorScale,
         variants: [
           {
-            name: 'success',
+            name: 'danger',
             value: dangerColorScale[6],
           },
           {
-            name: 'interactive_1',
+            name: 'danger_hover',
             value: dangerColorScale[7],
           },
           {
-            name: 'interactive_2',
+            name: 'danger_active',
             value: dangerColorScale[8],
           },
         ],
@@ -174,15 +181,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         colorRamp: warningColorScale,
         variants: [
           {
-            name: 'success',
+            name: 'warning',
             value: warningColorScale[6],
           },
           {
-            name: 'interactive_1',
+            name: 'warning_hover',
             value: warningColorScale[7],
           },
           {
-            name: 'interactive_2',
+            name: 'warning_active',
             value: warningColorScale[8],
           },
         ],
@@ -215,141 +222,141 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         darkTheme: {
           contrastPercentages: defaultContrastPercentages,
           baseColor: {
-            colorRamp: baseColorScale,
-            backgorunds: [
+            colorRamp: invertedaseColorScale,
+            backgrounds: [
               {
                 name: 'background_1',
-                value: baseColorScale[baseColorScale.length - 1],
+                value: invertedaseColorScale[0],
               },
               {
                 name: 'background_2',
-                value: baseColorScale[baseColorScale.length - 2],
+                value: invertedaseColorScale[1],
               },
               {
                 name: 'background_3',
-                value: baseColorScale[baseColorScale.length - 3],
+                value: invertedaseColorScale[2],
               },
             ],
-            constrastBackgorunds: [
+            constrastbackgrounds: [
               {
                 name: 'background_contrast_1',
-                value: baseColorScale[0],
+                value: invertedaseColorScale[baseColorScale.length - 1],
               },
               {
                 name: 'background_contrast_2',
-                value: baseColorScale[1],
+                value: invertedaseColorScale[baseColorScale.length - 2],
               },
               {
                 name: 'background_contrast_3',
-                value: baseColorScale[2],
+                value: invertedaseColorScale[baseColorScale.length - 3],
               },
             ],
             text: [
               {
                 name: 'text',
-                value: baseColorScale[0],
+                value: invertedaseColorScale[baseColorScale.length - 1],
               },
               {
                 name: 'text_muted',
-                value: baseColorScale[3],
+                value: invertedaseColorScale[baseColorScale.length - 4],
               },
             ],
             contrastText: [
               {
                 name: 'text',
-                value: baseColorScale[baseColorScale.length - 1],
+                value: invertedaseColorScale[0],
               },
               {
                 name: 'text_muted',
-                value: baseColorScale[baseColorScale.length - 4],
+                value: invertedaseColorScale[3],
               },
             ],
             borders: [
               {
                 name: 'border',
-                value: baseColorScale[baseColorScale.length - 4],
+                value: invertedaseColorScale[3],
               },
               {
                 name: 'border_active',
-                value: baseColorScale[baseColorScale.length - 5],
+                value: invertedaseColorScale[5],
               },
             ],
             contrastBorders: [
               {
                 name: 'border_contrast',
-                value: baseColorScale[3],
+                value: invertedaseColorScale[invertedaseColorScale.length - 4],
               },
               {
                 name: 'border_contrast_active',
-                value: baseColorScale[5],
+                value: invertedaseColorScale[invertedaseColorScale.length - 5],
               },
             ],
           },
           semanticColors: [
             {
               name: 'success',
-              colorRamp: successColorScale,
+              colorRamp: invertedSuccessColorScale,
               variants: [
                 {
                   name: 'success',
-                  value: successColorScale[6],
+                  value: invertedSuccessColorScale[6],
                 },
                 {
-                  name: 'interactive_1',
-                  value: successColorScale[5],
+                  name: 'success_hover',
+                  value: invertedSuccessColorScale[7],
                 },
                 {
-                  name: 'interactive_2',
-                  value: successColorScale[4],
+                  name: 'success_active',
+                  value: invertedSuccessColorScale[8],
                 },
               ],
               background: {
                 name: 'background',
-                value: successColorScale[successColorScale.length - 1],
+                value: invertedSuccessColorScale[0],
               },
             },
             {
               name: 'danger',
-              colorRamp: dangerColorScale,
+              colorRamp: invertedDangerColorScale,
               variants: [
                 {
-                  name: 'success',
-                  value: dangerColorScale[6],
+                  name: 'danger',
+                  value: invertedDangerColorScale[6],
                 },
                 {
-                  name: 'interactive_1',
-                  value: dangerColorScale[5],
+                  name: 'danger_hover',
+                  value: invertedDangerColorScale[7],
                 },
                 {
-                  name: 'interactive_2',
-                  value: dangerColorScale[4],
+                  name: 'danger_active',
+                  value: invertedDangerColorScale[8],
                 },
               ],
               background: {
                 name: 'background',
-                value: dangerColorScale[dangerColorScale.length - 1],
+                value: invertedDangerColorScale[0],
               },
             },
             {
               name: 'warning',
-              colorRamp: warningColorScale,
+              colorRamp: invertedWarningColorScale,
               variants: [
                 {
-                  name: 'success',
-                  value: warningColorScale[6],
+                  name: 'warning',
+                  value: invertedWarningColorScale[6],
                 },
                 {
-                  name: 'interactive_1',
-                  value: warningColorScale[5],
+                  name: 'warning_hover',
+                  value: invertedWarningColorScale[7],
                 },
                 {
-                  name: 'interactive_2',
-                  value: warningColorScale[4],
+                  name: 'warning_active',
+                  value: invertedWarningColorScale[8],
                 },
               ],
               background: {
                 name: 'background',
-                value: warningColorScale[warningColorScale.length - 1],
+                value: invertedWarningColorScale[0],
               },
             },
           ],

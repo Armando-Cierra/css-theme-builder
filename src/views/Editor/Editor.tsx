@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components';
-// import { useEditor } from './useEditor';
+import { useEditor } from './useEditor';
 import './editor.scss';
 
 export const Editor = () => {
-  // const { theme, themeType } = useEditor();
+  const { theme, themeType } = useEditor();
+
+  console.log(theme, themeType);
 
   return (
     <motion.div
