@@ -3,16 +3,42 @@
     "accept": "Accept",
     "cancel": "Cancel",
     "edit": "Edit",
+    "create": "Create",
     "delete": "Delete",
     "addFavorite": "Add To Favorites",
     "removeFavorite": "Remove From Favorites",
     "save": "Save",
     "saveChanges": "Save Changes",
-    "discardChanges": "Discard Changes"
+    "discardChanges": "Discard Changes",
+    "goBack": "Go Back"
   },
   "toolbar": {
     "auto": "System Based Mode",
     "light": "Light Mode",
     "dark": "Dark Mode"
+  },
+  "components": {
+    "newThemeModal": {
+      "title": "New Theme",
+      "description": "Select the type of theme that matches the better with your project needs.",
+      "cards": {
+        "simple": {
+          "title": "Simple",
+          "description": "Opt for this option if you prefer a simplified approach without the need for Dark and Light mode variations. Your theme will maintain a consistent look and feel across all platforms and environments."
+        },
+        "dual": {
+          "title": "Dual",
+          "description": "Opt for this option if you want your theme to adapt seamlessly to different system settings. With Dual Mode, your theme will offer both Dark and Light modes, providing users the flexibility to switch between them based on the system or their preferences."
+        }
+      }
+    }
+  },
+  "home": {
+    "description": "CSS Theme Builder is an App made for designers and for developers, facilitating the creation of custom and dynamic themes by using CSS variables.",
+    "cards": {
+      "newTheme": "New Theme",
+      "savedThemes": "Saved Themes",
+      "github": "Github Project"
+    }
   }
 }

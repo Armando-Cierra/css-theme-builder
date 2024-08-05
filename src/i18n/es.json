@@ -3,16 +3,42 @@
     "accept": "Aceptar",
     "cancel": "Cancelar",
     "edit": "Editar",
+    "create": "Crear",
     "delete": "Borrar",
     "addFavorite": "Agregar a Favoritos",
     "removeFavorite": "Quitar de Favoritos",
     "save": "Guardar",
     "saveChanges": "Guardar Cambios",
-    "discardChanges": "Descartar Cambios"
+    "discardChanges": "Descartar Cambios",
+    "goBack": "Regresar"
   },
   "toolbar": {
     "auto": "Modo Basado en el Sistema",
     "light": "Modo Claro",
     "dark": "Modo Oscuro"
+  },
+  "components": {
+    "newThemeModal": {
+      "title": "Nuevo Tema",
+      "description": "Selecciona el tipo de tema que mejor concuerda con las necesidades de su proyecto.",
+      "cards": {
+        "simple": {
+          "title": "Simple",
+          "description": "Seleccione esta opción si prefiere un enfoque más simplificado sin la neceisdad de tener variantes para el modo claro y oscuro. Su tema se mantendrá consistente en apariencia a través de diversos sistemas y ambientes."
+        },
+        "dual": {
+          "title": "Dual",
+          "description": "Seleccione esta opción si quieres que tu tema se adapte dinámicamente a diferentes configuraciones del sistema. Con el tema Dual, su tema ofrecerá los modos claro y oscuro, dando a los usuarios la flexibilidad de cambiar entre ambos según sus preferencias o las del sistema."
+        }
+      }
+    }
+  },
+  "home": {
+    "description": "CSS Theme Builder es una aplicación hecha para diseñadores y programadores, facilitando la creación de temas personalizados y dinámicos al usar variables de CSS.",
+    "cards": {
+      "newTheme": "Nuevo Tema",
+      "savedThemes": "Temas Guardados",
+      "github": "Proyecto de Github"
+    }
   }
 }

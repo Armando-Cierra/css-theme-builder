@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Modal, ModalProps, Button } from '@/components';
 import './newThemeModal.scss';
 import { ThemeType } from '@/types';
@@ -7,6 +8,7 @@ type CustomModalProps = Omit<ModalProps, 'children'>;
 interface Props extends CustomModalProps {}
 
 export const NewThemeModal = ({ isOpen, onCloseModal, ...rest }: Props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleThemeCreation = (themeType: ThemeType) => () => {
     onCloseModal?.();
@@ -18,46 +20,35 @@ export const NewThemeModal = ({ isOpen, onCloseModal, ...rest }: Props) => {
   return (
     <>
       <Modal isOpen={isOpen} onCloseModal={onCloseModal} {...rest}>
-        <Modal.Title>New Theme</Modal.Title>
+        <Modal.Title>{t('components.newThemeModal.title')}</Modal.Title>
         <Modal.Description>
-          Select the type of theme that matches the better with your project
-          needs.
+          {t('components.newThemeModal.description')}
         </Modal.Description>
         <Modal.Content className="newThemeModal">
           <div className="section">
             <div className="textContent">
-              <span>Simple</span>
-              <p>
-                Opt for this option if you prefer a simplified approach without
-                the need for Dark and Light mode variations. Your theme will
-                maintain a consistent look and feel across all platforms and
-                environments.
-              </p>
+              <span>{t('components.newThemeModal.cards.simple.title')}</span>
+              <p>{t('components.newThemeModal.cards.simple.description')}</p>
             </div>
             <Button
               variant="contrast"
               isFullWidth
               onClick={handleThemeCreation('simple')}
             >
-              Create
+              {t('general.create')}
             </Button>
           </div>
           <div className="section">
             <div className="textContent">
-              <span>Dual</span>
-              <p>
-                Choose this option if you want your theme to adapt seamlessly to
-                different environments. With Dual Mode, your theme will offer
-                both Dark and Light modes, providing users the flexibility to
-                switch between them based on their preference or environment.
-              </p>
+              <span>{t('components.newThemeModal.cards.dual.title')}</span>
+              <p>{t('components.newThemeModal.cards.simple.description')}</p>
             </div>
             <Button
               variant="contrast"
               isFullWidth
               onClick={handleThemeCreation('dual')}
             >
-              Create
+              {t('general.create')}
             </Button>
           </div>
         </Modal.Content>

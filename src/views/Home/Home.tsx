@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { IconPlus, IconBookmark, IconBrandGithub } from '@tabler/icons-react';
 import { Card, NewThemeModal } from '@/components';
 import './home.scss';
 
 export const Home = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const openNewThemeModal = () => setIsOpen(true);
   const closeNewThemeModal = () => setIsOpen(false);
@@ -24,26 +26,22 @@ export const Home = () => {
           opacity: 0,
         }}
       >
-        <p className="home_description">
-          CSS Theme Builder is an App made for designers and for developers,
-          facilitating the creation of custom and dynamic style sheets using CSS
-          variables.
-        </p>
+        <p className="home_description">{t('home.description')}</p>
         <div className="home_contentBox">
           <Card
             icon={<IconPlus />}
-            text="New Theme"
+            text={t('home.cards.newTheme')}
             onClick={openNewThemeModal}
           />
           <Card
             isInnerLink
             icon={<IconBookmark />}
-            text="Saved Themes"
+            text={t('home.cards.savedThemes')}
             linksTo="/saved-themes"
           />
           <Card
             icon={<IconBrandGithub />}
-            text="GitHub Project"
+            text={t('home.cards.github')}
             linksTo="https://github.com/Armando-Cierra/css-theme-builder"
           />
         </div>
