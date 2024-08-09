@@ -17,7 +17,7 @@ export default function App() {
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
-            <Route path="/editor" element={<Editor />} />
+            <Route path="/theme-editor" element={<Editor />} />
             <Route path="/saved-themes" element={<SavedThemes />} />
           </Routes>
         </AnimatePresence>

@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './ButtonGroup';
+export * from './Checkbox';
 export * from './InlineNotification';
 export * from './Input';
 export * from './Modal';

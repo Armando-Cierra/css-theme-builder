@@ -13,7 +13,9 @@ export const NewThemeModal = ({ isOpen, onCloseModal, ...rest }: Props) => {
   const handleThemeCreation = (themeType: ThemeType) => () => {
     onCloseModal?.();
     setTimeout(() => {
-      navigate('/editor', { state: { theme: undefined, type: themeType } });
+      navigate('/theme-editor', {
+        state: { theme: undefined, type: themeType },
+      });
     }, 300);
   };
 

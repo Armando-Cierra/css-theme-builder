@@ -29,12 +29,16 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  transition: ease-in-out;
   &:focus-visible {
     box-shadow: 0 0 0 2px var(--theme_outline);
   }
   svg {
     flex-shrink: 0;
     max-width: 24px;
+  }
+  &:active {
+    transform: scale(1.025);
   }
 }
 
@@ -77,7 +81,9 @@
   }
   @include interactiveSemantics();
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--theme_outline_softer);
+    box-shadow:
+      0 0 0 1px var(--theme_border),
+      0 0 0 3px var(--theme_outline);
   }
 }
 
