@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useLocation } from 'react-router-dom';
 import { getInitialSettingsForTheme } from '@/utils';
 import {
@@ -12,7 +12,6 @@ import {
 } from '@/types';
 
 export const useEditor = () => {
-  const { t } = useTranslation();
   const location = useLocation();
   const { theme: localTheme, type } = location.state;
   const themeType = localTheme
@@ -308,5 +307,5 @@ export const useEditor = () => {
     changeBackgroundColor,
   };
 
-  return { t, themeType, theme, themeActions };
+  return { themeType, theme, themeActions };
 };

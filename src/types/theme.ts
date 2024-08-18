@@ -57,3 +57,23 @@ export interface ThemesContext {
   addTheme: (newTheme: ThemeItem) => void;
   removeTheme: (themeId: string) => void;
 }
+
+export interface EditorContextProps {
+  theme: ThemeItem;
+  themeActions: {
+    editThemeName: (newName: string) => void;
+    editContrastPercentages: (
+      newContrastPercentages: number[],
+      colorMode?: ColorMode,
+    ) => void;
+    toggleThemeFavoriteOption: () => void;
+    editBaseColorRamp: (newColorRamp: string[], colorMode?: ColorMode) => void;
+    addNewBackgroundSpace: (colorMode?: ColorMode) => void;
+    removeBackgroundSpace: (index: number, colorMode?: ColorMode) => void;
+    changeBackgroundColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
+  };
+}

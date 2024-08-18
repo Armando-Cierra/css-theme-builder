@@ -23,13 +23,13 @@ export const InitialTip = () => {
               permanently, it won't be displayed again, either here or in any
               other new theme.
             </Modal.Description>
-            <Modal.Content className="initialTip">
+            <Modal.Content className="editor_initialTip">
               <Checkbox
-                className="initialTip_checkbox"
+                className="editor_initialTip_checkbox"
                 label="Don't show this warning again."
                 onChange={handleCheckEvent}
               />
-              <div className="initialTip_buttonBox">
+              <div className="editor_initialTip_buttonBox">
                 <Button onClick={closeModal} variant="ghost">
                   Cancel
                 </Button>

@@ -1,0 +1,37 @@
+.editor_header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  gap: 24px;
+  padding: 24px;
+  .editor_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    h1 {
+      font-size: var(--font_size_heading_2);
+      font-weight: var(--font_weight_bold);
+    }
+    .editor_controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .editor_themeName {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        p {
+          color: var(--theme_text_muted);
+          span {
+            color: var(--theme_text);
+          }
+        }
+        .editor_buttonsBox {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+      }
+    }
+  }
+}
