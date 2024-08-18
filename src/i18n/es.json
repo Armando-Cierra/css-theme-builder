@@ -10,12 +10,12 @@
     "save": "Guardar",
     "saveChanges": "Guardar Cambios",
     "discardChanges": "Descartar Cambios",
-    "goBack": "Regresar"
-  },
-  "toolbar": {
-    "auto": "Modo Basado en el Sistema",
+    "goBack": "Regresar",
     "light": "Modo Claro",
     "dark": "Modo Oscuro"
+  },
+  "toolbar": {
+    "auto": "Automático"
   },
   "components": {
     "newThemeModal": {
@@ -39,6 +39,19 @@
       "newTheme": "Nuevo Tema",
       "savedThemes": "Temas Guardados",
       "github": "Proyecto de Github"
+    }
+  },
+  "editor": {
+    "baseColorRamp": {
+      "title": "Escala de Color Base",
+      "description": "Ajusta los valores y porcentajes de la escala de color para lograr el contraste perfecto.",
+      "baseColor": "Color base",
+      "baseColorInfo": "Color utilizado para definir el color de fondo de tu tema. Si deseas un tema claro, puedes usar blanco u algún color claro.",
+      "contrastColor": "Color de Contraste",
+      "contrastColorInfo": "Color utilizado para generar un alto contraste respecto al color base. Se usa principalmente para definir texto y bordes.",
+      "percentages": "Porcentajes",
+      "resetPercentages": "Restablecer Porcentajes",
+      "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color."
     }
   }
 }

@@ -39,7 +39,7 @@ export const Toolbar = () => {
           </Button>
           <Button
             data-tooltip-id={tooltipID}
-            data-tooltip-content={t('toolbar.light')}
+            data-tooltip-content={t('general.light')}
             iconOnly
             variant="ghost"
             isSelected={theme === 'light'}
@@ -49,7 +49,7 @@ export const Toolbar = () => {
           </Button>
           <Button
             data-tooltip-id={tooltipID}
-            data-tooltip-content={t('toolbar.dark')}
+            data-tooltip-content={t('general.dark')}
             iconOnly
             variant="ghost"
             isSelected={theme === 'dark'}

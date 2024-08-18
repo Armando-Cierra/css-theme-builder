@@ -71,3 +71,7 @@ svg {
 #css-theme-builder {
   z-index: 1500;
 }
+
+div[data-focus-lock-disabled] {
+  position: absolute;
+}

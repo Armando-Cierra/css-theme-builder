@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-import { useLocation } from 'react-router-dom';
+import { Location } from 'react-router-dom';
 import { getInitialSettingsForTheme } from '@/utils';
 import {
   ColorMode,
@@ -11,8 +10,7 @@ import {
   ThemeType,
 } from '@/types';
 
-export const useEditor = () => {
-  const location = useLocation();
+export const useEditor = (location: Location) => {
   const { theme: localTheme, type } = location.state;
   const themeType = localTheme
     ? (localTheme as ThemeItem).type

@@ -10,12 +10,12 @@
     "save": "Save",
     "saveChanges": "Save Changes",
     "discardChanges": "Discard Changes",
-    "goBack": "Go Back"
-  },
-  "toolbar": {
-    "auto": "System Based Mode",
+    "goBack": "Go Back",
     "light": "Light Mode",
     "dark": "Dark Mode"
+  },
+  "toolbar": {
+    "auto": "Automatic"
   },
   "components": {
     "newThemeModal": {
@@ -39,6 +39,19 @@
       "newTheme": "New Theme",
       "savedThemes": "Saved Themes",
       "github": "Github Project"
+    }
+  },
+  "editor": {
+    "baseColorRamp": {
+      "title": "Base Color Ramp",
+      "description": "Adjust the color ramp values and percentages to achieve the perfect contrast.",
+      "baseColor": "Base Color",
+      "baseColorInfo": "Color used to define the background color for your theme. If you want a clear theme, youb can use white or some light color.",
+      "contrastColor": "Contrast Color",
+      "contrastColorInfo": "Color used to generate a high contrast with the base color. This is mostly used to define text and borders.",
+      "percentages": "Percentages",
+      "resetPercentages": "Reset Percentages",
+      "percentagesInfo": "Amount of contrast for each step of the color ramp."
     }
   }
 }
