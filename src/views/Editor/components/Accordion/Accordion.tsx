@@ -29,7 +29,7 @@ export const Accordion = ({
 }: Props) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(isDefaultOpen);
-  const toggleAccordion = () => setIsOpen((prevState) => !prevState);
+  const toggleAccordion = () => setIsOpen(!isOpen);
 
   const handleColorModeSelection = (colorMode: ColorMode) => () => {
     onSelectColorMode(colorMode);
@@ -37,7 +37,7 @@ export const Accordion = ({
 
   return (
     <div className="editor_accordion">
-      <div className="editor_accordion_header">
+      <div className="editor_accordion_header" onClick={toggleAccordion}>
         <div className="editor_accordion_description">
           <span>{title}</span>
           <p>{description}</p>

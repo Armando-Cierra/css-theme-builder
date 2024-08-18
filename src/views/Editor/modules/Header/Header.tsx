@@ -1,15 +1,11 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  IconArrowLeft,
-  IconEdit,
-  IconStar,
-  IconStarFilled,
-} from '@tabler/icons-react';
+import { IconArrowLeft, IconStar, IconStarFilled } from '@tabler/icons-react';
 import { Button } from '@/components';
 import { tooltipID } from '@/utils';
 import { EditorContextProps } from '@/types';
+import { EditThemeNameModal } from '../../components';
 import { EditorContext } from '../../context';
 import './header.scss';
 
@@ -46,15 +42,7 @@ export const Header = () => {
               >
                 {theme.favorite ? <IconStarFilled /> : <IconStar />}
               </Button>
-              <Button
-                variant="ghost"
-                iconOnly
-                data-tooltip-id={tooltipID}
-                data-tooltip-content="Edit Theme Name"
-                data-tooltip-place="right"
-              >
-                <IconEdit />
-              </Button>
+              <EditThemeNameModal />
             </div>
           </div>
           <Button variant="contrast">{t('general.saveChanges')}</Button>

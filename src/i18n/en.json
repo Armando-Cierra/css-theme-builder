@@ -42,6 +42,10 @@
     }
   },
   "editor": {
+    "header": {
+      "themeName": "Theme Name",
+      "editThemeName": "Edit Theme Name"
+    },
     "baseColorRamp": {
       "title": "Base Color Ramp",
       "description": "Adjust the color ramp values and percentages to achieve the perfect contrast.",

@@ -42,6 +42,10 @@
     }
   },
   "editor": {
+    "header": {
+      "themeName": "Nombre Del Tema",
+      "editThemeName": "Editar Nombre Del Tema"
+    },
     "baseColorRamp": {
       "title": "Escala de Color Base",
       "description": "Ajusta los valores y porcentajes de la escala de color para lograr el contraste perfecto.",

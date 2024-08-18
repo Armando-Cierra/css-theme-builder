@@ -15,7 +15,7 @@
 }
 
 :root:has(body.dark) {
-  --theme_outline: rgba(255, 255, 255, 0.75);
+  --theme_outline: var(--theme_border_contrast);
 
   --theme_background_1: #151515;
   --theme_background_2: #1e1e1e;
@@ -38,6 +38,9 @@
   --theme_border: #363636;
   --theme_border_active: #484848;
 
+  --theme_border_contrast: #d0d0d0;
+  --theme_border_contrast_active: #a1a1a1;
+
   --theme_info_background: #17182f;
   --theme_info: #5358ef;
   --theme_info_active: #282eeb;
@@ -56,7 +59,7 @@
 }
 
 :root:has(body.light) {
-  --theme_outline: rgba(0, 0, 0, 0.75);
+  --theme_outline: var(--theme_border_contrast);
 
   --theme_background_1: #f3f3f3;
   --theme_background_2: #ffffff;
@@ -78,6 +81,9 @@
 
   --theme_border: #e8e8e8;
   --theme_border_active: #d0d0d0;
+
+  --theme_border_contrast: #363636;
+  --theme_border_contrast_active: #484848;
 
   --theme_info_background: #d4d5fb;
   --theme_info: #282eeb;
