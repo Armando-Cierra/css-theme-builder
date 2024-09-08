@@ -54,7 +54,7 @@
       "contrastColor": "Contrast Color",
       "contrastColorInfo": "Color used to generate a high contrast with the base color. This is mostly used to define text and borders.",
       "percentages": "Percentages",
-      "resetPercentages": "Reset Percentages",
+      "resetPercentages": "Reset Values",
       "percentagesInfo": "Amount of contrast for each step of the color ramp."
     }
   }

@@ -6,6 +6,8 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Home, Editor, SavedThemes } from '@/views';
 import { useApp } from '@/useApp';
 import { ThemesContext } from '@/context';
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const { themesCollection, addTheme, removeTheme } = useApp();
@@ -13,6 +15,20 @@ export default function App() {
   return (
     <ThemesContext.Provider value={{ themesCollection, addTheme, removeTheme }}>
       <Tooltip style={tooltipStyles} id={tooltipID} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="colored"
+        transition={Slide}
+        limit={1}
+      />
       <Template>
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>

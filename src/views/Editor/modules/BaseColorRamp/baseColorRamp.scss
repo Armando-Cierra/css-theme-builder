@@ -1,0 +1,77 @@
+.editor_baseColorRamp {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  .editor_baseColorRamp_colorPickersBox {
+    display: flex;
+    gap: 32px;
+    padding-left: 16px;
+    .editor_baseColorRamp_colorPicker {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      .editor_baseColorRamp_colorPickerControl {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        span {
+          color: var(--theme_text_muted);
+        }
+        .input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .editor_baseColorRamp_colorRamp {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .editor_baseColorRamp_scaleBox {
+      display: flex;
+      align-items: center;
+      box-shadow: 0 0 0 1px var(--theme_border);
+      border-radius: 8px;
+      .editor_baseColorRamp_scaleStep {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        .tabler-icon {
+          opacity: 0;
+        }
+        &:first-of-type {
+          border-radius: 8px 0 0 8px;
+        }
+        &:last-of-type {
+          border-radius: 0 8px 8px 0;
+        }
+        &:nth-child(7) {
+          width: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          .editor_baseColorRamp_centerScaleStep {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        &:hover {
+          .tabler-icon {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

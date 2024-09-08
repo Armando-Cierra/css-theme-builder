@@ -49,12 +49,12 @@
     "baseColorRamp": {
       "title": "Escala de Color Base",
       "description": "Ajusta los valores y porcentajes de la escala de color para lograr el contraste perfecto.",
-      "baseColor": "Color base",
+      "baseColor": "Color Base",
       "baseColorInfo": "Color utilizado para definir el color de fondo de tu tema. Si deseas un tema claro, puedes usar blanco u algún color claro.",
       "contrastColor": "Color de Contraste",
       "contrastColorInfo": "Color utilizado para generar un alto contraste respecto al color base. Se usa principalmente para definir texto y bordes.",
       "percentages": "Porcentajes",
-      "resetPercentages": "Restablecer Porcentajes",
+      "resetPercentages": "Restablecer Valores",
       "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color."
     }
   }

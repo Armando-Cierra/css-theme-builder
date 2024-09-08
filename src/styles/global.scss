@@ -75,3 +75,30 @@ svg {
 div[data-focus-lock-disabled] {
   position: absolute;
 }
+
+.Toastify__toast-container {
+  width: auto;
+  .Toastify__toast {
+    background: var(--theme_background_contrast_1);
+    width: fit-content;
+    min-height: auto;
+    color: var(--theme_text_contrast);
+    .Toastify__toast-body {
+      margin: 0;
+      padding: 0;
+    }
+    .Toastify__close-button {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: 100%;
+    .Toastify__toast {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
