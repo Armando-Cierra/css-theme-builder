@@ -34,6 +34,8 @@ function createWindow() {
     titleBarOverlay: true,
     width: 1280,
     height: 832,
+    minWidth: 790,
+    minHeight: 832,
     trafficLightPosition: { x: 24, y: 25 },
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
@@ -52,6 +54,8 @@ function createWindow() {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(RENDERER_DIST, 'index.html'));
   }
+
+  win.setMenuBarVisibility(false);
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common

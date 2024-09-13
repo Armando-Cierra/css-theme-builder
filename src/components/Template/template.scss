@@ -5,6 +5,7 @@
   .template_mainBox {
     width: 100%;
     height: calc(100dvh - 64px);
+    overflow-y: auto;
     background: var(--theme_background_2);
     position: absolute;
     bottom: 0;

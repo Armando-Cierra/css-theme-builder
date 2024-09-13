@@ -5,6 +5,7 @@ import { Input, Button } from '@/components';
 import { getDynamicContrastColor } from '@/utils/tools';
 import { Accordion } from '../../components';
 import { useBaseColorRamp } from './useBaseColorRamp';
+import { useBaseColorRampControls } from './useBaseColorRampControls';
 import './baseColorRamp.scss';
 
 export const BaseColorRamp = () => {
@@ -18,7 +19,24 @@ export const BaseColorRamp = () => {
     contrastColor,
     colorRamp,
     handleColorRampChange,
+    contrastPercentages,
+    handleContrastPercentagesChange,
+    resetValues,
   } = useBaseColorRamp();
+
+  const {
+    inputBaseColor,
+    inputContrastColor,
+    handleInputColorChange,
+    inputContrastPercentages,
+    handleInputContrastPercentageChange,
+  } = useBaseColorRampControls({
+    baseColor,
+    contrastColor,
+    handleColorRampChange,
+    contrastPercentages,
+    handleContrastPercentagesChange,
+  });
 
   return (
     <Accordion
@@ -38,7 +56,10 @@ export const BaseColorRamp = () => {
           />
           <div className="editor_baseColorRamp_colorPickerControl">
             <span>{t('editor.baseColorRamp.baseColor')}</span>
-            <Input value={baseColor} onChange={() => {}} />
+            <Input
+              value={inputBaseColor}
+              onChange={handleInputColorChange('base')}
+            />
           </div>
         </div>
         <div className="editor_baseColorRamp_colorPicker">
@@ -48,13 +69,24 @@ export const BaseColorRamp = () => {
           />
           <div className="editor_baseColorRamp_colorPickerControl">
             <span>{t('editor.baseColorRamp.contrastColor')}</span>
-            <Input value={contrastColor} onChange={() => {}} />
+            <Input
+              value={inputContrastColor}
+              onChange={handleInputColorChange('contrast')}
+            />
           </div>
         </div>
       </div>
       <div className="editor_baseColorRamp_colorRamp">
         <span>{t('editor.baseColorRamp.percentages')}</span>
-        <div className="editor_baseColorRamp_percentageInputsBox"></div>
+        <div className="editor_baseColorRamp_percentageInputsBox">
+          {inputContrastPercentages.map((percentage, index) => (
+            <Input
+              key={`baseColorRampPercentage_${percentage}_${index}_${selectedMode}`}
+              value={String(percentage)}
+              onChange={handleInputContrastPercentageChange(index)}
+            />
+          ))}
+        </div>
         <div className="editor_baseColorRamp_scaleBox">
           {colorRamp.map((color, index) => (
             <div
@@ -74,7 +106,7 @@ export const BaseColorRamp = () => {
             </div>
           ))}
         </div>
-        <Button>
+        <Button onClick={resetValues}>
           <IconReload />
           {t('editor.baseColorRamp.resetPercentages')}
         </Button>

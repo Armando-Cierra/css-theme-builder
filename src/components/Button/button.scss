@@ -34,6 +34,7 @@
     box-shadow: 0 0 0 2px var(--theme_outline);
   }
   svg {
+    pointer-events: none;
     flex-shrink: 0;
     max-width: 24px;
   }

@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { EditorContext } from '../../context';
 import { ColorMode, DualTheme, EditorContextProps, SimpleTheme } from '@/types';
-import { getColorScale } from '@/utils';
+import { getColorScale, defaultContrastPercentages } from '@/utils';
 
 export const useBaseColorRamp = () => {
   const { t } = useTranslation();
   const { theme, themeActions } = useContext(
     EditorContext,
   ) as EditorContextProps;
-  const [selectedMode, setSelectedMode] = useState<ColorMode>('light');
   const themeType = theme.type;
+
+  const [selectedMode, setSelectedMode] = useState<ColorMode>('light');
 
   const onSelectColorMode = (colorMode: ColorMode) => {
     setSelectedMode(colorMode);
@@ -44,16 +45,17 @@ export const useBaseColorRamp = () => {
         ? (theme as DualTheme).lightTheme.baseColor.colorRamp
         : (theme as DualTheme).darkTheme.baseColor.colorRamp;
 
+  const contrastPercentages =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.contrastPercentages
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.contrastPercentages
+        : (theme as DualTheme).darkTheme.contrastPercentages;
+
   const handleColorRampChange =
     (colorType: 'base' | 'contrast') => (newColor: string) => {
       const baseColor = colorType === 'base' ? newColor : colorRamp[0];
       const contrastColor = colorType === 'base' ? colorRamp[12] : newColor;
-      const contrastPercentages =
-        themeType === 'simple'
-          ? (theme as SimpleTheme).theme.contrastPercentages
-          : selectedMode === 'light'
-            ? (theme as DualTheme).lightTheme.contrastPercentages
-            : (theme as DualTheme).darkTheme.contrastPercentages;
 
       const newColorRamp = getColorScale({
         baseColor,
@@ -63,6 +65,43 @@ export const useBaseColorRamp = () => {
 
       themeActions.editBaseColorRamp(newColorRamp, selectedMode);
     };
+
+  const handleContrastPercentagesChange = (
+    newContrastPercentages: number[],
+  ) => {
+    if (themeType === 'simple') {
+      themeActions.editContrastPercentages(newContrastPercentages);
+    } else {
+      themeActions.editContrastPercentages(
+        newContrastPercentages,
+        selectedMode,
+      );
+    }
+
+    themeActions.editBaseColorRamp(
+      getColorScale({
+        baseColor,
+        contrastColor,
+        contrastPercentages: newContrastPercentages,
+      }),
+      selectedMode,
+    );
+  };
+
+  const resetValues = () => {
+    if (themeType === 'simple') {
+      themeActions.editContrastPercentages(defaultContrastPercentages);
+      themeActions.editBaseColorRamp(getColorScale());
+    } else {
+      themeActions.editContrastPercentages(defaultContrastPercentages, 'light');
+      themeActions.editContrastPercentages(defaultContrastPercentages, 'dark');
+      themeActions.editBaseColorRamp(getColorScale(), 'light');
+      themeActions.editBaseColorRamp(
+        getColorScale({ baseColor: 'black', contrastColor: 'white' }),
+        'dark',
+      );
+    }
+  };
 
   return {
     t,
@@ -75,5 +114,8 @@ export const useBaseColorRamp = () => {
     contrastColor,
     colorRamp,
     handleColorRampChange,
+    contrastPercentages,
+    handleContrastPercentagesChange,
+    resetValues,
   };
 };
