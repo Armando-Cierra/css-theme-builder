@@ -21,7 +21,9 @@ export const useBaseColorRampControls = ({
   const [inputBaseColor, setInputBaseColor] = useState(baseColor);
   const [inputContrastColor, setInputContrastColor] = useState(contrastColor);
   const [inputContrastPercentages, setInputContrastPercentages] = useState(
-    contrastPercentages.map((percentage) => (percentage * 100).toString()),
+    contrastPercentages.map((percentage) =>
+      Math.round(percentage * 100).toString(),
+    ),
   );
 
   const handleInputColorChange =
@@ -64,7 +66,9 @@ export const useBaseColorRampControls = ({
 
   useEffect(() => {
     setInputContrastPercentages(
-      contrastPercentages.map((percentage) => (percentage * 100).toString()),
+      contrastPercentages.map((percentage) =>
+        Math.round(percentage * 100).toString(),
+      ),
     );
   }, [contrastPercentages]);
 

@@ -81,7 +81,7 @@ export const BaseColorRamp = () => {
         <div className="editor_baseColorRamp_percentageInputsBox">
           {inputContrastPercentages.map((percentage, index) => (
             <Input
-              key={`baseColorRampPercentage_${percentage}_${index}_${selectedMode}`}
+              key={`baseColorRampPercentage_${index}`}
               value={String(percentage)}
               onChange={handleInputContrastPercentageChange(index)}
             />
