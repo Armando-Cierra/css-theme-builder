@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   cloneElement,
   DetailedHTMLProps,
+  FocusEventHandler,
   InputHTMLAttributes,
   ReactElement,
   ReactNode,
@@ -18,6 +19,7 @@ interface Props
   > {
   icon?: ReactNode;
   value: string;
+  autoSelect?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onClean?: () => void;
 }
@@ -25,12 +27,21 @@ interface Props
 export const Input = ({
   className: customClassName,
   icon,
+  autoSelect = true,
   value: controlledValue,
   onClean,
+  onFocus,
   ...rest
 }: Props) => {
   const value = controlledValue ?? '';
   const handleClick = () => onClean?.();
+
+  const handleFocus: FocusEventHandler<HTMLInputElement> = (e) => {
+    if (autoSelect) {
+      e.target.select();
+    }
+    onFocus?.(e);
+  };
 
   return (
     <div
@@ -52,6 +63,7 @@ export const Input = ({
         })}
         type="text"
         value={value}
+        onFocus={handleFocus}
         {...rest}
       />
       {onClean && value.length > 0 && (

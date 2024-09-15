@@ -103,6 +103,21 @@ export const useBaseColorRamp = () => {
     }
   };
 
+  const standardizeContrastsPercentages = () => {
+    const currentLightModeContrastPercentages = (theme as DualTheme).lightTheme
+      .contrastPercentages;
+    themeActions.editContrastPercentages(
+      currentLightModeContrastPercentages,
+      'dark',
+    );
+  };
+
+  const contrastStandadizationValidation =
+    themeType === 'dual' &&
+    selectedMode === 'light' &&
+    theme.lightTheme.contrastPercentages !==
+      theme.darkTheme.contrastPercentages;
+
   return {
     t,
     theme,
@@ -117,5 +132,7 @@ export const useBaseColorRamp = () => {
     contrastPercentages,
     handleContrastPercentagesChange,
     resetValues,
+    contrastStandadizationValidation,
+    standardizeContrastsPercentages,
   };
 };

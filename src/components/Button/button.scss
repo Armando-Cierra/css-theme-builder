@@ -21,8 +21,9 @@
 
 .button {
   width: fit-content;
+  height: 36px;
   border: none;
-  padding: 8px 8px;
+  padding: 0 8px;
   border-radius: 8px;
   display: inline-flex;
   justify-content: center;
@@ -39,7 +40,7 @@
     max-width: 24px;
   }
   &:active {
-    transform: scale(1.025);
+    transform: scale(1.03);
   }
 }
 
@@ -89,7 +90,7 @@
 }
 
 .button.button--iconOnly {
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   justify-content: center;
 }

@@ -1,11 +1,16 @@
 import { uid } from 'uid';
 import { HexColorPicker } from 'react-colorful';
-import { IconReload, IconCopy } from '@tabler/icons-react';
+import {
+  IconReload,
+  IconCopy,
+  IconInfoCircleFilled,
+} from '@tabler/icons-react';
 import { Input, Button } from '@/components';
 import { getDynamicContrastColor } from '@/utils/tools';
 import { Accordion } from '../../components';
 import { useBaseColorRamp } from './useBaseColorRamp';
 import { useBaseColorRampControls } from './useBaseColorRampControls';
+import { tooltipID } from '@/utils';
 import './baseColorRamp.scss';
 
 export const BaseColorRamp = () => {
@@ -22,6 +27,8 @@ export const BaseColorRamp = () => {
     contrastPercentages,
     handleContrastPercentagesChange,
     resetValues,
+    contrastStandadizationValidation,
+    standardizeContrastsPercentages,
   } = useBaseColorRamp();
 
   const {
@@ -55,7 +62,14 @@ export const BaseColorRamp = () => {
             onChange={handleColorRampChange('base')}
           />
           <div className="editor_baseColorRamp_colorPickerControl">
-            <span>{t('editor.baseColorRamp.baseColor')}</span>
+            <div className="editor_baseColorRamp_colorPickerControlLabel">
+              <span>{t('editor.baseColorRamp.baseColor')}</span>
+              <IconInfoCircleFilled
+                data-tooltip-id={tooltipID}
+                data-tooltip-html={t('editor.baseColorRamp.baseColorInfo')}
+                data-tooltip-place="right"
+              />
+            </div>
             <Input
               value={inputBaseColor}
               onChange={handleInputColorChange('base')}
@@ -68,7 +82,14 @@ export const BaseColorRamp = () => {
             onChange={handleColorRampChange('contrast')}
           />
           <div className="editor_baseColorRamp_colorPickerControl">
-            <span>{t('editor.baseColorRamp.contrastColor')}</span>
+            <div className="editor_baseColorRamp_colorPickerControlLabel">
+              <span>{t('editor.baseColorRamp.contrastColor')}</span>
+              <IconInfoCircleFilled
+                data-tooltip-id={tooltipID}
+                data-tooltip-html={t('editor.baseColorRamp.contrastColorInfo')}
+                data-tooltip-place="right"
+              />
+            </div>
             <Input
               value={inputContrastColor}
               onChange={handleInputColorChange('contrast')}
@@ -77,10 +98,17 @@ export const BaseColorRamp = () => {
         </div>
       </div>
       <div className="editor_baseColorRamp_colorRamp">
-        <span>{t('editor.baseColorRamp.percentages')}</span>
+        <div className="editor_baseColorRamp_colorRampLabel">
+          <span>{t('editor.baseColorRamp.percentages')}</span>
+          <IconInfoCircleFilled
+            data-tooltip-id={tooltipID}
+            data-tooltip-html={t('editor.baseColorRamp.percentagesInfo')}
+          />
+        </div>
         <div className="editor_baseColorRamp_percentageInputsBox">
           {inputContrastPercentages.map((percentage, index) => (
             <Input
+              autoSelect
               key={`baseColorRampPercentage_${index}`}
               value={String(percentage)}
               onChange={handleInputContrastPercentageChange(index)}
@@ -106,10 +134,32 @@ export const BaseColorRamp = () => {
             </div>
           ))}
         </div>
-        <Button onClick={resetValues}>
-          <IconReload />
-          {t('editor.baseColorRamp.resetPercentages')}
-        </Button>
+        <div className="editor_baseColorRamp_contrastButtonActions">
+          {contrastStandadizationValidation && (
+            <Button
+              variant="contrast"
+              data-tooltip-id={tooltipID}
+              data-tooltip-html={t(
+                'editor.baseColorRamp.standardizeContrastsInfo',
+              )}
+              data-tooltip-place="bottom-start"
+              data-tooltip-delay-show={1000}
+              onClick={standardizeContrastsPercentages}
+            >
+              {t('editor.baseColorRamp.standardizeContrasts')}
+            </Button>
+          )}
+          <Button
+            onClick={resetValues}
+            data-tooltip-id={tooltipID}
+            data-tooltip-html={t('editor.baseColorRamp.resetPercentagesInfo')}
+            data-tooltip-place="bottom-start"
+            data-tooltip-delay-show={1000}
+          >
+            <IconReload />
+            {t('editor.baseColorRamp.resetPercentages')}
+          </Button>
+        </div>
       </div>
     </Accordion>
   );

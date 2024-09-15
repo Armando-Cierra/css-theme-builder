@@ -32,10 +32,11 @@
     }
   }
   .editor_accordion_animationWrapper {
+    opacity: 0;
     overflow: hidden;
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.15s ease-in-out;
+    transition: 0.15s ease-in-out;
     .editor_accordion_content {
       min-height: 0;
       padding: 0;
@@ -44,6 +45,7 @@
   }
   .editor_accordion_animationWrapper--open {
     grid-template-rows: 1fr;
+    opacity: 1;
     .editor_accordion_content {
       padding-top: 32px;
     }

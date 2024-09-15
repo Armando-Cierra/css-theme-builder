@@ -19,6 +19,8 @@ body {
   font-size: var(--text_size_body);
   font-weight: var(--text_weight_regular);
   overflow: hidden;
+  --rt-opacity: 1 !important
+;
 }
 
 a,

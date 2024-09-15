@@ -50,12 +50,15 @@
       "title": "Escala de Color Base",
       "description": "Ajusta los valores y porcentajes de la escala de color para lograr el contraste perfecto.",
       "baseColor": "Color Base",
-      "baseColorInfo": "Color utilizado para definir el color de fondo de tu tema. Si deseas un tema claro, puedes usar blanco u algún color claro.",
+      "baseColorInfo": "Color utilizado para los fondos, actuando <br/> como el color fundamental del tema.",
       "contrastColor": "Color de Contraste",
-      "contrastColorInfo": "Color utilizado para generar un alto contraste respecto al color base. Se usa principalmente para definir texto y bordes.",
-      "percentages": "Porcentajes",
+      "contrastColorInfo": "Opuesto al color base, se utiliza para crear una distinción <br/> visual y mejorar la legibilidad sobre el color base.",
+      "percentages": "Porcentajes de Contraste",
       "resetPercentages": "Restablecer Valores",
-      "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color."
+      "resetPercentagesInfo": "Restable los siguientes valores: Color Base, Color de Contraste y Porcentajes de Contraste.",
+      "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color.",
+      "standardizeContrasts": "Estandarizar Contrastes",
+      "standardizeContrastsInfo": "Usa los porcentajes de contraste personalizados del modo claro en el modo oscuro. <br/> Esto puede ayudar a tener una mejor unificación en sus escalas de color."
     }
   }
 }
