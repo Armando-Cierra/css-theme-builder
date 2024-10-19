@@ -10,7 +10,6 @@ export const EditThemeNameModal = () => {
     isOpen,
     value,
     openModal,
-    closeModal,
     handleFormSubmit,
     handleThemeNameChange,
     handleCancel,
@@ -29,17 +28,19 @@ export const EditThemeNameModal = () => {
         <IconEdit />
       </Button>
 
-      <Modal isOpen={isOpen} onCloseModal={closeModal}>
-        <Modal.Title>Edit Theme Name</Modal.Title>
+      <Modal isOpen={isOpen} onCloseModal={handleCancel}>
+        <Modal.Title>{t('editor.components.editThemeName')}</Modal.Title>
         <Modal.Content>
           <form className="editThemeNameModal_form" onSubmit={handleFormSubmit}>
             <Input value={value} onChange={handleThemeNameChange} />
             <Button type="button" onClick={handleCancel}>
               {t('general.cancel')}
             </Button>
-            <Button type="submit" variant="contrast">
-              {t('general.saveChanges')}
-            </Button>
+            {value.length !== 0 && (
+              <Button type="submit" variant="contrast">
+                {t('general.saveChanges')}
+              </Button>
+            )}
           </form>
         </Modal.Content>
       </Modal>

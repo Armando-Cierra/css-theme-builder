@@ -38,7 +38,6 @@ export const useEditThemeNameModal = () => {
     isOpen,
     value,
     openModal,
-    closeModal,
     handleFormSubmit,
     handleThemeNameChange,
     handleCancel,

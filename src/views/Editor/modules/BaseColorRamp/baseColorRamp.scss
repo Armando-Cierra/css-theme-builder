@@ -148,10 +148,13 @@
   }
 }
 
-@media screen and (max-width: 1270px) {
+@media (width <= 1270px) {
   .editor_baseColorRamp {
     flex-direction: column;
     gap: 24px;
     align-items: center;
+    .editor_baseColorRamp_contrastButtonActions {
+      justify-content: center;
+    }
   }
 }

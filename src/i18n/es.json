@@ -42,6 +42,10 @@
     }
   },
   "editor": {
+    "components": {
+      "editThemeName": "Editar Nombre del Tema",
+      "editColor": "Editar Color"
+    },
     "header": {
       "themeName": "Nombre Del Tema",
       "editThemeName": "Editar Nombre Del Tema"
@@ -59,6 +63,13 @@
       "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color.",
       "standardizeContrasts": "Estandarizar Contrastes",
       "standardizeContrastsInfo": "Usa los porcentajes de contraste personalizados del modo claro en el modo oscuro. <br/> Esto puede ayudar a tener una mejor unificación en sus escalas de color."
+    },
+    "baseColorSections": {
+      "title": "Fondos, Bordes y Texto",
+      "description": "Un conjunto de estilos que definen la apariencia de las áreas de fondo, los contornos de los bordes y los elementos de texto dentro del sitio web/aplicación.",
+      "backgrounds": "Fondos",
+      "addBackground": "Agregar Fondo",
+      "editColor": "Editar Color"
     }
   }
 }

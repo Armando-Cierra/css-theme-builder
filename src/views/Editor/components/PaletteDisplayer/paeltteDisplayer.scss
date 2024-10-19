@@ -1,0 +1,20 @@
+.paletteDisplayer{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .paletteDisplayer_box{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .paletteDisplayer_colorCollection{
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--theme_border);
+      border-radius: 8px;
+      overflow: hidden;
+      .editColorValue{
+        border-radius: 0;
+      }
+    }
+  }
+}

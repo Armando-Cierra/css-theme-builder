@@ -160,7 +160,7 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
-  const addNewBackgroundSpace = (colorMode?: ColorMode) => {
+  const addNewBackgroundSpace = () => {
     const themeTypes = {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
@@ -179,40 +179,35 @@ export const useEditor = (location: Location) => {
       dual: () => {
         const updatedTheme = theme as DualTheme;
 
-        const colorModes = {
-          light: () => {
-            updatedTheme.lightTheme.baseColor.backgrounds = [
-              ...updatedTheme.lightTheme.baseColor.backgrounds,
-              {
-                name: `background_${updatedTheme.lightTheme.baseColor.backgrounds.length}`,
-                value:
-                  updatedTheme.lightTheme.baseColor.colorRamp[
-                    updatedTheme.lightTheme.baseColor.backgrounds.length
-                  ],
-              },
-            ];
+        updatedTheme.lightTheme.baseColor.backgrounds = [
+          ...updatedTheme.lightTheme.baseColor.backgrounds,
+          {
+            name: `background_${updatedTheme.lightTheme.baseColor.backgrounds.length}`,
+            value:
+              updatedTheme.lightTheme.baseColor.colorRamp[
+                updatedTheme.lightTheme.baseColor.backgrounds.length
+              ],
           },
-          dark: () => {
-            updatedTheme.darkTheme.baseColor.backgrounds = [
-              ...updatedTheme.darkTheme.baseColor.backgrounds,
-              {
-                name: `background_${updatedTheme.darkTheme.baseColor.backgrounds.length}`,
-                value:
-                  updatedTheme.darkTheme.baseColor.colorRamp[
-                    updatedTheme.darkTheme.baseColor.backgrounds.length
-                  ],
-              },
-            ];
+        ];
+
+        updatedTheme.darkTheme.baseColor.backgrounds = [
+          ...updatedTheme.darkTheme.baseColor.backgrounds,
+          {
+            name: `background_${updatedTheme.darkTheme.baseColor.backgrounds.length}`,
+            value:
+              updatedTheme.darkTheme.baseColor.colorRamp[
+                updatedTheme.darkTheme.baseColor.backgrounds.length
+              ],
           },
-        };
-        colorModes[colorMode as ColorMode]();
+        ];
+
         setTheme({ ...updatedTheme });
       },
     };
     themeTypes[themeType]();
   };
 
-  const removeBackgroundSpace = (index: number, colorMode?: ColorMode) => {
+  const removeBackgroundSpace = (index: number) => {
     function updateBackgroundsName(backgrounds: ColorVariable[]) {
       const updatedBackgroundsNames: ColorVariable[] = [];
       backgrounds.forEach((color, index) => {
@@ -228,8 +223,7 @@ export const useEditor = (location: Location) => {
     const themesTypes = {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.backgrounds =
-          updatedTheme.theme.baseColor.backgrounds.splice(index, 1);
+        updatedTheme.theme.baseColor.backgrounds.splice(index, 1);
         updatedTheme.theme.baseColor.backgrounds = updateBackgroundsName(
           updatedTheme.theme.baseColor.backgrounds,
         );
@@ -237,28 +231,18 @@ export const useEditor = (location: Location) => {
       },
       dual: () => {
         const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () => {
-            updatedTheme.lightTheme.baseColor.backgrounds =
-              updatedTheme.lightTheme.baseColor.backgrounds.splice(index, 1);
-            updatedTheme.lightTheme.baseColor.backgrounds =
-              updateBackgroundsName(
-                updatedTheme.lightTheme.baseColor.backgrounds,
-              );
-            setTheme({ ...updatedTheme });
-          },
-          dark: () => {
-            updatedTheme.darkTheme.baseColor.backgrounds =
-              updatedTheme.darkTheme.baseColor.backgrounds.splice(index, 1);
-            updatedTheme.darkTheme.baseColor.backgrounds =
-              updateBackgroundsName(
-                updatedTheme.darkTheme.baseColor.backgrounds,
-              );
-            setTheme({ ...updatedTheme });
-          },
-        };
 
-        colorModes[colorMode as ColorMode]();
+        updatedTheme.lightTheme.baseColor.backgrounds.splice(index, 1);
+        updatedTheme.lightTheme.baseColor.backgrounds = updateBackgroundsName(
+          updatedTheme.lightTheme.baseColor.backgrounds,
+        );
+
+        updatedTheme.darkTheme.baseColor.backgrounds.splice(index, 1);
+        updatedTheme.darkTheme.baseColor.backgrounds = updateBackgroundsName(
+          updatedTheme.darkTheme.baseColor.backgrounds,
+        );
+
+        setTheme({ ...updatedTheme });
       },
     };
 
@@ -274,21 +258,22 @@ export const useEditor = (location: Location) => {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
         updatedTheme.theme.baseColor.backgrounds[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
       },
       dual: () => {
         const updatedTheme = theme as DualTheme;
         const colorModes = {
-          light: () => {
-            updatedTheme.lightTheme.baseColor.backgrounds[index].value =
-              newValue;
-          },
-          dark: () => {
-            updatedTheme.darkTheme.baseColor.backgrounds[index].value =
-              newValue;
-          },
+          light: () =>
+            (updatedTheme.lightTheme.baseColor.backgrounds[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.baseColor.backgrounds[index].value =
+              newValue),
         };
 
         colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
       },
     };
 

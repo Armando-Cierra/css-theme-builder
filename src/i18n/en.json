@@ -42,6 +42,10 @@
     }
   },
   "editor": {
+    "components": {
+      "editThemeName": "Edit Theme Name",
+      "editColor": "Edit Color"
+    },
     "header": {
       "themeName": "Theme Name",
       "editThemeName": "Edit Theme Name"
@@ -59,6 +63,13 @@
       "percentagesInfo": "Amount of contrast for each <br/> step of the color ramp.",
       "standardizeContrasts": "Standardize Contrasts",
       "standardizeContrastsInfo": "Use your custom contrasts percentages from the light color mode on the dark color mode. <br/> This might help you to have better unification on your scales."
+    },
+    "baseColorSections": {
+      "title": "Backgrounds, Borders and Text",
+      "description": "A set of styles defining the appearance of background areas, border outlines, and textual elements within the website/application.",
+      "backgrounds": "Backgrounds",
+      "addBackground": "Add Background",
+      "editColor": "Edit Color"
     }
   }
 }

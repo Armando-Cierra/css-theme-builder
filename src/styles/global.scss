@@ -95,7 +95,7 @@ div[data-focus-lock-disabled] {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media (width <= 480px) {
   .Toastify__toast-container {
     width: 100%;
     .Toastify__toast {
