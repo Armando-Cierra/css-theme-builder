@@ -75,6 +75,9 @@ export const useBaseColorSections = () => {
   const removeContrastBackgroundSpace = (index: number) =>
     themeActions.removeContrastBackgroundSpace(index);
 
+  const editTextColor = (index: number, newValue: string) =>
+    themeActions.changeTextColor(index, newValue, selectedMode);
+
   return {
     t,
     theme,
@@ -93,5 +96,6 @@ export const useBaseColorSections = () => {
     addNewContrastBackground,
     editContrastBackgroundColor,
     removeContrastBackgroundSpace,
+    editTextColor,
   };
 };

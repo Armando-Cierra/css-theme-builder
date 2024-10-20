@@ -70,7 +70,8 @@
       "addColor": "Agregar Color",
       "editColor": "Editar Color",
       "backgrounds": "Fondos",
-      "contrastBackgrounds": "Fondos de Contraste"
+      "contrastBackgrounds": "Fondos de Contraste",
+      "text": "Texto"
     }
   }
 }

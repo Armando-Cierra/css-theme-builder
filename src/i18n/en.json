@@ -70,7 +70,8 @@
       "editColor": "Edit Color",
       "addColor": "Add Color",
       "backgrounds": "Backgrounds",
-      "contrastBackgrounds": "Contrast Backgrounds"
+      "contrastBackgrounds": "Contrast Backgrounds",
+      "text": "Text"
     }
   }
 }
