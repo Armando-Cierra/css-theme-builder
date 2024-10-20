@@ -11,7 +11,7 @@ export const BaseColorSections = () => {
     backgrounds,
     contrastBackgrounds,
     text,
-    // contrastText,
+    contrastText,
     // borders,
     // contrastBorders,
     addNewBackground,
@@ -21,6 +21,7 @@ export const BaseColorSections = () => {
     editContrastBackgroundColor,
     removeContrastBackgroundSpace,
     editTextColor,
+    editContrastTextColor,
   } = useBaseColorSections();
 
   return (
@@ -59,6 +60,13 @@ export const BaseColorSections = () => {
         maxArray={2}
         minArray={2}
         editColorAction={editTextColor}
+      />
+      <PaletteDisplayer
+        title={t('editor.baseColorSections.contrastText')}
+        colors={contrastText}
+        maxArray={2}
+        minArray={2}
+        editColorAction={editContrastTextColor}
       />
     </Accordion>
   );

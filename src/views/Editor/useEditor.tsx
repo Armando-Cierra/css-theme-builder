@@ -442,6 +442,37 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
+  const changeContrastTextColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.baseColor.contrastText[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.baseColor.contrastText[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.baseColor.contrastText[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -454,6 +485,7 @@ export const useEditor = (location: Location) => {
     removeContrastBackgroundSpace,
     changeContrastBackgroundColor,
     changeTextColor,
+    changeContrastTextColor,
   };
 
   return { themeType, theme, themeActions };

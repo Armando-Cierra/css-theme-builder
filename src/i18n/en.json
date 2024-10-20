@@ -71,7 +71,8 @@
       "addColor": "Add Color",
       "backgrounds": "Backgrounds",
       "contrastBackgrounds": "Contrast Backgrounds",
-      "text": "Text"
+      "text": "Text",
+      "contrastText": "Contrast Text"
     }
   }
 }

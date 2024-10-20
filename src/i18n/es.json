@@ -71,7 +71,8 @@
       "editColor": "Editar Color",
       "backgrounds": "Fondos",
       "contrastBackgrounds": "Fondos de Contraste",
-      "text": "Texto"
+      "text": "Texto",
+      "contrastText": "Texto de Contraste"
     }
   }
 }

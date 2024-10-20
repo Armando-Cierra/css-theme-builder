@@ -90,5 +90,10 @@ export interface EditorContextProps {
       newValue: string,
       colorMode?: ColorMode,
     ) => void;
+    changeContrastTextColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
   };
 }
