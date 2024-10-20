@@ -80,7 +80,7 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
           value: baseColorScale[2],
         },
       ],
-      constrastbackgrounds: [
+      contrastBackgrounds: [
         {
           name: 'background_contrast_1',
           value: baseColorScale[baseColorScale.length - 1],
@@ -241,7 +241,7 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
                 value: invertedaseColorScale[2],
               },
             ],
-            constrastbackgrounds: [
+            contrastBackgrounds: [
               {
                 name: 'background_contrast_1',
                 value: invertedaseColorScale[baseColorScale.length - 1],

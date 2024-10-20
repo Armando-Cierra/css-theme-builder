@@ -25,10 +25,10 @@ export const useBaseColorSections = () => {
 
   const contrastBackgrounds =
     themeType === 'simple'
-      ? (theme as SimpleTheme).theme.baseColor.constrastbackgrounds
+      ? (theme as SimpleTheme).theme.baseColor.contrastBackgrounds
       : selectedMode === 'light'
-        ? (theme as DualTheme).lightTheme.baseColor.constrastbackgrounds
-        : (theme as DualTheme).darkTheme.baseColor.constrastbackgrounds;
+        ? (theme as DualTheme).lightTheme.baseColor.contrastBackgrounds
+        : (theme as DualTheme).darkTheme.baseColor.contrastBackgrounds;
 
   const text =
     themeType === 'simple'
@@ -66,6 +66,15 @@ export const useBaseColorSections = () => {
   const removeBackgroundSpace = (index: number) =>
     themeActions.removeBackgroundSpace(index);
 
+  const addNewContrastBackground = () =>
+    themeActions.addNewContrastBackgroundSpace();
+
+  const editContrastBackgroundColor = (index: number, newValue: string) =>
+    themeActions.changeContrastBackgroundColor(index, newValue, selectedMode);
+
+  const removeContrastBackgroundSpace = (index: number) =>
+    themeActions.removeContrastBackgroundSpace(index);
+
   return {
     t,
     theme,
@@ -81,5 +90,8 @@ export const useBaseColorSections = () => {
     addNewBackground,
     editBackgroundColor,
     removeBackgroundSpace,
+    addNewContrastBackground,
+    editContrastBackgroundColor,
+    removeContrastBackgroundSpace,
   };
 };

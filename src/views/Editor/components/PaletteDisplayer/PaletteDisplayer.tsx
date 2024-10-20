@@ -62,7 +62,7 @@ export const PaletteDisplayer = ({
             iconOnly
             onClick={addNewColorAction}
             data-tooltip-id={tooltipID}
-            data-tooltip-content={t('editor.baseColorSections.addBackground')}
+            data-tooltip-content={t('editor.baseColorSections.addColor')}
             data-tooltip-place="bottom"
           >
             <IconPlus />

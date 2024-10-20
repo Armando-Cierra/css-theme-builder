@@ -67,9 +67,10 @@
     "baseColorSections": {
       "title": "Fondos, Bordes y Texto",
       "description": "Un conjunto de estilos que definen la apariencia de las áreas de fondo, los contornos de los bordes y los elementos de texto dentro del sitio web/aplicación.",
+      "addColor": "Agregar Color",
+      "editColor": "Editar Color",
       "backgrounds": "Fondos",
-      "addBackground": "Agregar Fondo",
-      "editColor": "Editar Color"
+      "contrastBackgrounds": "Fondos de Contraste"
     }
   }
 }

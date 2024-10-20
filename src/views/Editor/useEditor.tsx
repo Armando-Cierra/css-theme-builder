@@ -79,7 +79,7 @@ export const useEditor = (location: Location) => {
           value: newColorRamp[2],
         },
       ],
-      constrastbackgrounds: [
+      contrastBackgrounds: [
         {
           name: 'background_contrast_1',
           value: newColorRamp[newColorRamp.length - 1],
@@ -280,6 +280,139 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
+  const addNewContrastBackgroundSpace = () => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.baseColor.contrastBackgrounds = [
+          ...updatedTheme.theme.baseColor.contrastBackgrounds,
+          {
+            name: `background_${updatedTheme.theme.baseColor.contrastBackgrounds.length}`,
+            value:
+              updatedTheme.theme.baseColor.colorRamp[
+                updatedTheme.theme.baseColor.colorRamp.length -
+                  1 -
+                  updatedTheme.theme.baseColor.contrastBackgrounds.length
+              ],
+          },
+        ];
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+
+        updatedTheme.lightTheme.baseColor.contrastBackgrounds = [
+          ...updatedTheme.lightTheme.baseColor.contrastBackgrounds,
+          {
+            name: `background_${updatedTheme.lightTheme.baseColor.contrastBackgrounds.length}`,
+            value:
+              updatedTheme.lightTheme.baseColor.colorRamp[
+                updatedTheme.lightTheme.baseColor.colorRamp.length -
+                  1 -
+                  updatedTheme.lightTheme.baseColor.contrastBackgrounds.length
+              ],
+          },
+        ];
+
+        updatedTheme.darkTheme.baseColor.contrastBackgrounds = [
+          ...updatedTheme.darkTheme.baseColor.contrastBackgrounds,
+          {
+            name: `background_${updatedTheme.darkTheme.baseColor.contrastBackgrounds.length}`,
+            value:
+              updatedTheme.darkTheme.baseColor.colorRamp[
+                updatedTheme.darkTheme.baseColor.colorRamp.length -
+                  1 -
+                  updatedTheme.darkTheme.baseColor.contrastBackgrounds.length
+              ],
+          },
+        ];
+
+        setTheme({ ...updatedTheme });
+      },
+    };
+    themeTypes[themeType]();
+  };
+
+  const removeContrastBackgroundSpace = (index: number) => {
+    function updateContrastBackgroundsName(
+      contrastBackgrounds: ColorVariable[],
+    ) {
+      const updatedBackgroundsNames: ColorVariable[] = [];
+      contrastBackgrounds.forEach((color, index) => {
+        updatedBackgroundsNames.push({
+          ...color,
+          name: `background_${index + 1}`,
+        });
+      });
+
+      return updatedBackgroundsNames;
+    }
+
+    const themesTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.baseColor.contrastBackgrounds.splice(index, 1);
+        updatedTheme.theme.baseColor.contrastBackgrounds =
+          updateContrastBackgroundsName(
+            updatedTheme.theme.baseColor.contrastBackgrounds,
+          );
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+
+        updatedTheme.lightTheme.baseColor.contrastBackgrounds.splice(index, 1);
+        updatedTheme.lightTheme.baseColor.contrastBackgrounds =
+          updateContrastBackgroundsName(
+            updatedTheme.lightTheme.baseColor.contrastBackgrounds,
+          );
+
+        updatedTheme.darkTheme.baseColor.contrastBackgrounds.splice(index, 1);
+        updatedTheme.darkTheme.baseColor.contrastBackgrounds =
+          updateContrastBackgroundsName(
+            updatedTheme.darkTheme.baseColor.contrastBackgrounds,
+          );
+
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themesTypes[themeType]();
+  };
+
+  const changeContrastBackgroundColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.baseColor.contrastBackgrounds[index].value =
+          newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.baseColor.contrastBackgrounds[
+              index
+            ].value = newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.baseColor.contrastBackgrounds[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -288,6 +421,9 @@ export const useEditor = (location: Location) => {
     addNewBackgroundSpace,
     removeBackgroundSpace,
     changeBackgroundColor,
+    addNewContrastBackgroundSpace,
+    removeContrastBackgroundSpace,
+    changeContrastBackgroundColor,
   };
 
   return { themeType, theme, themeActions };

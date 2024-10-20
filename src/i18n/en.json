@@ -67,9 +67,10 @@
     "baseColorSections": {
       "title": "Backgrounds, Borders and Text",
       "description": "A set of styles defining the appearance of background areas, border outlines, and textual elements within the website/application.",
+      "editColor": "Edit Color",
+      "addColor": "Add Color",
       "backgrounds": "Backgrounds",
-      "addBackground": "Add Background",
-      "editColor": "Edit Color"
+      "contrastBackgrounds": "Contrast Backgrounds"
     }
   }
 }

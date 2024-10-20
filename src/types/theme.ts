@@ -21,7 +21,7 @@ type ThemeContent = {
     colorRamp: string[];
     //Color Ramp Abstraction
     backgrounds: ColorVariable[];
-    constrastbackgrounds: ColorVariable[];
+    contrastBackgrounds: ColorVariable[];
     text: ColorVariable[];
     contrastText: ColorVariable[];
     borders: ColorVariable[];
@@ -71,6 +71,16 @@ export interface EditorContextProps {
     addNewBackgroundSpace: (colorMode?: ColorMode) => void;
     removeBackgroundSpace: (index: number, colorMode?: ColorMode) => void;
     changeBackgroundColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
+    addNewContrastBackgroundSpace: (colorMode?: ColorMode) => void;
+    removeContrastBackgroundSpace: (
+      index: number,
+      colorMode?: ColorMode,
+    ) => void;
+    changeContrastBackgroundColor: (
       index: number,
       newValue: string,
       colorMode?: ColorMode,
