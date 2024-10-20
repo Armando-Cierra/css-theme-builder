@@ -72,7 +72,8 @@
       "backgrounds": "Backgrounds",
       "contrastBackgrounds": "Contrast Backgrounds",
       "text": "Text",
-      "contrastText": "Contrast Text"
+      "contrastText": "Contrast Text",
+      "borders": "Borders"
     }
   }
 }

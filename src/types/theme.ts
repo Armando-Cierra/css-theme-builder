@@ -95,5 +95,10 @@ export interface EditorContextProps {
       newValue: string,
       colorMode?: ColorMode,
     ) => void;
+    changeBorderColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
   };
 }

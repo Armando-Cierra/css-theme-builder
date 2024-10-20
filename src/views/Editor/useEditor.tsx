@@ -473,6 +473,35 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
+  const changeBorderColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.baseColor.borders[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.baseColor.borders[index].value = newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.baseColor.borders[index].value = newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -486,6 +515,7 @@ export const useEditor = (location: Location) => {
     changeContrastBackgroundColor,
     changeTextColor,
     changeContrastTextColor,
+    changeBorderColor,
   };
 
   return { themeType, theme, themeActions };
