@@ -74,7 +74,8 @@
       "text": "Text",
       "contrastText": "Contrast Text",
       "borders": "Borders",
-      "contrastBorders": "Contrast Borders"
+      "contrastBorders": "Contrast Borders",
+      "reset": "Resets all sections to the original values, <br/> taking as reference the Base Color Ramp."
     }
   }
 }

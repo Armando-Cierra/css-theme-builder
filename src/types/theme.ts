@@ -105,5 +105,6 @@ export interface EditorContextProps {
       newValue: string,
       colorMode?: ColorMode,
     ) => void;
+    resetBaseColorSections: () => void;
   };
 }

@@ -87,6 +87,8 @@ export const useBaseColorSections = () => {
   const editContrastBorderColor = (index: number, newValue: string) =>
     themeActions.changeContrastBorderColor(index, newValue, selectedMode);
 
+  const resetBaseColorSections = () => themeActions.resetBaseColorSections();
+
   return {
     t,
     theme,
@@ -109,5 +111,6 @@ export const useBaseColorSections = () => {
     editContrastTextColor,
     editBorderColor,
     editContrastBorderColor,
+    resetBaseColorSections,
   };
 };

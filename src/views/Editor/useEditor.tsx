@@ -533,6 +533,242 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
+  const resetBaseColorSections = () => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        const baseColorScale = updatedTheme.theme.baseColor.colorRamp;
+
+        updatedTheme.theme.baseColor = {
+          ...updatedTheme.theme.baseColor,
+          backgrounds: [
+            {
+              name: 'background_1',
+              value: baseColorScale[0],
+            },
+            {
+              name: 'background_2',
+              value: baseColorScale[1],
+            },
+            {
+              name: 'background_3',
+              value: baseColorScale[2],
+            },
+          ],
+          contrastBackgrounds: [
+            {
+              name: 'background_contrast_1',
+              value: baseColorScale[baseColorScale.length - 1],
+            },
+            {
+              name: 'background_contrast_2',
+              value: baseColorScale[baseColorScale.length - 2],
+            },
+            {
+              name: 'background_contrast_3',
+              value: baseColorScale[baseColorScale.length - 3],
+            },
+          ],
+          text: [
+            {
+              name: 'text',
+              value: baseColorScale[baseColorScale.length - 1],
+            },
+            {
+              name: 'text_muted',
+              value: baseColorScale[baseColorScale.length - 4],
+            },
+          ],
+          contrastText: [
+            {
+              name: 'text',
+              value: baseColorScale[0],
+            },
+            {
+              name: 'text_muted',
+              value: baseColorScale[3],
+            },
+          ],
+          borders: [
+            {
+              name: 'border',
+              value: baseColorScale[3],
+            },
+            {
+              name: 'border_active',
+              value: baseColorScale[5],
+            },
+          ],
+          contrastBorders: [
+            {
+              name: 'border_contrast',
+              value: baseColorScale[baseColorScale.length - 4],
+            },
+            {
+              name: 'border_contrast_active',
+              value: baseColorScale[baseColorScale.length - 5],
+            },
+          ],
+        };
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const baseLightColorScale = updatedTheme.lightTheme.baseColor.colorRamp;
+        const baseDarkColorScale = updatedTheme.darkTheme.baseColor.colorRamp;
+
+        updatedTheme.lightTheme.baseColor = {
+          ...updatedTheme.lightTheme.baseColor,
+          backgrounds: [
+            {
+              name: 'background_1',
+              value: baseLightColorScale[0],
+            },
+            {
+              name: 'background_2',
+              value: baseLightColorScale[1],
+            },
+            {
+              name: 'background_3',
+              value: baseLightColorScale[2],
+            },
+          ],
+          contrastBackgrounds: [
+            {
+              name: 'background_contrast_1',
+              value: baseLightColorScale[baseLightColorScale.length - 1],
+            },
+            {
+              name: 'background_contrast_2',
+              value: baseLightColorScale[baseLightColorScale.length - 2],
+            },
+            {
+              name: 'background_contrast_3',
+              value: baseLightColorScale[baseLightColorScale.length - 3],
+            },
+          ],
+          text: [
+            {
+              name: 'text',
+              value: baseLightColorScale[baseLightColorScale.length - 1],
+            },
+            {
+              name: 'text_muted',
+              value: baseLightColorScale[baseLightColorScale.length - 4],
+            },
+          ],
+          contrastText: [
+            {
+              name: 'text',
+              value: baseLightColorScale[0],
+            },
+            {
+              name: 'text_muted',
+              value: baseLightColorScale[3],
+            },
+          ],
+          borders: [
+            {
+              name: 'border',
+              value: baseLightColorScale[3],
+            },
+            {
+              name: 'border_active',
+              value: baseLightColorScale[5],
+            },
+          ],
+          contrastBorders: [
+            {
+              name: 'border_contrast',
+              value: baseLightColorScale[baseLightColorScale.length - 4],
+            },
+            {
+              name: 'border_contrast_active',
+              value: baseLightColorScale[baseLightColorScale.length - 5],
+            },
+          ],
+        };
+
+        updatedTheme.darkTheme.baseColor = {
+          ...updatedTheme.darkTheme.baseColor,
+          backgrounds: [
+            {
+              name: 'background_1',
+              value: baseDarkColorScale[0],
+            },
+            {
+              name: 'background_2',
+              value: baseDarkColorScale[1],
+            },
+            {
+              name: 'background_3',
+              value: baseDarkColorScale[2],
+            },
+          ],
+          contrastBackgrounds: [
+            {
+              name: 'background_contrast_1',
+              value: baseDarkColorScale[baseDarkColorScale.length - 1],
+            },
+            {
+              name: 'background_contrast_2',
+              value: baseDarkColorScale[baseDarkColorScale.length - 2],
+            },
+            {
+              name: 'background_contrast_3',
+              value: baseDarkColorScale[baseDarkColorScale.length - 3],
+            },
+          ],
+          text: [
+            {
+              name: 'text',
+              value: baseDarkColorScale[baseDarkColorScale.length - 1],
+            },
+            {
+              name: 'text_muted',
+              value: baseDarkColorScale[baseDarkColorScale.length - 4],
+            },
+          ],
+          contrastText: [
+            {
+              name: 'text',
+              value: baseDarkColorScale[0],
+            },
+            {
+              name: 'text_muted',
+              value: baseDarkColorScale[3],
+            },
+          ],
+          borders: [
+            {
+              name: 'border',
+              value: baseDarkColorScale[3],
+            },
+            {
+              name: 'border_active',
+              value: baseDarkColorScale[5],
+            },
+          ],
+          contrastBorders: [
+            {
+              name: 'border_contrast',
+              value: baseDarkColorScale[baseDarkColorScale.length - 4],
+            },
+            {
+              name: 'border_contrast_active',
+              value: baseDarkColorScale[baseDarkColorScale.length - 5],
+            },
+          ],
+        };
+
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -548,6 +784,7 @@ export const useEditor = (location: Location) => {
     changeContrastTextColor,
     changeBorderColor,
     changeContrastBorderColor,
+    resetBaseColorSections,
   };
 
   return { themeType, theme, themeActions };

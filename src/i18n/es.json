@@ -74,7 +74,8 @@
       "text": "Texto",
       "contrastText": "Texto de Contraste",
       "borders": "Bordes",
-      "contrastBorders": "Bordes de Contraste"
+      "contrastBorders": "Bordes de Contraste",
+      "reset": "Resetea todas las secciones a sus valores originales, <br/> tomando como referencia la escala de color base."
     }
   }
 }
