@@ -20,3 +20,43 @@
     height: calc(100dvh - (64px + 250px));
   }
 }
+
+.resolutionWarning {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - 64px);
+  background: var(--theme_background_1);
+  z-index: 1000;
+  padding: 32px;
+  justify-content: center;
+  align-items: center;
+  .resolutionWarningContainer {
+    border: 1px solid var(--theme_border);
+    width: 100%;
+    max-width: 800px;
+    height: fit-content;
+    padding: 32px;
+    border-radius: 24px;
+    background: var(--theme_background_2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    .tabler-icon {
+      width: 32px;
+      height: 32px;
+    }
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@media (width < 800px) {
+  .resolutionWarning {
+    display: flex;
+  }
+}

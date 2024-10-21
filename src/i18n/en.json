@@ -12,7 +12,8 @@
     "discardChanges": "Discard Changes",
     "goBack": "Go Back",
     "light": "Light Mode",
-    "dark": "Dark Mode"
+    "dark": "Dark Mode",
+    "resolution": "This screen resolution is not currently supported. Please use a wider resolution."
   },
   "toolbar": {
     "auto": "Automatic"

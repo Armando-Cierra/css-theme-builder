@@ -12,7 +12,8 @@
     "discardChanges": "Descartar Cambios",
     "goBack": "Regresar",
     "light": "Modo Claro",
-    "dark": "Modo Oscuro"
+    "dark": "Modo Oscuro",
+    "resolution": "Esta resolución no está disponible actualmente. Por favor, use una resolución más amplia."
   },
   "toolbar": {
     "auto": "Automático"
