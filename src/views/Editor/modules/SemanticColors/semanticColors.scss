@@ -1,33 +1,33 @@
-.editor_baseColorRamp {
+.editor_semanticColors {
   display: flex;
   align-items: flex-start;
   gap: 64px;
-  .editor_baseColorRamp_colorPickersBox {
+  .editor_semanticColors_colorPickersBox {
     display: flex;
     gap: 32px;
     padding-left: 16px;
-    .editor_baseColorRamp_colorPicker {
+    .editor_semanticColors_colorPicker {
       width: 200px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      .editor_baseColorRamp_colorPickerControl {
+      .editor_semanticColors_colorPickerControl {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 4px;
-        .editor_baseColorRamp_colorPickerControlLabel {
+        .editor_semanticColors_colorPickerControlLabel {
           display: flex;
           align-items: center;
           gap: 4px;
           .tabler-icon {
-            color: var(--theme_text);
+            color: var(--theme_text_muted);
             width: 18px;
             height: 18px;
             cursor: pointer;
           }
           span {
-            color: var(--theme_text);
+            color: var(--theme_text_muted);
           }
         }
         .input {
@@ -36,17 +36,17 @@
       }
     }
   }
-  .editor_baseColorRamp_colorRamp {
+  .editor_semanticColors_colorRamp {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    .editor_baseColorRamp_colorRampLabel {
+    .editor_semanticColors_colorRampLabel {
       display: flex;
       align-items: center;
       gap: 4px;
       span,
       .tabler-icon {
-        color: var(--theme_text);
+        color: var(--theme_text_muted);
       }
       .tabler-icon {
         width: 18px;
@@ -54,7 +54,7 @@
         cursor: pointer;
       }
     }
-    .editor_baseColorRamp_percentageInputsBox {
+    .editor_semanticColors_percentageInputsBox {
       display: flex;
       margin-bottom: 10px;
       .input {
@@ -84,7 +84,7 @@
           }
           &::after {
             content: '%';
-            color: var(--theme_text);
+            color: var(--theme_text_muted);
             position: absolute;
             left: calc(100% + 4px);
             font-size: var(--font_size_body);
@@ -95,13 +95,13 @@
         }
       }
     }
-    .editor_baseColorRamp_scaleBox {
+    .editor_semanticColors_scaleBox {
       display: flex;
       align-items: center;
       box-shadow: 0 0 0 1px var(--theme_border);
       border-radius: 8px;
-      margin-bottom: 10px;
-      .editor_baseColorRamp_scaleStep {
+      margin-bottom: 24px;
+      .editor_semanticColors_scaleStep {
         width: 50px;
         height: 50px;
         display: flex;
@@ -117,13 +117,13 @@
         &:last-of-type {
           border-radius: 0 8px 8px 0;
         }
-        &:nth-child(7) {
+        &:nth-child(6) {
           width: 60px;
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
-          .editor_baseColorRamp_centerScaleStep {
+          .editor_semanticColors_centerScaleStep {
             position: absolute;
             width: 60px;
             height: 60px;
@@ -140,7 +140,12 @@
         }
       }
     }
-    .editor_baseColorRamp_contrastButtonActions {
+    .editor_semanticColors_sectionsBox {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .editor_semanticColors_contrastButtonActions {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -149,11 +154,11 @@
 }
 
 @media (width <= 1270px) {
-  .editor_baseColorRamp {
+  .editor_semanticColors {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    .editor_baseColorRamp_contrastButtonActions {
+    .editor_semanticColors_contrastButtonActions {
       justify-content: center;
     }
   }

@@ -1,10 +1,6 @@
 import { uid } from 'uid';
 import { HexColorPicker } from 'react-colorful';
-import {
-  IconReload,
-  IconCopy,
-  IconInfoCircleFilled,
-} from '@tabler/icons-react';
+import { IconReload, IconCopy, IconInfoCircle } from '@tabler/icons-react';
 import { Input, Button } from '@/components';
 import { getDynamicContrastColor } from '@/utils/tools';
 import { Accordion } from '../../components';
@@ -29,6 +25,8 @@ export const BaseColorRamp = () => {
     resetValues,
     contrastStandadizationValidation,
     standardizeContrastsPercentages,
+    colorStandadizationValidation,
+    standardizeColors,
   } = useBaseColorRamp();
 
   const {
@@ -64,7 +62,7 @@ export const BaseColorRamp = () => {
           <div className="editor_baseColorRamp_colorPickerControl">
             <div className="editor_baseColorRamp_colorPickerControlLabel">
               <span>{t('editor.baseColorRamp.baseColor')}</span>
-              <IconInfoCircleFilled
+              <IconInfoCircle
                 data-tooltip-id={tooltipID}
                 data-tooltip-html={t('editor.baseColorRamp.baseColorInfo')}
                 data-tooltip-place="right"
@@ -84,7 +82,7 @@ export const BaseColorRamp = () => {
           <div className="editor_baseColorRamp_colorPickerControl">
             <div className="editor_baseColorRamp_colorPickerControlLabel">
               <span>{t('editor.baseColorRamp.contrastColor')}</span>
-              <IconInfoCircleFilled
+              <IconInfoCircle
                 data-tooltip-id={tooltipID}
                 data-tooltip-html={t('editor.baseColorRamp.contrastColorInfo')}
                 data-tooltip-place="right"
@@ -100,7 +98,7 @@ export const BaseColorRamp = () => {
       <div className="editor_baseColorRamp_colorRamp">
         <div className="editor_baseColorRamp_colorRampLabel">
           <span>{t('editor.baseColorRamp.percentages')}</span>
-          <IconInfoCircleFilled
+          <IconInfoCircle
             data-tooltip-id={tooltipID}
             data-tooltip-html={t('editor.baseColorRamp.percentagesInfo')}
           />
@@ -122,6 +120,9 @@ export const BaseColorRamp = () => {
               className="editor_baseColorRamp_scaleStep"
               style={{ background: color }}
               onClick={copyColor(color)}
+              data-tooltip-id={tooltipID}
+              data-tooltip-html={color}
+              data-tooltip-place="bottom"
             >
               {index !== 6 && (
                 <IconCopy style={{ color: getDynamicContrastColor(color) }} />
@@ -147,6 +148,20 @@ export const BaseColorRamp = () => {
               onClick={standardizeContrastsPercentages}
             >
               {t('editor.baseColorRamp.standardizeContrasts')}
+            </Button>
+          )}
+          {colorStandadizationValidation && (
+            <Button
+              variant="contrast"
+              data-tooltip-id={tooltipID}
+              data-tooltip-html={t(
+                'editor.baseColorRamp.standardizeColorsInfo',
+              )}
+              data-tooltip-place="bottom-start"
+              data-tooltip-delay-show={1000}
+              onClick={standardizeColors}
+            >
+              {t('editor.baseColorRamp.standardizeColors')}
             </Button>
           )}
           <Button

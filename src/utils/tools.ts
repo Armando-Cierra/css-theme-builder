@@ -53,14 +53,20 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
   const baseColorScale = getColorScale();
   const invertedaseColorScale = getColorScale().reverse();
 
-  const successColorScale = getColorScale();
-  const invertedSuccessColorScale = getColorScale().reverse();
+  const successColorScale = getColorScale({ color: '#22c55e' });
+  successColorScale.shift();
+  successColorScale.pop();
+  const invertedSuccessColorScale = [...successColorScale].reverse();
 
-  const warningColorScale = getColorScale();
-  const invertedWarningColorScale = getColorScale().reverse();
+  const warningColorScale = getColorScale({ color: '#f59e0b' });
+  warningColorScale.shift();
+  warningColorScale.pop();
+  const invertedWarningColorScale = [...warningColorScale].reverse();
 
-  const dangerColorScale = getColorScale();
-  const invertedDangerColorScale = getColorScale().reverse();
+  const dangerColorScale = getColorScale({ color: '#ef4444' });
+  dangerColorScale.shift();
+  dangerColorScale.pop();
+  const invertedDangerColorScale = [...dangerColorScale].reverse();
 
   const lightTheme = {
     contrastPercentages: defaultContrastPercentages,
@@ -142,21 +148,23 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         variants: [
           {
             name: 'success',
-            value: successColorScale[6],
+            value: successColorScale[5],
           },
           {
             name: 'success_hover',
-            value: successColorScale[7],
+            value: successColorScale[6],
           },
           {
             name: 'success_active',
-            value: successColorScale[8],
+            value: successColorScale[7],
           },
         ],
-        background: {
-          name: 'background',
-          value: successColorScale[0],
-        },
+        background: [
+          {
+            name: 'background',
+            value: successColorScale[0],
+          },
+        ],
       },
       {
         name: 'danger',
@@ -175,10 +183,12 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
             value: dangerColorScale[8],
           },
         ],
-        background: {
-          name: 'background',
-          value: dangerColorScale[0],
-        },
+        background: [
+          {
+            name: 'background',
+            value: dangerColorScale[0],
+          },
+        ],
       },
       {
         name: 'warning',
@@ -197,10 +207,12 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
             value: warningColorScale[8],
           },
         ],
-        background: {
-          name: 'background',
-          value: warningColorScale[0],
-        },
+        background: [
+          {
+            name: 'background',
+            value: warningColorScale[0],
+          },
+        ],
       },
     ],
     customColors: [],
@@ -303,21 +315,23 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
               variants: [
                 {
                   name: 'success',
-                  value: invertedSuccessColorScale[6],
+                  value: invertedSuccessColorScale[4],
                 },
                 {
                   name: 'success_hover',
-                  value: invertedSuccessColorScale[7],
+                  value: invertedSuccessColorScale[5],
                 },
                 {
                   name: 'success_active',
-                  value: invertedSuccessColorScale[8],
+                  value: invertedSuccessColorScale[6],
                 },
               ],
-              background: {
-                name: 'background',
-                value: invertedSuccessColorScale[0],
-              },
+              background: [
+                {
+                  name: 'background',
+                  value: invertedSuccessColorScale[0],
+                },
+              ],
             },
             {
               name: 'danger',
@@ -336,10 +350,12 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
                   value: invertedDangerColorScale[8],
                 },
               ],
-              background: {
-                name: 'background',
-                value: invertedDangerColorScale[0],
-              },
+              background: [
+                {
+                  name: 'background',
+                  value: invertedDangerColorScale[0],
+                },
+              ],
             },
             {
               name: 'warning',
@@ -358,10 +374,12 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
                   value: invertedWarningColorScale[8],
                 },
               ],
-              background: {
-                name: 'background',
-                value: invertedWarningColorScale[0],
-              },
+              background: [
+                {
+                  name: 'background',
+                  value: invertedWarningColorScale[0],
+                },
+              ],
             },
           ],
           customColors: [],

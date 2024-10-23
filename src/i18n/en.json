@@ -60,10 +60,12 @@
       "contrastColorInfo": "Opposite of the base color, is used to create visual distinction <br/> and enhance readability against the base color.",
       "percentages": "Contrast Percentages",
       "resetPercentages": "Reset Values",
-      "resetPercentagesInfo": "Resets the following values: Base Color, Contrast Color, and Contrast Percentages.",
+      "resetPercentagesInfo": "Resets the following values: <br/> Base Color, Contrast Color, and Contrast Percentages.",
       "percentagesInfo": "Amount of contrast for each <br/> step of the color ramp.",
       "standardizeContrasts": "Standardize Contrasts",
-      "standardizeContrastsInfo": "Use your custom contrasts percentages from the light color mode on the dark color mode. <br/> This might help you to have better unification on your scales."
+      "standardizeContrastsInfo": "Use your custom contrasts percentages from the light color mode on the dark color mode. <br/> This might help you to have better unification on your scales.",
+      "standardizeColors": "Standardize Colors",
+      "standardizeColorsInfo": "Use your custom color ramp from the light color mode on the dark color mode. <br/> This might help you to have better unification on your scales."
     },
     "baseColorSections": {
       "title": "Backgrounds, Borders and Text",
@@ -77,6 +79,17 @@
       "borders": "Borders",
       "contrastBorders": "Contrast Borders",
       "reset": "Resets all sections to the original values, <br/> taking as reference the Base Color Ramp."
+    },
+    "semanticColors": {
+      "title": "Semantic Colors",
+      "description": "Collection of colors associated with meaning and purposes. For example, green represents success, and red signifies danger.",
+      "colorRamp": "Color Ramp | Success",
+      "baseColor": "Base Color",
+      "successInfo": "Color used to indicate that an action <br/> has been suceesfully completed.",
+      "warningInfo": "Color used to indicate caution or alert.",
+      "dangerInfo": "Color used to indicate dangerous <br/> actions or errors.",
+      "states": "States | Base, Hover and Active",
+      "background": "Background"
     }
   }
 }

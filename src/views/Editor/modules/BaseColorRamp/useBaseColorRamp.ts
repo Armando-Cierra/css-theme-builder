@@ -112,11 +112,32 @@ export const useBaseColorRamp = () => {
     );
   };
 
+  const standardizeColors = () => {
+    const currentLightColorRamp = [
+      ...(theme as DualTheme).lightTheme.baseColor.colorRamp,
+    ].reverse();
+    themeActions.editBaseColorRamp(currentLightColorRamp, 'dark');
+  };
+
+  const baseColorRampsAreDifferent = () => {
+    const lightColorRamp = (theme as DualTheme).lightTheme.baseColor.colorRamp;
+    const darkColorRamp = [
+      ...(theme as DualTheme).darkTheme.baseColor.colorRamp,
+    ].reverse();
+
+    return String(lightColorRamp) !== String(darkColorRamp);
+  };
+
   const contrastStandadizationValidation =
     themeType === 'dual' &&
     selectedMode === 'light' &&
     theme.lightTheme.contrastPercentages !==
       theme.darkTheme.contrastPercentages;
+
+  const colorStandadizationValidation =
+    themeType === 'dual' &&
+    selectedMode === 'light' &&
+    baseColorRampsAreDifferent();
 
   return {
     t,
@@ -134,5 +155,7 @@ export const useBaseColorRamp = () => {
     resetValues,
     contrastStandadizationValidation,
     standardizeContrastsPercentages,
+    colorStandadizationValidation,
+    standardizeColors,
   };
 };

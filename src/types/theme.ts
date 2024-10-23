@@ -12,7 +12,7 @@ export interface CustomColor {
   colorRamp: string[];
   //Color Ramp Abstraction
   variants: ColorVariable[];
-  background: ColorVariable;
+  background: ColorVariable[];
 }
 
 type ThemeContent = {
@@ -106,5 +106,9 @@ export interface EditorContextProps {
       colorMode?: ColorMode,
     ) => void;
     resetBaseColorSections: () => void;
+    changeSuccessColorRamp: (
+      newColorRamp: string[],
+      colorMode?: ColorMode,
+    ) => void;
   };
 }

@@ -1,6 +1,6 @@
 import { IconEdit } from '@tabler/icons-react';
 import { Button, Modal, Input } from '@/components';
-import { getDynamicContrastColor } from '@/utils';
+import { getDynamicContrastColor, tooltipID } from '@/utils';
 import { useEditColorValue } from './useEditColorValue';
 import './editColorValue.scss';
 import classNames from 'classnames';
@@ -38,6 +38,9 @@ export const EditColorValue = ({
         })}
         style={{ backgroundColor: color }}
         onClick={openModal}
+        data-tooltip-id={tooltipID}
+        data-tooltip-html={color}
+        data-tooltip-place="bottom"
       >
         <IconEdit style={{ color: getDynamicContrastColor(color) }} />
       </div>

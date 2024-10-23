@@ -1,6 +1,11 @@
 import { useLocation, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Header, BaseColorRamp, BaseColorSections } from './modules';
+import {
+  Header,
+  BaseColorRamp,
+  BaseColorSections,
+  SemanticColors,
+} from './modules';
 import { InitialTip } from './components';
 import { useEditor } from './useEditor';
 import { EditorContext } from './context';
@@ -34,6 +39,7 @@ export const Editor = () => {
           <InitialTip />
           <BaseColorRamp />
           <BaseColorSections />
+          <SemanticColors />
         </section>
       </motion.div>
     </EditorContext.Provider>

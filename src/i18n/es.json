@@ -60,10 +60,12 @@
       "contrastColorInfo": "Opuesto al color base, se utiliza para crear una distinción <br/> visual y mejorar la legibilidad sobre el color base.",
       "percentages": "Porcentajes de Contraste",
       "resetPercentages": "Restablecer Valores",
-      "resetPercentagesInfo": "Restable los siguientes valores: Color Base, Color de Contraste y Porcentajes de Contraste.",
+      "resetPercentagesInfo": "Restable los siguientes valores: <br/> Color Base, Color de Contraste y Porcentajes de Contraste.",
       "percentagesInfo": "Cantidad de contraste para cada valor en la escala de color.",
       "standardizeContrasts": "Estandarizar Contrastes",
-      "standardizeContrastsInfo": "Usa los porcentajes de contraste personalizados del modo claro en el modo oscuro. <br/> Esto puede ayudar a tener una mejor unificación en sus escalas de color."
+      "standardizeContrastsInfo": "Usa los porcentajes de contraste personalizados del modo claro en el modo oscuro. <br/> Esto puede ayudar a tener una mejor unificación en sus escalas de color.",
+      "standardizeColors": "Estandarizar Colores",
+      "standardizeColorsInfo": "Usa la escala de color personalizada del modo claro en el modo oscuro. <br/> Esto puede ayudar a tener una mejor unificación en sus escalas de color."
     },
     "baseColorSections": {
       "title": "Fondos, Bordes y Texto",
@@ -77,6 +79,17 @@
       "borders": "Bordes",
       "contrastBorders": "Bordes de Contraste",
       "reset": "Resetea todas las secciones a sus valores originales, <br/> tomando como referencia la escala de color base."
+    },
+    "semanticColors": {
+      "title": "Colores Semánticos",
+      "description": "Colección de colores asociados con significados y propósitos. Por ejemplo, el verde representa éxito, y el rojo indica peligro.",
+      "colorRamp": "Escala de Color | Success",
+      "baseColor": "Color Base",
+      "successInfo": "Color utilizado para indicar que una acción <br/> se ha completado exitosamente.",
+      "warningInfo": "Color utilizado para indicar precaución o alerta.",
+      "dangerInfo": "Color utilizado para indicar acciones <br/> peligrosas o errores.",
+      "states": "Estados | Base, Hover y Active",
+      "background": "Fondo"
     }
   }
 }
