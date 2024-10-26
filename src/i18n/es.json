@@ -83,7 +83,7 @@
     "semanticColors": {
       "title": "Colores Semánticos",
       "description": "Colección de colores asociados con significados y propósitos. Por ejemplo, el verde representa éxito, y el rojo indica peligro.",
-      "colorRamp": "Escala de Color | Success",
+      "colorRamp": "Escala de Color",
       "baseColor": "Color Base",
       "successInfo": "Color utilizado para indicar que una acción <br/> se ha completado exitosamente.",
       "warningInfo": "Color utilizado para indicar precaución o alerta.",

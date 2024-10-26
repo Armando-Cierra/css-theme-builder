@@ -1,7 +1,20 @@
 .editor_semanticColors {
   display: flex;
-  align-items: flex-start;
-  gap: 64px;
+  flex-direction: column;
+  gap: 16px;
+  .editor_semanticColors_title {
+    font-weight: var(--font_weight_bold);
+    margin-left: 16px;
+  }
+  .editor_semanticColors_color {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 32px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
   .editor_semanticColors_colorPickersBox {
     display: flex;
     gap: 32px;

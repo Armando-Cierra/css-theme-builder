@@ -83,7 +83,7 @@
     "semanticColors": {
       "title": "Semantic Colors",
       "description": "Collection of colors associated with meaning and purposes. For example, green represents success, and red signifies danger.",
-      "colorRamp": "Color Ramp | Success",
+      "colorRamp": "Color Ramp",
       "baseColor": "Base Color",
       "successInfo": "Color used to indicate that an action <br/> has been suceesfully completed.",
       "warningInfo": "Color used to indicate caution or alert.",
