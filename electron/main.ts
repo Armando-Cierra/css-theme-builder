@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 // import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -28,19 +28,25 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
 
 let win: BrowserWindow | null;
 
+const isWindows = process.platform === 'win32';
+const isMac = process.platform === 'darwin';
+
 function createWindow() {
   win = new BrowserWindow({
-    titleBarStyle: 'hidden',
-    titleBarOverlay: true,
+    title: 'CSS Theme Builder',
     width: 1280,
-    height: 832,
-    minWidth: 790,
-    minHeight: 832,
-    trafficLightPosition: { x: 24, y: 25 },
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    height: 800,
+    minWidth: 800,
+    minHeight: 800,
+    icon: path.join(process.env.VITE_PUBLIC, 'icon.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
     },
+    trafficLightPosition: { x: 24, y: 25 },
+    frame: isWindows ? false : true,
+    autoHideMenuBar: isWindows || isMac ? false : true,
+    titleBarStyle: 'hidden',
+    titleBarOverlay: false,
   });
 
   // Test active push message to Renderer-process.
@@ -57,6 +63,18 @@ function createWindow() {
 
   win.setMenuBarVisibility(false);
 }
+
+ipcMain.on('window-minimize', () => {
+  win?.minimize();
+});
+
+ipcMain.on('window-maximize', () => {
+  win?.isMaximized() ? win.unmaximize() : win?.maximize();
+});
+
+ipcMain.on('window-close', () => {
+  win?.close();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

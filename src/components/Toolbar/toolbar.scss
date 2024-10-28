@@ -22,4 +22,40 @@
   .windowsControlButton {
     -webkit-app-region: no-drag;
   }
+  .windowsControls{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    .windowsControls_button{
+      -webkit-app-region: no-drag;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--theme_background_1);
+      border: none;
+      svg{
+        color: var(--theme_text_muted);
+        width: 16px;
+        height: 16px;
+      }
+      &:hover{
+        background: var(--theme_background_3);
+        svg{
+          color: var(--theme_text);
+        }
+      }
+    }
+    .windowsControls_button.windowsControls_button--exit{
+      &:hover{
+        background: #E81123;
+      };
+    }
+  }
+  .windowsControlsSpace{
+    width: 125px;
+  }
 }

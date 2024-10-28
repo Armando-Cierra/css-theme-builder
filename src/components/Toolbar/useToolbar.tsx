@@ -63,6 +63,18 @@ export const useToolbar = () => {
 
   const navigateToHome = () => navigate('/');
 
+  const minimizeWindows = ()=>{
+    window.electronAPI.minimize();
+  }
+
+  const maximizeWindows = ()=>{
+    window.electronAPI.maximize();
+  }
+
+  const closeWindows = ()=>{
+    window.electronAPI.close();
+  }
+
   return {
     t,
     pathname,
@@ -74,5 +86,8 @@ export const useToolbar = () => {
     isMac,
     isWindows,
     navigateToHome,
+    minimizeWindows,
+    maximizeWindows,
+    closeWindows
   };
 };
