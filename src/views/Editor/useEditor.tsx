@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Location } from 'react-router-dom';
-import { getColorScale, getInitialSettingsForTheme } from '@/utils';
+import {
+  getInitialSettingsForTheme,
+  updateBrandColors,
+  updateSemanticColors,
+} from '@/utils';
 import {
   ColorMode,
   ColorVariable,
-  CustomColor,
   DualTheme,
   SimpleTheme,
   ThemeItem,
@@ -64,134 +67,6 @@ export const useEditor = (location: Location) => {
 
   //Base Color Actions
   const editBaseColorRamp = (newColorRamp: string[], colorMode?: ColorMode) => {
-    const updateSemanticColors = (
-      updatedTheme: ThemeItem,
-      colorMode?: ColorMode,
-    ) => {
-      if (themeType === 'simple') {
-        const semanticColors: CustomColor[] = [];
-
-        (updatedTheme as SimpleTheme).theme.semanticColors.forEach(
-          (semanticColor, index) => {
-            const rawColorRamp = getColorScale({
-              baseColor: newColorRamp[0],
-              color: (updatedTheme as SimpleTheme).theme.semanticColors[index]
-                .colorRamp[5],
-              contrastColor: newColorRamp[newColorRamp.length - 1],
-            });
-            rawColorRamp.shift();
-            rawColorRamp.pop();
-
-            const colorRamp = rawColorRamp;
-            const getVariants = (index: number) => {
-              const variants: ColorVariable[] = [];
-
-              (updatedTheme as SimpleTheme).theme.semanticColors[
-                index
-              ].variants.forEach((item, variantsIndex) =>
-                variants.push({ ...item, value: colorRamp[variantsIndex + 5] }),
-              );
-
-              return variants;
-            };
-
-            semanticColors.push({
-              ...semanticColor,
-              colorRamp,
-              variants: getVariants(index),
-              background: [{ name: 'background', value: colorRamp[0] }],
-            });
-          },
-        );
-
-        return semanticColors;
-      } else {
-        if (colorMode === 'light') {
-          const semanticColors: CustomColor[] = [];
-
-          (updatedTheme as DualTheme).lightTheme.semanticColors.forEach(
-            (semanticColor, index) => {
-              const rawColorRamp = getColorScale({
-                baseColor: newColorRamp[0],
-                color: (updatedTheme as DualTheme).lightTheme.semanticColors[
-                  index
-                ].colorRamp[5],
-                contrastColor: newColorRamp[newColorRamp.length - 1],
-              });
-              rawColorRamp.shift();
-              rawColorRamp.pop();
-
-              const colorRamp = rawColorRamp;
-              const getVariants = (index: number) => {
-                const variants: ColorVariable[] = [];
-
-                (updatedTheme as DualTheme).lightTheme.semanticColors[
-                  index
-                ].variants.forEach((item, variantsIndex) =>
-                  variants.push({
-                    ...item,
-                    value: colorRamp[variantsIndex + 5],
-                  }),
-                );
-
-                return variants;
-              };
-
-              semanticColors.push({
-                ...semanticColor,
-                colorRamp,
-                variants: getVariants(index),
-                background: [{ name: 'background', value: colorRamp[0] }],
-              });
-            },
-          );
-
-          return semanticColors;
-        } else {
-          const semanticColors: CustomColor[] = [];
-
-          (updatedTheme as DualTheme).darkTheme.semanticColors.forEach(
-            (semanticColor, index) => {
-              const rawColorRamp = getColorScale({
-                baseColor: newColorRamp[0],
-                color: (updatedTheme as DualTheme).darkTheme.semanticColors[
-                  index
-                ].colorRamp[5],
-                contrastColor: newColorRamp[newColorRamp.length - 1],
-              });
-              rawColorRamp.shift();
-              rawColorRamp.pop();
-
-              const colorRamp = rawColorRamp;
-              const getVariants = (index: number) => {
-                const variants: ColorVariable[] = [];
-
-                (updatedTheme as DualTheme).darkTheme.semanticColors[
-                  index
-                ].variants.forEach((item, variantsIndex) =>
-                  variants.push({
-                    ...item,
-                    value: colorRamp[variantsIndex + 5],
-                  }),
-                );
-
-                return variants;
-              };
-
-              semanticColors.push({
-                ...semanticColor,
-                colorRamp,
-                variants: getVariants(index),
-                background: [{ name: 'background', value: colorRamp[0] }],
-              });
-            },
-          );
-
-          return semanticColors;
-        }
-      }
-    };
-
     const updatedBaseColorProperties = {
       colorRamp: newColorRamp,
       backgrounds: [
@@ -268,7 +143,16 @@ export const useEditor = (location: Location) => {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
         updatedTheme.theme.baseColor = updatedBaseColorProperties;
-        updatedTheme.theme.semanticColors = updateSemanticColors(updatedTheme);
+        updatedTheme.theme.semanticColors = updateSemanticColors(
+          updatedTheme,
+          themeType,
+          newColorRamp,
+        );
+        updatedTheme.theme.brandColors = updateBrandColors(
+          updatedTheme,
+          themeType,
+          newColorRamp,
+        );
         setTheme({ ...updatedTheme });
       },
       dual: () => {
@@ -278,6 +162,14 @@ export const useEditor = (location: Location) => {
             updatedTheme.lightTheme.baseColor = updatedBaseColorProperties;
             updatedTheme.lightTheme.semanticColors = updateSemanticColors(
               updatedTheme,
+              themeType,
+              newColorRamp,
+              'light',
+            );
+            updatedTheme.lightTheme.brandColors = updateBrandColors(
+              updatedTheme,
+              themeType,
+              newColorRamp,
               'light',
             );
             setTheme({ ...updatedTheme });
@@ -286,6 +178,14 @@ export const useEditor = (location: Location) => {
             updatedTheme.darkTheme.baseColor = updatedBaseColorProperties;
             updatedTheme.darkTheme.semanticColors = updateSemanticColors(
               updatedTheme,
+              themeType,
+              newColorRamp,
+              'dark',
+            );
+            updatedTheme.darkTheme.brandColors = updateBrandColors(
+              updatedTheme,
+              themeType,
+              newColorRamp,
               'dark',
             );
             setTheme({ ...updatedTheme });
@@ -940,6 +840,7 @@ export const useEditor = (location: Location) => {
             },
           ],
         };
+        setTheme({ ...updatedTheme });
       },
       dual: () => {
         const colorModes = {

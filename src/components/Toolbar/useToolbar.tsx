@@ -63,17 +63,17 @@ export const useToolbar = () => {
 
   const navigateToHome = () => navigate('/');
 
-  const minimizeWindows = ()=>{
+  const minimizeWindows = () => {
     window.electronAPI.minimize();
-  }
+  };
 
-  const maximizeWindows = ()=>{
+  const maximizeWindows = () => {
     window.electronAPI.maximize();
-  }
+  };
 
-  const closeWindows = ()=>{
+  const closeWindows = () => {
     window.electronAPI.close();
-  }
+  };
 
   return {
     t,
@@ -88,6 +88,6 @@ export const useToolbar = () => {
     navigateToHome,
     minimizeWindows,
     maximizeWindows,
-    closeWindows
+    closeWindows,
   };
 };

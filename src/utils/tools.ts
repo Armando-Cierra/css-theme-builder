@@ -1,6 +1,14 @@
 import { uid } from 'uid';
 import chroma from 'chroma-js';
-import { DualTheme, SimpleTheme, ThemeType } from '@/types';
+import {
+  ColorMode,
+  ColorVariable,
+  CustomColor,
+  DualTheme,
+  SimpleTheme,
+  ThemeItem,
+  ThemeType,
+} from '@/types';
 
 export const defaultContrastPercentages = [
   0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1,
@@ -51,7 +59,17 @@ export const getColorScale = (settings?: {
 
 export const getInitialSettingsForTheme = (type: ThemeType) => {
   const baseColorScale = getColorScale();
-  const invertedaseColorScale = getColorScale().reverse();
+  const invertedBaseColorScale = getColorScale().reverse();
+
+  const primaryColorScale = getColorScale({ color: '#3b82f6' });
+  primaryColorScale.shift();
+  primaryColorScale.pop();
+  const invertedPrimaryColorScale = [...primaryColorScale].reverse();
+
+  const secondaryColorScale = getColorScale({ color: '#7c3aed' });
+  secondaryColorScale.shift();
+  secondaryColorScale.pop();
+  const invertedSecondaryColorScale = [...secondaryColorScale].reverse();
 
   const successColorScale = getColorScale({ color: '#22c55e' });
   successColorScale.shift();
@@ -215,7 +233,56 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         ],
       },
     ],
-    customColors: [],
+    brandColors: [
+      {
+        name: 'primary',
+        colorRamp: primaryColorScale,
+        variants: [
+          {
+            name: 'primary',
+            value: primaryColorScale[6],
+          },
+          {
+            name: 'primary_hover',
+            value: primaryColorScale[7],
+          },
+          {
+            name: 'primary_active',
+            value: primaryColorScale[8],
+          },
+        ],
+        background: [
+          {
+            name: 'background',
+            value: primaryColorScale[0],
+          },
+        ],
+      },
+      {
+        name: 'secondary',
+        colorRamp: secondaryColorScale,
+        variants: [
+          {
+            name: 'secondary',
+            value: secondaryColorScale[6],
+          },
+          {
+            name: 'secondary_hover',
+            value: secondaryColorScale[7],
+          },
+          {
+            name: 'secondary_active',
+            value: secondaryColorScale[8],
+          },
+        ],
+        background: [
+          {
+            name: 'background',
+            value: secondaryColorScale[0],
+          },
+        ],
+      },
+    ],
   };
 
   const themeTypes = {
@@ -238,73 +305,75 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         darkTheme: {
           contrastPercentages: defaultContrastPercentages,
           baseColor: {
-            colorRamp: invertedaseColorScale,
+            colorRamp: invertedBaseColorScale,
             backgrounds: [
               {
                 name: 'background_1',
-                value: invertedaseColorScale[0],
+                value: invertedBaseColorScale[0],
               },
               {
                 name: 'background_2',
-                value: invertedaseColorScale[1],
+                value: invertedBaseColorScale[1],
               },
               {
                 name: 'background_3',
-                value: invertedaseColorScale[2],
+                value: invertedBaseColorScale[2],
               },
             ],
             contrastBackgrounds: [
               {
                 name: 'background_contrast_1',
-                value: invertedaseColorScale[baseColorScale.length - 1],
+                value: invertedBaseColorScale[baseColorScale.length - 1],
               },
               {
                 name: 'background_contrast_2',
-                value: invertedaseColorScale[baseColorScale.length - 2],
+                value: invertedBaseColorScale[baseColorScale.length - 2],
               },
               {
                 name: 'background_contrast_3',
-                value: invertedaseColorScale[baseColorScale.length - 3],
+                value: invertedBaseColorScale[baseColorScale.length - 3],
               },
             ],
             text: [
               {
                 name: 'text',
-                value: invertedaseColorScale[baseColorScale.length - 1],
+                value: invertedBaseColorScale[baseColorScale.length - 1],
               },
               {
                 name: 'text_muted',
-                value: invertedaseColorScale[baseColorScale.length - 4],
+                value: invertedBaseColorScale[baseColorScale.length - 4],
               },
             ],
             contrastText: [
               {
                 name: 'text',
-                value: invertedaseColorScale[0],
+                value: invertedBaseColorScale[0],
               },
               {
                 name: 'text_muted',
-                value: invertedaseColorScale[3],
+                value: invertedBaseColorScale[3],
               },
             ],
             borders: [
               {
                 name: 'border',
-                value: invertedaseColorScale[3],
+                value: invertedBaseColorScale[3],
               },
               {
                 name: 'border_active',
-                value: invertedaseColorScale[5],
+                value: invertedBaseColorScale[5],
               },
             ],
             contrastBorders: [
               {
                 name: 'border_contrast',
-                value: invertedaseColorScale[invertedaseColorScale.length - 4],
+                value:
+                  invertedBaseColorScale[invertedBaseColorScale.length - 4],
               },
               {
                 name: 'border_contrast_active',
-                value: invertedaseColorScale[invertedaseColorScale.length - 5],
+                value:
+                  invertedBaseColorScale[invertedBaseColorScale.length - 5],
               },
             ],
           },
@@ -382,11 +451,316 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
               ],
             },
           ],
-          customColors: [],
+          brandColors: [
+            {
+              name: 'primary',
+              colorRamp: invertedPrimaryColorScale,
+              variants: [
+                {
+                  name: 'primary',
+                  value: invertedPrimaryColorScale[6],
+                },
+                {
+                  name: 'primary_hover',
+                  value: invertedPrimaryColorScale[7],
+                },
+                {
+                  name: 'primary_active',
+                  value: invertedPrimaryColorScale[8],
+                },
+              ],
+              background: [
+                {
+                  name: 'background',
+                  value: invertedPrimaryColorScale[0],
+                },
+              ],
+            },
+            {
+              name: 'secondary',
+              colorRamp: invertedSecondaryColorScale,
+              variants: [
+                {
+                  name: 'secondary',
+                  value: invertedSecondaryColorScale[6],
+                },
+                {
+                  name: 'secondary_hover',
+                  value: invertedSecondaryColorScale[7],
+                },
+                {
+                  name: 'secondary_active',
+                  value: invertedSecondaryColorScale[8],
+                },
+              ],
+              background: [
+                {
+                  name: 'background',
+                  value: invertedSecondaryColorScale[0],
+                },
+              ],
+            },
+          ],
         },
       };
     },
   };
 
   return themeTypes[type]();
+};
+
+export const updateSemanticColors = (
+  updatedTheme: ThemeItem,
+  themeType: ThemeType,
+  newColorRamp: string[],
+  colorMode?: ColorMode,
+) => {
+  if (themeType === 'simple') {
+    const semanticColors: CustomColor[] = [];
+
+    (updatedTheme as SimpleTheme).theme.semanticColors.forEach(
+      (semanticColor, index) => {
+        const rawColorRamp = getColorScale({
+          baseColor: newColorRamp[0],
+          color: (updatedTheme as SimpleTheme).theme.semanticColors[index]
+            .colorRamp[5],
+          contrastColor: newColorRamp[newColorRamp.length - 1],
+        });
+        rawColorRamp.shift();
+        rawColorRamp.pop();
+
+        const colorRamp = rawColorRamp;
+        const getVariants = (index: number) => {
+          const variants: ColorVariable[] = [];
+
+          (updatedTheme as SimpleTheme).theme.semanticColors[
+            index
+          ].variants.forEach((item, variantsIndex) =>
+            variants.push({ ...item, value: colorRamp[variantsIndex + 5] }),
+          );
+
+          return variants;
+        };
+
+        semanticColors.push({
+          ...semanticColor,
+          colorRamp,
+          variants: getVariants(index),
+          background: [{ name: 'background', value: colorRamp[0] }],
+        });
+      },
+    );
+
+    return semanticColors;
+  } else {
+    if (colorMode === 'light') {
+      const semanticColors: CustomColor[] = [];
+
+      (updatedTheme as DualTheme).lightTheme.semanticColors.forEach(
+        (semanticColor, index) => {
+          const rawColorRamp = getColorScale({
+            baseColor: newColorRamp[0],
+            color: (updatedTheme as DualTheme).lightTheme.semanticColors[index]
+              .colorRamp[5],
+            contrastColor: newColorRamp[newColorRamp.length - 1],
+          });
+          rawColorRamp.shift();
+          rawColorRamp.pop();
+
+          const colorRamp = rawColorRamp;
+          const getVariants = (index: number) => {
+            const variants: ColorVariable[] = [];
+
+            (updatedTheme as DualTheme).lightTheme.semanticColors[
+              index
+            ].variants.forEach((item, variantsIndex) =>
+              variants.push({
+                ...item,
+                value: colorRamp[variantsIndex + 5],
+              }),
+            );
+
+            return variants;
+          };
+
+          semanticColors.push({
+            ...semanticColor,
+            colorRamp,
+            variants: getVariants(index),
+            background: [{ name: 'background', value: colorRamp[0] }],
+          });
+        },
+      );
+
+      return semanticColors;
+    } else {
+      const semanticColors: CustomColor[] = [];
+
+      (updatedTheme as DualTheme).darkTheme.semanticColors.forEach(
+        (semanticColor, index) => {
+          const rawColorRamp = getColorScale({
+            baseColor: newColorRamp[0],
+            color: (updatedTheme as DualTheme).darkTheme.semanticColors[index]
+              .colorRamp[5],
+            contrastColor: newColorRamp[newColorRamp.length - 1],
+          });
+          rawColorRamp.shift();
+          rawColorRamp.pop();
+
+          const colorRamp = rawColorRamp;
+          const getVariants = (index: number) => {
+            const variants: ColorVariable[] = [];
+
+            (updatedTheme as DualTheme).darkTheme.semanticColors[
+              index
+            ].variants.forEach((item, variantsIndex) =>
+              variants.push({
+                ...item,
+                value: colorRamp[variantsIndex + 5],
+              }),
+            );
+
+            return variants;
+          };
+
+          semanticColors.push({
+            ...semanticColor,
+            colorRamp,
+            variants: getVariants(index),
+            background: [{ name: 'background', value: colorRamp[0] }],
+          });
+        },
+      );
+
+      return semanticColors;
+    }
+  }
+};
+
+export const updateBrandColors = (
+  updatedTheme: ThemeItem,
+  themeType: ThemeType,
+  newColorRamp: string[],
+  colorMode?: ColorMode,
+) => {
+  if (themeType === 'simple') {
+    const brandColors: CustomColor[] = [];
+
+    (updatedTheme as SimpleTheme).theme.brandColors.forEach(
+      (brandColor, index) => {
+        const rawColorRamp = getColorScale({
+          baseColor: newColorRamp[0],
+          color: (updatedTheme as SimpleTheme).theme.brandColors[index]
+            .colorRamp[5],
+          contrastColor: newColorRamp[newColorRamp.length - 1],
+        });
+        rawColorRamp.shift();
+        rawColorRamp.pop();
+
+        const colorRamp = rawColorRamp;
+        const getVariants = (index: number) => {
+          const variants: ColorVariable[] = [];
+
+          (updatedTheme as SimpleTheme).theme.brandColors[
+            index
+          ].variants.forEach((item, variantsIndex) =>
+            variants.push({ ...item, value: colorRamp[variantsIndex + 5] }),
+          );
+
+          return variants;
+        };
+
+        brandColors.push({
+          ...brandColor,
+          colorRamp,
+          variants: getVariants(index),
+          background: [{ name: 'background', value: colorRamp[0] }],
+        });
+      },
+    );
+
+    return brandColors;
+  } else {
+    if (colorMode === 'light') {
+      const brandColors: CustomColor[] = [];
+
+      (updatedTheme as DualTheme).lightTheme.brandColors.forEach(
+        (brandColor, index) => {
+          const rawColorRamp = getColorScale({
+            baseColor: newColorRamp[0],
+            color: (updatedTheme as DualTheme).lightTheme.brandColors[index]
+              .colorRamp[5],
+            contrastColor: newColorRamp[newColorRamp.length - 1],
+          });
+          rawColorRamp.shift();
+          rawColorRamp.pop();
+
+          const colorRamp = rawColorRamp;
+          const getVariants = (index: number) => {
+            const variants: ColorVariable[] = [];
+
+            (updatedTheme as DualTheme).lightTheme.brandColors[
+              index
+            ].variants.forEach((item, variantsIndex) =>
+              variants.push({
+                ...item,
+                value: colorRamp[variantsIndex + 5],
+              }),
+            );
+
+            return variants;
+          };
+
+          brandColors.push({
+            ...brandColor,
+            colorRamp,
+            variants: getVariants(index),
+            background: [{ name: 'background', value: colorRamp[0] }],
+          });
+        },
+      );
+
+      return brandColors;
+    } else {
+      const brandColors: CustomColor[] = [];
+
+      (updatedTheme as DualTheme).darkTheme.brandColors.forEach(
+        (brandColor, index) => {
+          const rawColorRamp = getColorScale({
+            baseColor: newColorRamp[0],
+            color: (updatedTheme as DualTheme).darkTheme.brandColors[index]
+              .colorRamp[5],
+            contrastColor: newColorRamp[newColorRamp.length - 1],
+          });
+          rawColorRamp.shift();
+          rawColorRamp.pop();
+
+          const colorRamp = rawColorRamp;
+          const getVariants = (index: number) => {
+            const variants: ColorVariable[] = [];
+
+            (updatedTheme as DualTheme).darkTheme.semanticColors[
+              index
+            ].variants.forEach((item, variantsIndex) =>
+              variants.push({
+                ...item,
+                value: colorRamp[variantsIndex + 5],
+              }),
+            );
+
+            return variants;
+          };
+
+          brandColors.push({
+            ...brandColor,
+            colorRamp,
+            variants: getVariants(index),
+            background: [{ name: 'background', value: colorRamp[0] }],
+          });
+        },
+      );
+
+      return brandColors;
+    }
+  }
 };

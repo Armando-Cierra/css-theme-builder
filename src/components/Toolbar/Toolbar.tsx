@@ -1,4 +1,11 @@
-import { IconBrightnessHalf, IconSun, IconMoon, IconX, IconMinus, IconSquares } from '@tabler/icons-react';
+import {
+  IconBrightnessHalf,
+  IconSun,
+  IconMoon,
+  IconX,
+  IconMinus,
+  IconSquares,
+} from '@tabler/icons-react';
 import { Logotype, Button, ButtonGroup } from '@/components';
 import { tooltipID } from '@/utils';
 import { useToolbar } from './useToolbar';
@@ -18,7 +25,7 @@ export const Toolbar = () => {
     isWindows,
     minimizeWindows,
     maximizeWindows,
-    closeWindows
+    closeWindows,
   } = useToolbar();
 
   return (
@@ -80,21 +87,31 @@ export const Toolbar = () => {
           </Button>
         </ButtonGroup>
       </div>
-      {isWindows && isElectron && 
-      <>
-        <div className='windowsControlsSpace'/>
-        <div className='windowsControls'>
-          <button className='windowsControls_button' onClick={minimizeWindows}>
-            <IconMinus/>
-          </button>
-          <button className='windowsControls_button' onClick={maximizeWindows}>
-            <IconSquares/>
-          </button>
-          <button className='windowsControls_button windowsControls_button--exit' onClick={closeWindows}>
-          <IconX/>
-          </button>
-        </div>
-      </>}
+      {isWindows && isElectron && (
+        <>
+          <div className="windowsControlsSpace" />
+          <div className="windowsControls">
+            <button
+              className="windowsControls_button"
+              onClick={minimizeWindows}
+            >
+              <IconMinus />
+            </button>
+            <button
+              className="windowsControls_button"
+              onClick={maximizeWindows}
+            >
+              <IconSquares />
+            </button>
+            <button
+              className="windowsControls_button windowsControls_button--exit"
+              onClick={closeWindows}
+            >
+              <IconX />
+            </button>
+          </div>
+        </>
+      )}
     </section>
   );
 };

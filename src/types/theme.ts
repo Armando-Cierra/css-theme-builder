@@ -28,7 +28,7 @@ type ThemeContent = {
     contrastBorders: ColorVariable[];
   };
   semanticColors: CustomColor[];
-  customColors: CustomColor[];
+  brandColors: CustomColor[];
 };
 
 interface BaseThemeContent {
