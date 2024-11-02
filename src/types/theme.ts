@@ -110,5 +110,15 @@ export interface EditorContextProps {
       newColorRamp: string[],
       colorMode?: ColorMode,
     ) => void;
+    changeSuccessStateColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
+    changeSuccessBackgroundColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
   };
 }

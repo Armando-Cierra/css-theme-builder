@@ -906,6 +906,68 @@ export const useEditor = (location: Location) => {
     themesTypes[themeType]();
   };
 
+  const changeSuccessStateColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.semanticColors[0].variants[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.semanticColors[0].variants[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.semanticColors[0].variants[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
+  const changeSuccessBackgroundColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.semanticColors[0].background[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.semanticColors[0].background[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.semanticColors[0].background[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -923,6 +985,8 @@ export const useEditor = (location: Location) => {
     changeContrastBorderColor,
     resetBaseColorSections,
     changeSuccessColorRamp,
+    changeSuccessStateColor,
+    changeSuccessBackgroundColor
   };
 
   return { themeType, theme, themeActions };

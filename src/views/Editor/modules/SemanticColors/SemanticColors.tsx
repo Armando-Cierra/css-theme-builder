@@ -20,6 +20,8 @@ export const SemanticColors = () => {
     successBackgroundColor,
     successVariantsColor,
     successColorRamp,
+    editSuccessStateColor,
+    editSuccessBackgroundColor
   } = useSemanticColors();
 
   const { inputSuccessColor, handleInputColorChange } =
@@ -96,14 +98,14 @@ export const SemanticColors = () => {
               minArray={1}
               maxArray={1}
               title={t('editor.semanticColors.background')}
-              editColorAction={() => {}}
+              editColorAction={editSuccessBackgroundColor}
             />
             <PaletteDisplayer
               colors={successVariantsColor}
               minArray={3}
               maxArray={3}
               title={t('editor.semanticColors.states')}
-              editColorAction={() => {}}
+              editColorAction={editSuccessStateColor}
             />
           </div>
         </div>

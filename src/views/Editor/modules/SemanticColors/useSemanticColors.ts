@@ -84,6 +84,12 @@ export const useSemanticColors = () => {
         ? (theme as DualTheme).lightTheme.semanticColors[0].colorRamp
         : (theme as DualTheme).darkTheme.semanticColors[0].colorRamp;
 
+  const editSuccessStateColor = (index: number, newValue: string) =>
+    themeActions.changeSuccessStateColor(index, newValue, selectedMode);
+
+  const editSuccessBackgroundColor = (index: number, newValue: string) =>
+    themeActions.changeSuccessBackgroundColor(index, newValue, selectedMode);
+
   return {
     t,
     theme,
@@ -96,5 +102,7 @@ export const useSemanticColors = () => {
     successBackgroundColor,
     successVariantsColor,
     successColorRamp,
+    editSuccessStateColor,
+    editSuccessBackgroundColor
   };
 };
