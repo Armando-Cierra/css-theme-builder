@@ -807,7 +807,8 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
-  // Semantic Colors
+  // --- Semantic Colors
+  // Success
   const changeSuccessColorRamp = (
     newColorRamp: string[],
     colorMode?: ColorMode,
@@ -968,6 +969,167 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
+  // Warning
+  const changeWarningColorRamp = (
+    newColorRamp: string[],
+    colorMode?: ColorMode,
+  ) => {
+    const updatedTheme = { ...theme };
+
+    const themesTypes = {
+      simple: () => {
+        (updatedTheme as SimpleTheme).theme.semanticColors[1] = {
+          name: 'warning',
+          colorRamp: newColorRamp,
+          background: [
+            {
+              name: 'background',
+              value: newColorRamp[0],
+            },
+          ],
+          variants: [
+            {
+              name: 'warning',
+              value: newColorRamp[5],
+            },
+            {
+              name: 'warning_hover',
+              value: newColorRamp[6],
+            },
+            {
+              name: 'warning_active',
+              value: newColorRamp[7],
+            },
+          ],
+        };
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const colorModes = {
+          light: () => {
+            (updatedTheme as DualTheme).lightTheme.semanticColors[1] = {
+              name: 'warning',
+              colorRamp: newColorRamp,
+              background: [
+                {
+                  name: 'background',
+                  value: newColorRamp[0],
+                },
+              ],
+              variants: [
+                {
+                  name: 'warning',
+                  value: newColorRamp[5],
+                },
+                {
+                  name: 'warning_hover',
+                  value: newColorRamp[6],
+                },
+                {
+                  name: 'warning_active',
+                  value: newColorRamp[7],
+                },
+              ],
+            };
+          },
+          dark: () => {
+            (updatedTheme as DualTheme).darkTheme.semanticColors[1] = {
+              name: 'warning',
+              colorRamp: newColorRamp,
+              background: [
+                {
+                  name: 'background',
+                  value: newColorRamp[0],
+                },
+              ],
+              variants: [
+                {
+                  name: 'warning',
+                  value: newColorRamp[4],
+                },
+                {
+                  name: 'warning_hover',
+                  value: newColorRamp[5],
+                },
+                {
+                  name: 'warning_active',
+                  value: newColorRamp[6],
+                },
+              ],
+            };
+          },
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themesTypes[themeType]();
+  };
+
+  const changeWarningStateColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.semanticColors[1].variants[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.semanticColors[1].variants[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.semanticColors[1].variants[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
+  const changeWarningBackgroundColor = (
+    index: number,
+    newValue: string,
+    colorMode?: ColorMode,
+  ) => {
+    const themeTypes = {
+      simple: () => {
+        const updatedTheme = theme as SimpleTheme;
+        updatedTheme.theme.semanticColors[1].background[index].value = newValue;
+
+        setTheme({ ...updatedTheme });
+      },
+      dual: () => {
+        const updatedTheme = theme as DualTheme;
+        const colorModes = {
+          light: () =>
+            (updatedTheme.lightTheme.semanticColors[1].background[index].value =
+              newValue),
+          dark: () =>
+            (updatedTheme.darkTheme.semanticColors[1].background[index].value =
+              newValue),
+        };
+
+        colorModes[colorMode as ColorMode]();
+        setTheme({ ...updatedTheme });
+      },
+    };
+
+    themeTypes[themeType]();
+  };
+
   const themeActions = {
     editThemeName,
     editContrastPercentages,
@@ -986,7 +1148,10 @@ export const useEditor = (location: Location) => {
     resetBaseColorSections,
     changeSuccessColorRamp,
     changeSuccessStateColor,
-    changeSuccessBackgroundColor
+    changeSuccessBackgroundColor,
+    changeWarningColorRamp,
+    changeWarningStateColor,
+    changeWarningBackgroundColor,
   };
 
   return { themeType, theme, themeActions };

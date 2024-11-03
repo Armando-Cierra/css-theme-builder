@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import chroma from 'chroma-js';
 
 type SemanticColors = 'success' | 'warning' | 'danger';
 
 interface Props {
   successColor: string;
+  warningColor: string;
+  // dangerColor: string;
   handleColorRampsChange: (
     colorType: SemanticColors,
   ) => (color: string) => void;
@@ -12,17 +14,17 @@ interface Props {
 
 export const useSemanticColorsControls = ({
   successColor,
+  warningColor,
   handleColorRampsChange,
 }: Props) => {
   const [inputColors, setInputColors] = useState({
     success: successColor,
-    warning: '',
+    warning: warningColor,
     danger: '',
   });
 
   const handleInputColorChange =
-    (colorType: SemanticColors) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (colorType: SemanticColors) => (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
 
       const semanticColors = {
@@ -31,7 +33,11 @@ export const useSemanticColorsControls = ({
           chroma.valid(value) &&
             handleColorRampsChange('success')(chroma(value).hex());
         },
-        warning: () => {},
+        warning: () => {
+          setInputColors((prevState) => ({ ...prevState, warning: value }));
+          chroma.valid(value) &&
+            handleColorRampsChange('warning')(chroma(value).hex());
+        },
         danger: () => {},
       };
 
@@ -39,11 +45,16 @@ export const useSemanticColorsControls = ({
     };
 
   useEffect(() => {
-    setInputColors((prevState) => ({ ...prevState, success: successColor }));
-  }, [successColor]);
+    setInputColors((prevState) => ({
+      ...prevState,
+      success: successColor,
+      warning: warningColor,
+    }));
+  }, [successColor, warningColor]);
 
   return {
     inputSuccessColor: inputColors.success,
+    inputWarningColor: inputColors.warning,
     handleInputColorChange,
   };
 };

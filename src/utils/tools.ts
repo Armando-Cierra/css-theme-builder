@@ -185,50 +185,50 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         ],
       },
       {
-        name: 'danger',
-        colorRamp: dangerColorScale,
-        variants: [
-          {
-            name: 'danger',
-            value: dangerColorScale[6],
-          },
-          {
-            name: 'danger_hover',
-            value: dangerColorScale[7],
-          },
-          {
-            name: 'danger_active',
-            value: dangerColorScale[8],
-          },
-        ],
-        background: [
-          {
-            name: 'background',
-            value: dangerColorScale[0],
-          },
-        ],
-      },
-      {
         name: 'warning',
         colorRamp: warningColorScale,
         variants: [
           {
             name: 'warning',
-            value: warningColorScale[6],
+            value: warningColorScale[5],
           },
           {
             name: 'warning_hover',
-            value: warningColorScale[7],
+            value: warningColorScale[6],
           },
           {
             name: 'warning_active',
-            value: warningColorScale[8],
+            value: warningColorScale[7],
           },
         ],
         background: [
           {
             name: 'background',
             value: warningColorScale[0],
+          },
+        ],
+      },
+      {
+        name: 'danger',
+        colorRamp: dangerColorScale,
+        variants: [
+          {
+            name: 'danger',
+            value: dangerColorScale[5],
+          },
+          {
+            name: 'danger_hover',
+            value: dangerColorScale[6],
+          },
+          {
+            name: 'danger_active',
+            value: dangerColorScale[7],
+          },
+        ],
+        background: [
+          {
+            name: 'background',
+            value: dangerColorScale[0],
           },
         ],
       },
@@ -240,15 +240,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         variants: [
           {
             name: 'primary',
-            value: primaryColorScale[6],
+            value: primaryColorScale[5],
           },
           {
             name: 'primary_hover',
-            value: primaryColorScale[7],
+            value: primaryColorScale[6],
           },
           {
             name: 'primary_active',
-            value: primaryColorScale[8],
+            value: primaryColorScale[7],
           },
         ],
         background: [
@@ -264,15 +264,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
         variants: [
           {
             name: 'secondary',
-            value: secondaryColorScale[6],
+            value: secondaryColorScale[5],
           },
           {
             name: 'secondary_hover',
-            value: secondaryColorScale[7],
+            value: secondaryColorScale[6],
           },
           {
             name: 'secondary_active',
-            value: secondaryColorScale[8],
+            value: secondaryColorScale[7],
           },
         ],
         background: [
@@ -403,50 +403,50 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
               ],
             },
             {
-              name: 'danger',
-              colorRamp: invertedDangerColorScale,
-              variants: [
-                {
-                  name: 'danger',
-                  value: invertedDangerColorScale[6],
-                },
-                {
-                  name: 'danger_hover',
-                  value: invertedDangerColorScale[7],
-                },
-                {
-                  name: 'danger_active',
-                  value: invertedDangerColorScale[8],
-                },
-              ],
-              background: [
-                {
-                  name: 'background',
-                  value: invertedDangerColorScale[0],
-                },
-              ],
-            },
-            {
               name: 'warning',
               colorRamp: invertedWarningColorScale,
               variants: [
                 {
                   name: 'warning',
-                  value: invertedWarningColorScale[6],
+                  value: invertedWarningColorScale[4],
                 },
                 {
                   name: 'warning_hover',
-                  value: invertedWarningColorScale[7],
+                  value: invertedWarningColorScale[5],
                 },
                 {
                   name: 'warning_active',
-                  value: invertedWarningColorScale[8],
+                  value: invertedWarningColorScale[6],
                 },
               ],
               background: [
                 {
                   name: 'background',
                   value: invertedWarningColorScale[0],
+                },
+              ],
+            },
+            {
+              name: 'danger',
+              colorRamp: invertedDangerColorScale,
+              variants: [
+                {
+                  name: 'danger',
+                  value: invertedDangerColorScale[4],
+                },
+                {
+                  name: 'danger_hover',
+                  value: invertedDangerColorScale[5],
+                },
+                {
+                  name: 'danger_active',
+                  value: invertedDangerColorScale[6],
+                },
+              ],
+              background: [
+                {
+                  name: 'background',
+                  value: invertedDangerColorScale[0],
                 },
               ],
             },
@@ -458,15 +458,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
               variants: [
                 {
                   name: 'primary',
-                  value: invertedPrimaryColorScale[6],
+                  value: invertedPrimaryColorScale[4],
                 },
                 {
                   name: 'primary_hover',
-                  value: invertedPrimaryColorScale[7],
+                  value: invertedPrimaryColorScale[5],
                 },
                 {
                   name: 'primary_active',
-                  value: invertedPrimaryColorScale[8],
+                  value: invertedPrimaryColorScale[6],
                 },
               ],
               background: [
@@ -482,15 +482,15 @@ export const getInitialSettingsForTheme = (type: ThemeType) => {
               variants: [
                 {
                   name: 'secondary',
-                  value: invertedSecondaryColorScale[6],
+                  value: invertedSecondaryColorScale[4],
                 },
                 {
                   name: 'secondary_hover',
-                  value: invertedSecondaryColorScale[7],
+                  value: invertedSecondaryColorScale[5],
                 },
                 {
                   name: 'secondary_active',
-                  value: invertedSecondaryColorScale[8],
+                  value: invertedSecondaryColorScale[6],
                 },
               ],
               background: [

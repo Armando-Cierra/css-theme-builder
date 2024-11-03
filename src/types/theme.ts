@@ -120,5 +120,19 @@ export interface EditorContextProps {
       newValue: string,
       colorMode?: ColorMode,
     ) => void;
+    changeWarningColorRamp: (
+      newColorRamp: string[],
+      colorMode?: ColorMode,
+    ) => void;
+    changeWarningStateColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
+    changeWarningBackgroundColor: (
+      index: number,
+      newValue: string,
+      colorMode?: ColorMode,
+    ) => void;
   };
 }

@@ -27,35 +27,36 @@ export const useSemanticColors = () => {
   //Color Ramps Management
   const handleColorRampsChange =
     (colorType: 'success' | 'warning' | 'danger') => (newColor: string) => {
-      const semanticColors = {
-        success: () => {
-          const newColorRamp = getColorScale({
-            baseColor:
-              themeType === 'simple'
-                ? (theme as SimpleTheme).theme.baseColor.colorRamp[0]
-                : selectedMode === 'light'
-                  ? (theme as DualTheme).lightTheme.baseColor.colorRamp[0]
-                  : (theme as DualTheme).darkTheme.baseColor.colorRamp[0],
-            color: newColor,
-            contrastColor:
-              themeType === 'simple'
-                ? (theme as SimpleTheme).theme.baseColor.colorRamp[12]
-                : selectedMode === 'light'
-                  ? (theme as DualTheme).lightTheme.baseColor.colorRamp[12]
-                  : (theme as DualTheme).darkTheme.baseColor.colorRamp[12],
-          });
-          newColorRamp.shift();
-          newColorRamp.pop();
+      const newColorRamp = getColorScale({
+        baseColor:
+          themeType === 'simple'
+            ? (theme as SimpleTheme).theme.baseColor.colorRamp[0]
+            : selectedMode === 'light'
+              ? (theme as DualTheme).lightTheme.baseColor.colorRamp[0]
+              : (theme as DualTheme).darkTheme.baseColor.colorRamp[0],
+        color: newColor,
+        contrastColor:
+          themeType === 'simple'
+            ? (theme as SimpleTheme).theme.baseColor.colorRamp[12]
+            : selectedMode === 'light'
+              ? (theme as DualTheme).lightTheme.baseColor.colorRamp[12]
+              : (theme as DualTheme).darkTheme.baseColor.colorRamp[12],
+      });
+      newColorRamp.shift();
+      newColorRamp.pop();
 
-          themeActions.changeSuccessColorRamp(newColorRamp, selectedMode);
-        },
-        warning: () => {},
+      const semanticColors = {
+        success: () =>
+          themeActions.changeSuccessColorRamp(newColorRamp, selectedMode),
+        warning: () =>
+          themeActions.changeWarningColorRamp(newColorRamp, selectedMode),
         danger: () => {},
       };
 
       semanticColors[colorType]();
     };
 
+  // Success
   const successColor =
     themeType === 'simple'
       ? (theme as SimpleTheme).theme.semanticColors[0].colorRamp[5]
@@ -90,6 +91,41 @@ export const useSemanticColors = () => {
   const editSuccessBackgroundColor = (index: number, newValue: string) =>
     themeActions.changeSuccessBackgroundColor(index, newValue, selectedMode);
 
+  // Warning
+  const warningColor =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.semanticColors[1].colorRamp[5]
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.semanticColors[1].colorRamp[5]
+        : (theme as DualTheme).darkTheme.semanticColors[1].colorRamp[5];
+
+  const warningBackgroundColor =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.semanticColors[1].background
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.semanticColors[1].background
+        : (theme as DualTheme).darkTheme.semanticColors[1].background;
+
+  const warningVariantsColor =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.semanticColors[1].variants
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.semanticColors[1].variants
+        : (theme as DualTheme).darkTheme.semanticColors[1].variants;
+
+  const warningColorRamp =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.semanticColors[1].colorRamp
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.semanticColors[1].colorRamp
+        : (theme as DualTheme).darkTheme.semanticColors[1].colorRamp;
+
+  const editWarningStateColor = (index: number, newValue: string) =>
+    themeActions.changeWarningStateColor(index, newValue, selectedMode);
+
+  const editWarningBackgroundColor = (index: number, newValue: string) =>
+    themeActions.changeWarningBackgroundColor(index, newValue, selectedMode);
+
   return {
     t,
     theme,
@@ -103,6 +139,12 @@ export const useSemanticColors = () => {
     successVariantsColor,
     successColorRamp,
     editSuccessStateColor,
-    editSuccessBackgroundColor
+    editSuccessBackgroundColor,
+    warningColor,
+    warningBackgroundColor,
+    warningVariantsColor,
+    warningColorRamp,
+    editWarningBackgroundColor,
+    editWarningStateColor,
   };
 };
