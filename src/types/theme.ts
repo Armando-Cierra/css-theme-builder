@@ -2,6 +2,8 @@ export type ThemeType = 'simple' | 'dual';
 
 export type ColorMode = 'light' | 'dark';
 
+export type SemanticColors = 'success' | 'warning' | 'danger';
+
 export type ColorVariable = {
   name: string;
   value: string;
@@ -90,30 +92,19 @@ export interface EditorContextProps {
       colorMode?: ColorMode,
     ) => void;
     resetBaseColorSections: () => void;
-    changeSuccessColorRamp: (
+    changeSemanticColorRamp: (
+      colorName: SemanticColors,
       newColorRamp: string[],
       colorMode?: ColorMode,
     ) => void;
-    changeSuccessStateColor: (
+    changeSemanticStateColor: (
+      colorName: SemanticColors,
       index: number,
       newValue: string,
       colorMode?: ColorMode,
     ) => void;
-    changeSuccessBackgroundColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeWarningColorRamp: (
-      newColorRamp: string[],
-      colorMode?: ColorMode,
-    ) => void;
-    changeWarningStateColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeWarningBackgroundColor: (
+    changeSemanticBackgroundColor: (
+      colorName: SemanticColors,
       index: number,
       newValue: string,
       colorMode?: ColorMode,

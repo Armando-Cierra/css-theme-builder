@@ -7,6 +7,7 @@ import {
   ColorVariable,
   DualTheme,
   EditorContextProps,
+  SemanticColors,
   SimpleTheme,
 } from '@/types';
 import { getColorScale } from '@/utils';
@@ -32,7 +33,7 @@ export const useSemanticColors = () => {
 
   //Color Ramps Management
   const handleColorRampsChange =
-    (colorType: 'success' | 'warning' | 'danger') => (newColor: string) => {
+    (colorType: SemanticColors) => (newColor: string) => {
       const baseColorRamp =
         themeType === 'simple'
           ? (theme as SimpleTheme).theme.baseColor.colorRamp
@@ -50,16 +51,31 @@ export const useSemanticColors = () => {
       newColorRamp.pop();
 
       const changeColorRamp = {
-        success: themeActions.changeSuccessColorRamp,
-        warning: themeActions.changeWarningColorRamp,
-        danger: () => {},
+        success: () =>
+          themeActions.changeSemanticColorRamp(
+            'success',
+            newColorRamp,
+            selectedMode,
+          ),
+        warning: () =>
+          themeActions.changeSemanticColorRamp(
+            'warning',
+            newColorRamp,
+            selectedMode,
+          ),
+        danger: () =>
+          themeActions.changeSemanticColorRamp(
+            'danger',
+            newColorRamp,
+            selectedMode,
+          ),
       };
 
-      changeColorRamp[colorType](newColorRamp, selectedMode);
+      changeColorRamp[colorType]();
     };
 
   const getSemanticColor = (
-    colorType: 'success' | 'warning' | 'danger',
+    colorType: SemanticColors,
     property: 'colorRamp' | 'baseColor' | 'background' | 'variants',
   ) => {
     const colorTypes = {
@@ -87,17 +103,37 @@ export const useSemanticColors = () => {
 
   // Success
   const editSuccessStateColor = (index: number, newValue: string) =>
-    themeActions.changeSuccessStateColor(index, newValue, selectedMode);
+    themeActions.changeSemanticStateColor(
+      'success',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const editSuccessBackgroundColor = (index: number, newValue: string) =>
-    themeActions.changeSuccessBackgroundColor(index, newValue, selectedMode);
+    themeActions.changeSemanticBackgroundColor(
+      'success',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   // Warning
   const editWarningStateColor = (index: number, newValue: string) =>
-    themeActions.changeWarningStateColor(index, newValue, selectedMode);
+    themeActions.changeSemanticStateColor(
+      'warning',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const editWarningBackgroundColor = (index: number, newValue: string) =>
-    themeActions.changeWarningBackgroundColor(index, newValue, selectedMode);
+    themeActions.changeSemanticBackgroundColor(
+      'warning',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   return {
     t,

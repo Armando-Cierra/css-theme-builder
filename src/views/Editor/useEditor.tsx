@@ -10,6 +10,7 @@ import {
   ColorMode,
   ColorVariable,
   DualTheme,
+  SemanticColors,
   SimpleTheme,
   ThemeItem,
   ThemeType,
@@ -466,94 +467,61 @@ export const useEditor = (location: Location) => {
   };
 
   // --- Semantic Colors
-  // Success
-  const changeSuccessColorRamp = (
+  const changeSemanticColorRamp = (
+    colorName: SemanticColors,
     newColorRamp: string[],
     colorMode?: ColorMode,
   ) => {
     const updatedTheme = { ...theme };
 
+    const createColorConfig = (ramp: string[]) => ({
+      name: colorName,
+      colorRamp: ramp,
+      background: [
+        {
+          name: 'background',
+          value: ramp[0],
+        },
+      ],
+      variants: [
+        {
+          name: colorName,
+          value: ramp[4],
+        },
+        {
+          name: `${colorName}_hover`,
+          value: ramp[5],
+        },
+        {
+          name: `${colorName}_active`,
+          value: ramp[6],
+        },
+      ],
+    });
+
+    const colors = {
+      success: 0,
+      warning: 1,
+      danger: 2,
+    };
+
     const themesTypes = {
       simple: () => {
-        (updatedTheme as SimpleTheme).theme.semanticColors[0] = {
-          name: 'success',
-          colorRamp: newColorRamp,
-          background: [
-            {
-              name: 'background',
-              value: newColorRamp[0],
-            },
-          ],
-          variants: [
-            {
-              name: 'success',
-              value: newColorRamp[5],
-            },
-            {
-              name: 'success_hover',
-              value: newColorRamp[6],
-            },
-            {
-              name: 'success_active',
-              value: newColorRamp[7],
-            },
-          ],
-        };
+        (updatedTheme as SimpleTheme).theme.semanticColors[colors[colorName]] =
+          createColorConfig(newColorRamp);
         setTheme({ ...updatedTheme });
       },
       dual: () => {
         const colorModes = {
           light: () => {
-            (updatedTheme as DualTheme).lightTheme.semanticColors[0] = {
-              name: 'success',
-              colorRamp: newColorRamp,
-              background: [
-                {
-                  name: 'background',
-                  value: newColorRamp[0],
-                },
-              ],
-              variants: [
-                {
-                  name: 'success',
-                  value: newColorRamp[5],
-                },
-                {
-                  name: 'success_hover',
-                  value: newColorRamp[6],
-                },
-                {
-                  name: 'success_active',
-                  value: newColorRamp[7],
-                },
-              ],
-            };
+            (updatedTheme as DualTheme).lightTheme.semanticColors[
+              colors[colorName]
+            ] = createColorConfig(newColorRamp);
           },
           dark: () => {
-            (updatedTheme as DualTheme).darkTheme.semanticColors[0] = {
-              name: 'success',
-              colorRamp: newColorRamp,
-              background: [
-                {
-                  name: 'background',
-                  value: newColorRamp[0],
-                },
-              ],
-              variants: [
-                {
-                  name: 'success',
-                  value: newColorRamp[4],
-                },
-                {
-                  name: 'success_hover',
-                  value: newColorRamp[5],
-                },
-                {
-                  name: 'success_active',
-                  value: newColorRamp[6],
-                },
-              ],
-            };
+            (updatedTheme as DualTheme).darkTheme.semanticColors[
+              colors[colorName]
+            ] = createColorConfig(newColorRamp);
           },
         };
 
@@ -565,15 +533,24 @@ export const useEditor = (location: Location) => {
     themesTypes[themeType]();
   };
 
-  const changeSuccessStateColor = (
+  const changeSemanticStateColor = (
+    colorName: SemanticColors,
     index: number,
     newValue: string,
     colorMode?: ColorMode,
   ) => {
+    const colors = {
+      success: 0,
+      warning: 1,
+      danger: 2,
+    };
+
     const themeTypes = {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.semanticColors[0].variants[index].value = newValue;
+        updatedTheme.theme.semanticColors[colors[colorName]].variants[
+          index
+        ].value = newValue;
 
         setTheme({ ...updatedTheme });
       },
@@ -581,11 +558,13 @@ export const useEditor = (location: Location) => {
         const updatedTheme = theme as DualTheme;
         const colorModes = {
           light: () =>
-            (updatedTheme.lightTheme.semanticColors[0].variants[index].value =
-              newValue),
+            (updatedTheme.lightTheme.semanticColors[colors[colorName]].variants[
+              index
+            ].value = newValue),
           dark: () =>
-            (updatedTheme.darkTheme.semanticColors[0].variants[index].value =
-              newValue),
+            (updatedTheme.darkTheme.semanticColors[colors[colorName]].variants[
+              index
+            ].value = newValue),
         };
 
         colorModes[colorMode as ColorMode]();
@@ -596,15 +575,24 @@ export const useEditor = (location: Location) => {
     themeTypes[themeType]();
   };
 
-  const changeSuccessBackgroundColor = (
+  const changeSemanticBackgroundColor = (
+    colorName: SemanticColors,
     index: number,
     newValue: string,
     colorMode?: ColorMode,
   ) => {
+    const colors = {
+      success: 0,
+      warning: 1,
+      danger: 2,
+    };
+
     const themeTypes = {
       simple: () => {
         const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.semanticColors[0].background[index].value = newValue;
+        updatedTheme.theme.semanticColors[colors[colorName]].background[
+          index
+        ].value = newValue;
 
         setTheme({ ...updatedTheme });
       },
@@ -612,172 +600,13 @@ export const useEditor = (location: Location) => {
         const updatedTheme = theme as DualTheme;
         const colorModes = {
           light: () =>
-            (updatedTheme.lightTheme.semanticColors[0].background[index].value =
-              newValue),
+            (updatedTheme.lightTheme.semanticColors[
+              colors[colorName]
+            ].background[index].value = newValue),
           dark: () =>
-            (updatedTheme.darkTheme.semanticColors[0].background[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
-  };
-
-  // Warning
-  const changeWarningColorRamp = (
-    newColorRamp: string[],
-    colorMode?: ColorMode,
-  ) => {
-    const updatedTheme = { ...theme };
-
-    const themesTypes = {
-      simple: () => {
-        (updatedTheme as SimpleTheme).theme.semanticColors[1] = {
-          name: 'warning',
-          colorRamp: newColorRamp,
-          background: [
-            {
-              name: 'background',
-              value: newColorRamp[0],
-            },
-          ],
-          variants: [
-            {
-              name: 'warning',
-              value: newColorRamp[5],
-            },
-            {
-              name: 'warning_hover',
-              value: newColorRamp[6],
-            },
-            {
-              name: 'warning_active',
-              value: newColorRamp[7],
-            },
-          ],
-        };
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const colorModes = {
-          light: () => {
-            (updatedTheme as DualTheme).lightTheme.semanticColors[1] = {
-              name: 'warning',
-              colorRamp: newColorRamp,
-              background: [
-                {
-                  name: 'background',
-                  value: newColorRamp[0],
-                },
-              ],
-              variants: [
-                {
-                  name: 'warning',
-                  value: newColorRamp[5],
-                },
-                {
-                  name: 'warning_hover',
-                  value: newColorRamp[6],
-                },
-                {
-                  name: 'warning_active',
-                  value: newColorRamp[7],
-                },
-              ],
-            };
-          },
-          dark: () => {
-            (updatedTheme as DualTheme).darkTheme.semanticColors[1] = {
-              name: 'warning',
-              colorRamp: newColorRamp,
-              background: [
-                {
-                  name: 'background',
-                  value: newColorRamp[0],
-                },
-              ],
-              variants: [
-                {
-                  name: 'warning',
-                  value: newColorRamp[4],
-                },
-                {
-                  name: 'warning_hover',
-                  value: newColorRamp[5],
-                },
-                {
-                  name: 'warning_active',
-                  value: newColorRamp[6],
-                },
-              ],
-            };
-          },
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themesTypes[themeType]();
-  };
-
-  const changeWarningStateColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.semanticColors[1].variants[index].value = newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.semanticColors[1].variants[index].value =
-              newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.semanticColors[1].variants[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
-  };
-
-  const changeWarningBackgroundColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.semanticColors[1].background[index].value = newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.semanticColors[1].background[index].value =
-              newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.semanticColors[1].background[index].value =
-              newValue),
+            (updatedTheme.darkTheme.semanticColors[
+              colors[colorName]
+            ].background[index].value = newValue),
         };
 
         colorModes[colorMode as ColorMode]();
@@ -797,12 +626,9 @@ export const useEditor = (location: Location) => {
     addBackgroundSpace,
     removeBackgroundSpace,
     resetBaseColorSections,
-    changeSuccessColorRamp,
-    changeSuccessStateColor,
-    changeSuccessBackgroundColor,
-    changeWarningColorRamp,
-    changeWarningStateColor,
-    changeWarningBackgroundColor,
+    changeSemanticColorRamp,
+    changeSemanticStateColor,
+    changeSemanticBackgroundColor,
   };
 
   return { themeType, theme, themeActions };
