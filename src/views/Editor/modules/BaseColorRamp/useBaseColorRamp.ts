@@ -128,13 +128,13 @@ export const useBaseColorRamp = () => {
     return String(lightColorRamp) !== String(darkColorRamp);
   };
 
-  const contrastStandadizationValidation =
+  const contrastStandardizationValidation =
     themeType === 'dual' &&
     selectedMode === 'light' &&
     theme.lightTheme.contrastPercentages !==
       theme.darkTheme.contrastPercentages;
 
-  const colorStandadizationValidation =
+  const colorStandardizationValidation =
     themeType === 'dual' &&
     selectedMode === 'light' &&
     baseColorRampsAreDifferent();
@@ -153,9 +153,9 @@ export const useBaseColorRamp = () => {
     contrastPercentages,
     handleContrastPercentagesChange,
     resetValues,
-    contrastStandadizationValidation,
+    contrastStandardizationValidation,
     standardizeContrastsPercentages,
-    colorStandadizationValidation,
+    colorStandardizationValidation,
     standardizeColors,
   };
 };

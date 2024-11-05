@@ -23,9 +23,9 @@ export const BaseColorRamp = () => {
     contrastPercentages,
     handleContrastPercentagesChange,
     resetValues,
-    contrastStandadizationValidation,
+    contrastStandardizationValidation,
     standardizeContrastsPercentages,
-    colorStandadizationValidation,
+    colorStandardizationValidation,
     standardizeColors,
   } = useBaseColorRamp();
 
@@ -136,7 +136,7 @@ export const BaseColorRamp = () => {
           ))}
         </div>
         <div className="editor_baseColorRamp_contrastButtonActions">
-          {contrastStandadizationValidation && (
+          {contrastStandardizationValidation && (
             <Button
               variant="contrast"
               data-tooltip-id={tooltipID}
@@ -150,7 +150,7 @@ export const BaseColorRamp = () => {
               {t('editor.baseColorRamp.standardizeContrasts')}
             </Button>
           )}
-          {colorStandadizationValidation && (
+          {colorStandardizationValidation && (
             <Button
               variant="contrast"
               data-tooltip-id={tooltipID}

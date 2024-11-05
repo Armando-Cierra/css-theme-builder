@@ -58,34 +58,59 @@ export const useBaseColorSections = () => {
         ? (theme as DualTheme).lightTheme.baseColor.contrastBorders
         : (theme as DualTheme).darkTheme.baseColor.contrastBorders;
 
-  const addNewBackground = () => themeActions.addNewBackgroundSpace();
+  const addNewBackground = () => themeActions.addBackgroundSpace('backgrounds');
 
   const editBackgroundColor = (index: number, newValue: string) =>
-    themeActions.changeBackgroundColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty(
+      'backgrounds',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const removeBackgroundSpace = (index: number) =>
-    themeActions.removeBackgroundSpace(index);
+    themeActions.removeBackgroundSpace(index, 'backgrounds');
 
   const addNewContrastBackground = () =>
-    themeActions.addNewContrastBackgroundSpace();
+    themeActions.addBackgroundSpace('contrastBackgrounds');
 
   const editContrastBackgroundColor = (index: number, newValue: string) =>
-    themeActions.changeContrastBackgroundColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty(
+      'contrastBackgrounds',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const removeContrastBackgroundSpace = (index: number) =>
-    themeActions.removeContrastBackgroundSpace(index);
+    themeActions.removeBackgroundSpace(index, 'contrastBackgrounds');
 
   const editTextColor = (index: number, newValue: string) =>
-    themeActions.changeTextColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty('text', index, newValue, selectedMode);
 
   const editContrastTextColor = (index: number, newValue: string) =>
-    themeActions.changeTextColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty(
+      'contrastText',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const editBorderColor = (index: number, newValue: string) =>
-    themeActions.changeBorderColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty(
+      'borders',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const editContrastBorderColor = (index: number, newValue: string) =>
-    themeActions.changeContrastBorderColor(index, newValue, selectedMode);
+    themeActions.changeBaseColorProperty(
+      'contrastBorders',
+      index,
+      newValue,
+      selectedMode,
+    );
 
   const resetBaseColorSections = () => themeActions.resetBaseColorSections();
 

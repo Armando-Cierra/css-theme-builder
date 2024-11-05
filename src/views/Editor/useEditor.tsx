@@ -6,6 +6,7 @@ import {
   updateSemanticColors,
 } from '@/utils';
 import {
+  BaseColor,
   ColorMode,
   ColorVariable,
   DualTheme,
@@ -37,95 +38,47 @@ export const useEditor = (location: Location) => {
     newContrastPercentages: number[],
     colorMode?: ColorMode,
   ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.contrastPercentages = newContrastPercentages;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-
-        const colorModes = {
-          light: () => {
-            updatedTheme.lightTheme.contrastPercentages =
-              newContrastPercentages;
-          },
-          dark: () => {
-            updatedTheme.darkTheme.contrastPercentages = newContrastPercentages;
-          },
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
+    const updateContrastPercentages = (
+      updatedTheme: SimpleTheme | DualTheme,
+    ) => {
+      if (themeType === 'simple') {
+        (updatedTheme as SimpleTheme).theme.contrastPercentages =
+          newContrastPercentages;
+      } else {
+        const dualTheme = updatedTheme as DualTheme;
+        const targetTheme =
+          colorMode === 'dark' ? dualTheme.darkTheme : dualTheme.lightTheme;
+        targetTheme.contrastPercentages = newContrastPercentages;
+      }
+      setTheme({ ...updatedTheme });
     };
 
-    themeTypes[themeType]();
+    updateContrastPercentages(theme);
   };
 
   //Base Color Actions
   const editBaseColorRamp = (newColorRamp: string[], colorMode?: ColorMode) => {
     const updatedBaseColorProperties = {
       colorRamp: newColorRamp,
-      backgrounds: [
-        {
-          name: 'background_1',
-          value: newColorRamp[0],
-        },
-        {
-          name: 'background_2',
-          value: newColorRamp[1],
-        },
-        {
-          name: 'background_3',
-          value: newColorRamp[2],
-        },
-      ],
-      contrastBackgrounds: [
-        {
-          name: 'background_contrast_1',
-          value: newColorRamp[newColorRamp.length - 1],
-        },
-        {
-          name: 'background_contrast_2',
-          value: newColorRamp[newColorRamp.length - 2],
-        },
-        {
-          name: 'background_contrast_3',
-          value: newColorRamp[newColorRamp.length - 3],
-        },
-      ],
+      backgrounds: Array.from({ length: 3 }, (_, i) => ({
+        name: `background_${i + 1}`,
+        value: newColorRamp[i],
+      })),
+      contrastBackgrounds: Array.from({ length: 3 }, (_, i) => ({
+        name: `background_contrast_${i + 1}`,
+        value: newColorRamp[newColorRamp.length - 1 - i],
+      })),
       text: [
-        {
-          name: 'text',
-          value: newColorRamp[newColorRamp.length - 1],
-        },
-        {
-          name: 'text_muted',
-          value: newColorRamp[newColorRamp.length - 4],
-        },
+        { name: 'text', value: newColorRamp[newColorRamp.length - 1] },
+        { name: 'text_muted', value: newColorRamp[newColorRamp.length - 4] },
       ],
       contrastText: [
-        {
-          name: 'text',
-          value: newColorRamp[0],
-        },
-        {
-          name: 'text_muted',
-          value: newColorRamp[3],
-        },
+        { name: 'text', value: newColorRamp[0] },
+        { name: 'text_muted', value: newColorRamp[3] },
       ],
       borders: [
-        {
-          name: 'border',
-          value: newColorRamp[3],
-        },
-        {
-          name: 'border_active',
-          value: newColorRamp[5],
-        },
+        { name: 'border', value: newColorRamp[3] },
+        { name: 'border_active', value: newColorRamp[5] },
       ],
       contrastBorders: [
         {
@@ -139,436 +92,141 @@ export const useEditor = (location: Location) => {
       ],
     };
 
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor = updatedBaseColorProperties;
-        updatedTheme.theme.semanticColors = updateSemanticColors(
-          updatedTheme,
-          themeType,
-          newColorRamp,
-        );
-        updatedTheme.theme.brandColors = updateBrandColors(
-          updatedTheme,
-          themeType,
-          newColorRamp,
-        );
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () => {
-            updatedTheme.lightTheme.baseColor = updatedBaseColorProperties;
-            updatedTheme.lightTheme.semanticColors = updateSemanticColors(
-              updatedTheme,
-              themeType,
-              newColorRamp,
-              'light',
-            );
-            updatedTheme.lightTheme.brandColors = updateBrandColors(
-              updatedTheme,
-              themeType,
-              newColorRamp,
-              'light',
-            );
-            setTheme({ ...updatedTheme });
-          },
-          dark: () => {
-            updatedTheme.darkTheme.baseColor = updatedBaseColorProperties;
-            updatedTheme.darkTheme.semanticColors = updateSemanticColors(
-              updatedTheme,
-              themeType,
-              newColorRamp,
-              'dark',
-            );
-            updatedTheme.darkTheme.brandColors = updateBrandColors(
-              updatedTheme,
-              themeType,
-              newColorRamp,
-              'dark',
-            );
-            setTheme({ ...updatedTheme });
-          },
-        };
-        colorModes[colorMode as ColorMode]();
-      },
+    const applyUpdates = (
+      updatedTheme: SimpleTheme | DualTheme,
+      mode?: ColorMode,
+    ) => {
+      const targetTheme =
+        themeType === 'simple'
+          ? (updatedTheme as SimpleTheme).theme
+          : mode === 'dark'
+            ? (updatedTheme as DualTheme).darkTheme
+            : (updatedTheme as DualTheme).lightTheme;
+
+      targetTheme.baseColor = updatedBaseColorProperties;
+      targetTheme.semanticColors = updateSemanticColors(
+        updatedTheme,
+        themeType,
+        newColorRamp,
+        mode,
+      );
+      targetTheme.brandColors = updateBrandColors(
+        updatedTheme,
+        themeType,
+        newColorRamp,
+        mode,
+      );
     };
 
-    themeTypes[themeType]();
-  };
-
-  const addNewBackgroundSpace = () => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.backgrounds = [
-          ...updatedTheme.theme.baseColor.backgrounds,
-          {
-            name: `background_${updatedTheme.theme.baseColor.backgrounds.length}`,
-            value:
-              updatedTheme.theme.baseColor.colorRamp[
-                updatedTheme.theme.baseColor.backgrounds.length
-              ],
-          },
-        ];
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-
-        updatedTheme.lightTheme.baseColor.backgrounds = [
-          ...updatedTheme.lightTheme.baseColor.backgrounds,
-          {
-            name: `background_${updatedTheme.lightTheme.baseColor.backgrounds.length}`,
-            value:
-              updatedTheme.lightTheme.baseColor.colorRamp[
-                updatedTheme.lightTheme.baseColor.backgrounds.length
-              ],
-          },
-        ];
-
-        updatedTheme.darkTheme.baseColor.backgrounds = [
-          ...updatedTheme.darkTheme.baseColor.backgrounds,
-          {
-            name: `background_${updatedTheme.darkTheme.baseColor.backgrounds.length}`,
-            value:
-              updatedTheme.darkTheme.baseColor.colorRamp[
-                updatedTheme.darkTheme.baseColor.backgrounds.length
-              ],
-          },
-        ];
-
-        setTheme({ ...updatedTheme });
-      },
-    };
-    themeTypes[themeType]();
-  };
-
-  const removeBackgroundSpace = (index: number) => {
-    function updateBackgroundsName(backgrounds: ColorVariable[]) {
-      const updatedBackgroundsNames: ColorVariable[] = [];
-      backgrounds.forEach((color, index) => {
-        updatedBackgroundsNames.push({
-          ...color,
-          name: `background_${index + 1}`,
-        });
-      });
-
-      return updatedBackgroundsNames;
+    const updatedTheme = { ...theme };
+    if (themeType === 'simple') {
+      applyUpdates(updatedTheme as SimpleTheme);
+    } else if (colorMode) {
+      applyUpdates(updatedTheme as DualTheme, colorMode);
     }
 
-    const themesTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.backgrounds.splice(index, 1);
-        updatedTheme.theme.baseColor.backgrounds = updateBackgroundsName(
-          updatedTheme.theme.baseColor.backgrounds,
-        );
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-
-        updatedTheme.lightTheme.baseColor.backgrounds.splice(index, 1);
-        updatedTheme.lightTheme.baseColor.backgrounds = updateBackgroundsName(
-          updatedTheme.lightTheme.baseColor.backgrounds,
-        );
-
-        updatedTheme.darkTheme.baseColor.backgrounds.splice(index, 1);
-        updatedTheme.darkTheme.baseColor.backgrounds = updateBackgroundsName(
-          updatedTheme.darkTheme.baseColor.backgrounds,
-        );
-
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themesTypes[themeType]();
+    setTheme(updatedTheme);
   };
 
-  const changeBackgroundColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
+  const addBackgroundSpace = (
+    property: 'backgrounds' | 'contrastBackgrounds',
   ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.backgrounds[index].value = newValue;
+    const addSpaceToBaseColor = (baseColor: {
+      backgrounds: ColorVariable[];
+      contrastBackgrounds: ColorVariable[];
+      colorRamp: string[];
+    }) => {
+      const newSpaceIndex = baseColor[property].length;
+      const rampIndex =
+        property === 'backgrounds'
+          ? newSpaceIndex
+          : baseColor.colorRamp.length - 1 - newSpaceIndex;
 
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.backgrounds[index].value =
-              newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.backgrounds[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
+      baseColor[property] = [
+        ...baseColor[property],
+        {
+          name: `${property}_${newSpaceIndex}`,
+          value: baseColor.colorRamp[rampIndex],
+        },
+      ];
     };
 
-    themeTypes[themeType]();
-  };
+    const updatedTheme = { ...theme };
 
-  const addNewContrastBackgroundSpace = () => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.contrastBackgrounds = [
-          ...updatedTheme.theme.baseColor.contrastBackgrounds,
-          {
-            name: `background_${updatedTheme.theme.baseColor.contrastBackgrounds.length}`,
-            value:
-              updatedTheme.theme.baseColor.colorRamp[
-                updatedTheme.theme.baseColor.colorRamp.length -
-                  1 -
-                  updatedTheme.theme.baseColor.contrastBackgrounds.length
-              ],
-          },
-        ];
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-
-        updatedTheme.lightTheme.baseColor.contrastBackgrounds = [
-          ...updatedTheme.lightTheme.baseColor.contrastBackgrounds,
-          {
-            name: `background_${updatedTheme.lightTheme.baseColor.contrastBackgrounds.length}`,
-            value:
-              updatedTheme.lightTheme.baseColor.colorRamp[
-                updatedTheme.lightTheme.baseColor.colorRamp.length -
-                  1 -
-                  updatedTheme.lightTheme.baseColor.contrastBackgrounds.length
-              ],
-          },
-        ];
-
-        updatedTheme.darkTheme.baseColor.contrastBackgrounds = [
-          ...updatedTheme.darkTheme.baseColor.contrastBackgrounds,
-          {
-            name: `background_${updatedTheme.darkTheme.baseColor.contrastBackgrounds.length}`,
-            value:
-              updatedTheme.darkTheme.baseColor.colorRamp[
-                updatedTheme.darkTheme.baseColor.colorRamp.length -
-                  1 -
-                  updatedTheme.darkTheme.baseColor.contrastBackgrounds.length
-              ],
-          },
-        ];
-
-        setTheme({ ...updatedTheme });
-      },
-    };
-    themeTypes[themeType]();
-  };
-
-  const removeContrastBackgroundSpace = (index: number) => {
-    function updateContrastBackgroundsName(
-      contrastBackgrounds: ColorVariable[],
-    ) {
-      const updatedBackgroundsNames: ColorVariable[] = [];
-      contrastBackgrounds.forEach((color, index) => {
-        updatedBackgroundsNames.push({
-          ...color,
-          name: `background_${index + 1}`,
-        });
-      });
-
-      return updatedBackgroundsNames;
+    if (themeType === 'simple') {
+      addSpaceToBaseColor((updatedTheme as SimpleTheme).theme.baseColor);
+    } else {
+      const dualTheme = updatedTheme as DualTheme;
+      addSpaceToBaseColor(dualTheme.lightTheme.baseColor);
+      addSpaceToBaseColor(dualTheme.darkTheme.baseColor);
     }
 
-    const themesTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.contrastBackgrounds.splice(index, 1);
-        updatedTheme.theme.baseColor.contrastBackgrounds =
-          updateContrastBackgroundsName(
-            updatedTheme.theme.baseColor.contrastBackgrounds,
-          );
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-
-        updatedTheme.lightTheme.baseColor.contrastBackgrounds.splice(index, 1);
-        updatedTheme.lightTheme.baseColor.contrastBackgrounds =
-          updateContrastBackgroundsName(
-            updatedTheme.lightTheme.baseColor.contrastBackgrounds,
-          );
-
-        updatedTheme.darkTheme.baseColor.contrastBackgrounds.splice(index, 1);
-        updatedTheme.darkTheme.baseColor.contrastBackgrounds =
-          updateContrastBackgroundsName(
-            updatedTheme.darkTheme.baseColor.contrastBackgrounds,
-          );
-
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themesTypes[themeType]();
+    setTheme(updatedTheme);
   };
 
-  const changeContrastBackgroundColor = (
+  const removeBackgroundSpace = (
+    index: number,
+    property: 'backgrounds' | 'contrastBackgrounds',
+  ) => {
+    const updateNames = (colorArray: ColorVariable[]) =>
+      colorArray.map((color, i) => ({
+        ...color,
+        name: `${property}_${i + 1}`,
+      }));
+
+    const removeSpaceAndRename = (baseColor: {
+      backgrounds: ColorVariable[];
+      contrastBackgrounds: ColorVariable[];
+    }) => {
+      baseColor[property].splice(index, 1); // Eliminar el elemento en el índice especificado
+      baseColor[property] = updateNames(baseColor[property]); // Renombrar los elementos restantes
+    };
+
+    const updatedTheme = { ...theme };
+
+    if (themeType === 'simple') {
+      removeSpaceAndRename((updatedTheme as SimpleTheme).theme.baseColor);
+    } else {
+      const dualTheme = updatedTheme as DualTheme;
+      removeSpaceAndRename(dualTheme.lightTheme.baseColor);
+      removeSpaceAndRename(dualTheme.darkTheme.baseColor);
+    }
+
+    setTheme(updatedTheme);
+  };
+
+  const changeBaseColorProperty = (
+    property:
+      | 'backgrounds'
+      | 'contrastBackgrounds'
+      | 'text'
+      | 'contrastText'
+      | 'borders'
+      | 'contrastBorders',
     index: number,
     newValue: string,
     colorMode?: ColorMode,
   ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.contrastBackgrounds[index].value =
-          newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.contrastBackgrounds[
-              index
-            ].value = newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.contrastBackgrounds[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
+    const updateProperty = (baseColor: BaseColor) => {
+      if (Array.isArray(baseColor[property]) && baseColor[property][index]) {
+        baseColor[property][index].value = newValue;
+      }
     };
 
-    themeTypes[themeType]();
-  };
+    const updatedTheme = { ...theme };
 
-  const changeTextColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.text[index].value = newValue;
+    if (themeType === 'simple') {
+      updateProperty((updatedTheme as SimpleTheme).theme.baseColor);
+    } else {
+      const dualTheme = updatedTheme as DualTheme;
+      const modeBaseColor =
+        colorMode === 'light'
+          ? dualTheme.lightTheme.baseColor
+          : dualTheme.darkTheme.baseColor;
+      updateProperty(modeBaseColor);
+    }
 
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.text[index].value = newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.text[index].value = newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
-  };
-
-  const changeContrastTextColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.contrastText[index].value = newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.contrastText[index].value =
-              newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.contrastText[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
-  };
-
-  const changeBorderColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.borders[index].value = newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.borders[index].value = newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.borders[index].value = newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
-  };
-
-  const changeContrastBorderColor = (
-    index: number,
-    newValue: string,
-    colorMode?: ColorMode,
-  ) => {
-    const themeTypes = {
-      simple: () => {
-        const updatedTheme = theme as SimpleTheme;
-        updatedTheme.theme.baseColor.contrastBorders[index].value = newValue;
-
-        setTheme({ ...updatedTheme });
-      },
-      dual: () => {
-        const updatedTheme = theme as DualTheme;
-        const colorModes = {
-          light: () =>
-            (updatedTheme.lightTheme.baseColor.contrastBorders[index].value =
-              newValue),
-          dark: () =>
-            (updatedTheme.darkTheme.baseColor.contrastBorders[index].value =
-              newValue),
-        };
-
-        colorModes[colorMode as ColorMode]();
-        setTheme({ ...updatedTheme });
-      },
-    };
-
-    themeTypes[themeType]();
+    setTheme(updatedTheme);
   };
 
   const resetBaseColorSections = () => {
@@ -1135,16 +793,9 @@ export const useEditor = (location: Location) => {
     editContrastPercentages,
     toggleThemeFavoriteOption,
     editBaseColorRamp,
-    addNewBackgroundSpace,
+    changeBaseColorProperty,
+    addBackgroundSpace,
     removeBackgroundSpace,
-    changeBackgroundColor,
-    addNewContrastBackgroundSpace,
-    removeContrastBackgroundSpace,
-    changeContrastBackgroundColor,
-    changeTextColor,
-    changeContrastTextColor,
-    changeBorderColor,
-    changeContrastBorderColor,
     resetBaseColorSections,
     changeSuccessColorRamp,
     changeSuccessStateColor,

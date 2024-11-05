@@ -15,18 +15,20 @@ export interface CustomColor {
   background: ColorVariable[];
 }
 
+export interface BaseColor {
+  colorRamp: string[];
+  //Color Ramp Abstraction
+  backgrounds: ColorVariable[];
+  contrastBackgrounds: ColorVariable[];
+  text: ColorVariable[];
+  contrastText: ColorVariable[];
+  borders: ColorVariable[];
+  contrastBorders: ColorVariable[];
+}
+
 type ThemeContent = {
   contrastPercentages: number[];
-  baseColor: {
-    colorRamp: string[];
-    //Color Ramp Abstraction
-    backgrounds: ColorVariable[];
-    contrastBackgrounds: ColorVariable[];
-    text: ColorVariable[];
-    contrastText: ColorVariable[];
-    borders: ColorVariable[];
-    contrastBorders: ColorVariable[];
-  };
+  baseColor: BaseColor;
   semanticColors: CustomColor[];
   brandColors: CustomColor[];
 };
@@ -68,39 +70,21 @@ export interface EditorContextProps {
     ) => void;
     toggleThemeFavoriteOption: () => void;
     editBaseColorRamp: (newColorRamp: string[], colorMode?: ColorMode) => void;
-    addNewBackgroundSpace: (colorMode?: ColorMode) => void;
-    removeBackgroundSpace: (index: number, colorMode?: ColorMode) => void;
-    changeBackgroundColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
+    addBackgroundSpace: (
+      addBackgroundSpace: 'backgrounds' | 'contrastBackgrounds',
     ) => void;
-    addNewContrastBackgroundSpace: (colorMode?: ColorMode) => void;
-    removeContrastBackgroundSpace: (
+    removeBackgroundSpace: (
       index: number,
-      colorMode?: ColorMode,
+      property: 'backgrounds' | 'contrastBackgrounds',
     ) => void;
-    changeContrastBackgroundColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeTextColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeContrastTextColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeBorderColor: (
-      index: number,
-      newValue: string,
-      colorMode?: ColorMode,
-    ) => void;
-    changeContrastBorderColor: (
+    changeBaseColorProperty: (
+      property:
+        | 'backgrounds'
+        | 'contrastBackgrounds'
+        | 'text'
+        | 'contrastText'
+        | 'borders'
+        | 'contrastBorders',
       index: number,
       newValue: string,
       colorMode?: ColorMode,
