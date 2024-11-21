@@ -115,4 +115,3 @@ export interface EditorContextProps {
     ) => void;
   };
 }
-

@@ -128,4 +128,3 @@ export const SemanticColors = () => {
     </Accordion>
   );
 };
-

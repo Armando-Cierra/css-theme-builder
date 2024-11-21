@@ -632,4 +632,3 @@ export const updateSemanticColors = (
     }
   }
 };
-

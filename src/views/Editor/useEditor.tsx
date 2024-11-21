@@ -629,4 +629,3 @@ export const useEditor = (location: Location) => {
 
   return { themeType, theme, themeActions };
 };
-

@@ -152,4 +152,3 @@ export const useSemanticColors = () => {
     warningColor: getSemanticColor('warning', 'baseColor') as string,
   };
 };
-
