@@ -1,192 +1,131 @@
+import { Fragment } from 'react/jsx-runtime';
+import { HexColorPicker } from 'react-colorful';
+import { IconCopy, IconInfoCircle } from '@tabler/icons-react';
+import { uid } from 'uid';
 import { Accordion, PaletteDisplayer } from '../../components';
 import { useSemanticColors } from './useSemanticColors';
 import { useSemanticColorsControls } from './useSemanticColorsControls';
-import './semanticColors.scss';
-import { HexColorPicker } from 'react-colorful';
 import { Input } from '@/components';
-import { IconCopy, IconInfoCircle } from '@tabler/icons-react';
 import { getDynamicContrastColor, tooltipID } from '@/utils';
-import { uid } from 'uid';
+import { SemanticColors as SemanticColorNames } from '@/types';
+import './semanticColors.scss';
 
 export const SemanticColors = () => {
   const {
     t,
     copyColor,
-    theme,
+    themeType,
+    semanticColors,
     selectedMode,
     onSelectColorMode,
     handleColorRampsChange,
-    successColor,
-    successBackgroundColor,
-    successVariantsColor,
-    successColorRamp,
     editSuccessStateColor,
     editSuccessBackgroundColor,
-    warningColor,
-    warningBackgroundColor,
-    warningVariantsColor,
-    warningColorRamp,
-    editWarningStateColor,
-    editWarningBackgroundColor,
   } = useSemanticColors();
 
-  const { inputSuccessColor, inputWarningColor, handleInputColorChange } =
-    useSemanticColorsControls({
-      successColor,
-      warningColor,
-      handleColorRampsChange,
-    });
+  const { inputColors, handleInputColorChange } = useSemanticColorsControls({
+    colors: {
+      primary: semanticColors[0].colorRamp[5],
+      secondary: semanticColors[1].colorRamp[5],
+      success: semanticColors[2].colorRamp[5],
+      warning: semanticColors[3].colorRamp[5],
+      danger: semanticColors[4].colorRamp[5],
+    },
+    handleColorRampsChange,
+  });
 
   return (
     <Accordion
       title={t('editor.semanticColors.title')}
       description={t('editor.semanticColors.description')}
-      themeType={theme.type}
+      themeType={themeType}
       selectedMode={selectedMode}
       onSelectColorMode={onSelectColorMode}
       className="editor_semanticColors"
       isDefaultOpen
     >
-      {/* SUCCESS */}
-      <span className="editor_semanticColors_title">Success</span>
-      <div className="editor_semanticColors_color">
-        <div className="editor_semanticColors_colorPickersBox">
-          <div className="editor_semanticColors_colorPicker">
-            <HexColorPicker
-              color={successColor}
-              onChange={handleColorRampsChange('success')}
-            />
-            <div className="editor_semanticColors_colorPickerControl">
-              <div className="editor_semanticColors_colorPickerControlLabel">
-                <span>{t('editor.semanticColors.baseColor')}</span>
+      {semanticColors.map((semanticColor) => (
+        <Fragment key={semanticColor.name}>
+          <span className="editor_semanticColors_title">
+            {semanticColor.name}
+          </span>
+          <div className="editor_semanticColors_color">
+            <div className="editor_semanticColors_colorPickersBox">
+              <div className="editor_semanticColors_colorPicker">
+                <HexColorPicker
+                  color={semanticColor.colorRamp[5]}
+                  onChange={handleColorRampsChange(
+                    semanticColor.name as SemanticColorNames,
+                  )}
+                />
+                <div className="editor_semanticColors_colorPickerControl">
+                  <div className="editor_semanticColors_colorPickerControlLabel">
+                    <span>{t('editor.semanticColors.baseColor')}</span>
+                  </div>
+                  <Input
+                    value={inputColors[semanticColor.name]}
+                    onChange={handleInputColorChange(semanticColor.name)}
+                  />
+                </div>
               </div>
-              <Input
-                value={inputSuccessColor}
-                onChange={handleInputColorChange('success')}
-              />
+            </div>
+            <div className="editor_semanticColors_colorRamp">
+              <div className="editor_semanticColors_colorRampLabel">
+                <span>{t('editor.semanticColors.colorRamp')}</span>
+                <IconInfoCircle
+                  data-tooltip-id={tooltipID}
+                  data-tooltip-html={t(
+                    `editor.semanticColors.${semanticColor.name}Info`,
+                  )}
+                />
+              </div>
+              <div className="editor_semanticColors_scaleBox">
+                {semanticColor.colorRamp.map((color, index) => (
+                  <div
+                    key={uid()}
+                    className="editor_semanticColors_scaleStep"
+                    style={{ background: color }}
+                    onClick={copyColor(color)}
+                    data-tooltip-id={tooltipID}
+                    data-tooltip-html={color}
+                    data-tooltip-place="bottom"
+                  >
+                    {index !== 5 && (
+                      <IconCopy
+                        style={{ color: getDynamicContrastColor(color) }}
+                      />
+                    )}
+                    {index === 5 && (
+                      <div className="editor_semanticColors_centerScaleStep">
+                        <IconCopy
+                          style={{ color: getDynamicContrastColor(color) }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="editor_semanticColors_sectionsBox">
+                <PaletteDisplayer
+                  colors={semanticColor.background}
+                  minArray={1}
+                  maxArray={1}
+                  title={t('editor.semanticColors.background')}
+                  editColorAction={editSuccessBackgroundColor}
+                />
+                <PaletteDisplayer
+                  colors={semanticColor.variants}
+                  minArray={3}
+                  maxArray={3}
+                  title={t('editor.semanticColors.states')}
+                  editColorAction={editSuccessStateColor}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="editor_semanticColors_colorRamp">
-          <div className="editor_semanticColors_colorRampLabel">
-            <span>{t('editor.semanticColors.colorRamp')}</span>
-            <IconInfoCircle
-              data-tooltip-id={tooltipID}
-              data-tooltip-html={t('editor.semanticColors.successInfo')}
-            />
-          </div>
-          <div className="editor_semanticColors_scaleBox">
-            {successColorRamp.map((color, index) => (
-              <div
-                key={uid()}
-                className="editor_semanticColors_scaleStep"
-                style={{ background: color }}
-                onClick={copyColor(color)}
-                data-tooltip-id={tooltipID}
-                data-tooltip-html={color}
-                data-tooltip-place="bottom"
-              >
-                {index !== 5 && (
-                  <IconCopy style={{ color: getDynamicContrastColor(color) }} />
-                )}
-                {index === 5 && (
-                  <div className="editor_semanticColors_centerScaleStep">
-                    <IconCopy
-                      style={{ color: getDynamicContrastColor(color) }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="editor_semanticColors_sectionsBox">
-            <PaletteDisplayer
-              colors={successBackgroundColor}
-              minArray={1}
-              maxArray={1}
-              title={t('editor.semanticColors.background')}
-              editColorAction={editSuccessBackgroundColor}
-            />
-            <PaletteDisplayer
-              colors={successVariantsColor}
-              minArray={3}
-              maxArray={3}
-              title={t('editor.semanticColors.states')}
-              editColorAction={editSuccessStateColor}
-            />
-          </div>
-        </div>
-      </div>
-      {/* WARNING */}
-      <span className="editor_semanticColors_title">Warning</span>
-      <div className="editor_semanticColors_color">
-        <div className="editor_semanticColors_colorPickersBox">
-          <div className="editor_semanticColors_colorPicker">
-            <HexColorPicker
-              color={warningColor}
-              onChange={handleColorRampsChange('warning')}
-            />
-            <div className="editor_semanticColors_colorPickerControl">
-              <div className="editor_semanticColors_colorPickerControlLabel">
-                <span>{t('editor.semanticColors.baseColor')}</span>
-              </div>
-              <Input
-                value={inputWarningColor}
-                onChange={handleInputColorChange('warning')}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="editor_semanticColors_colorRamp">
-          <div className="editor_semanticColors_colorRampLabel">
-            <span>{t('editor.semanticColors.colorRamp')}</span>
-            <IconInfoCircle
-              data-tooltip-id={tooltipID}
-              data-tooltip-html={t('editor.semanticColors.warningInfo')}
-            />
-          </div>
-          <div className="editor_semanticColors_scaleBox">
-            {warningColorRamp.map((color, index) => (
-              <div
-                key={uid()}
-                className="editor_semanticColors_scaleStep"
-                style={{ background: color }}
-                onClick={copyColor(color)}
-                data-tooltip-id={tooltipID}
-                data-tooltip-html={color}
-                data-tooltip-place="bottom"
-              >
-                {index !== 5 && (
-                  <IconCopy style={{ color: getDynamicContrastColor(color) }} />
-                )}
-                {index === 5 && (
-                  <div className="editor_semanticColors_centerScaleStep">
-                    <IconCopy
-                      style={{ color: getDynamicContrastColor(color) }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="editor_semanticColors_sectionsBox">
-            <PaletteDisplayer
-              colors={warningBackgroundColor}
-              minArray={1}
-              maxArray={1}
-              title={t('editor.semanticColors.background')}
-              editColorAction={editWarningBackgroundColor}
-            />
-            <PaletteDisplayer
-              colors={warningVariantsColor}
-              minArray={3}
-              maxArray={3}
-              title={t('editor.semanticColors.states')}
-              editColorAction={editWarningStateColor}
-            />
-          </div>
-        </div>
-      </div>
+        </Fragment>
+      ))}
     </Accordion>
   );
 };
+

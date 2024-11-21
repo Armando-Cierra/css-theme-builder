@@ -4,13 +4,20 @@ import { toast } from 'react-toastify';
 import { EditorContext } from '../../context';
 import {
   ColorMode,
-  ColorVariable,
   DualTheme,
   EditorContextProps,
   SemanticColors,
   SimpleTheme,
 } from '@/types';
 import { getColorScale } from '@/utils';
+
+const colorTypes = {
+  primary: 0,
+  secondary: 1,
+  success: 2,
+  warning: 3,
+  danger: 4,
+};
 
 export const useSemanticColors = () => {
   const { t } = useTranslation();
@@ -20,6 +27,13 @@ export const useSemanticColors = () => {
   const themeType = theme.type;
 
   const [selectedMode, setSelectedMode] = useState<ColorMode>('light');
+
+  const semanticColors =
+    themeType === 'simple'
+      ? (theme as SimpleTheme).theme.semanticColors
+      : selectedMode === 'light'
+        ? (theme as DualTheme).lightTheme.semanticColors
+        : (theme as DualTheme).darkTheme.semanticColors;
 
   const onSelectColorMode = (colorMode: ColorMode) => {
     setSelectedMode(colorMode);
@@ -51,6 +65,18 @@ export const useSemanticColors = () => {
       newColorRamp.pop();
 
       const changeColorRamp = {
+        primary: () =>
+          themeActions.changeSemanticColorRamp(
+            'primary',
+            newColorRamp,
+            selectedMode,
+          ),
+        secondary: () =>
+          themeActions.changeSemanticColorRamp(
+            'secondary',
+            newColorRamp,
+            selectedMode,
+          ),
         success: () =>
           themeActions.changeSemanticColorRamp(
             'success',
@@ -78,12 +104,6 @@ export const useSemanticColors = () => {
     colorType: SemanticColors,
     property: 'colorRamp' | 'baseColor' | 'background' | 'variants',
   ) => {
-    const colorTypes = {
-      success: 0,
-      warning: 1,
-      danger: 2,
-    };
-
     const themeColor =
       themeType === 'simple'
         ? (theme as SimpleTheme).theme.semanticColors
@@ -118,54 +138,18 @@ export const useSemanticColors = () => {
       selectedMode,
     );
 
-  // Warning
-  const editWarningStateColor = (index: number, newValue: string) =>
-    themeActions.changeSemanticStateColor(
-      'warning',
-      index,
-      newValue,
-      selectedMode,
-    );
-
-  const editWarningBackgroundColor = (index: number, newValue: string) =>
-    themeActions.changeSemanticBackgroundColor(
-      'warning',
-      index,
-      newValue,
-      selectedMode,
-    );
-
   return {
     t,
-    theme,
+    copyColor,
     themeType,
+    semanticColors,
     selectedMode,
     onSelectColorMode,
-    copyColor,
     handleColorRampsChange,
     successColor: getSemanticColor('success', 'baseColor') as string,
-    successBackgroundColor: getSemanticColor(
-      'success',
-      'background',
-    ) as ColorVariable[],
-    successVariantsColor: getSemanticColor(
-      'success',
-      'variants',
-    ) as ColorVariable[],
-    successColorRamp: getSemanticColor('success', 'colorRamp') as string[],
     editSuccessStateColor,
     editSuccessBackgroundColor,
     warningColor: getSemanticColor('warning', 'baseColor') as string,
-    warningBackgroundColor: getSemanticColor(
-      'warning',
-      'background',
-    ) as ColorVariable[],
-    warningVariantsColor: getSemanticColor(
-      'warning',
-      'variants',
-    ) as ColorVariable[],
-    warningColorRamp: getSemanticColor('warning', 'colorRamp') as string[],
-    editWarningBackgroundColor,
-    editWarningStateColor,
   };
 };
+

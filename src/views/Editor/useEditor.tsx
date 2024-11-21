@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { Location } from 'react-router-dom';
-import {
-  getInitialSettingsForTheme,
-  updateBrandColors,
-  updateSemanticColors,
-} from '@/utils';
+import { getInitialSettingsForTheme, updateSemanticColors } from '@/utils';
 import {
   BaseColor,
   ColorMode,
@@ -106,12 +102,6 @@ export const useEditor = (location: Location) => {
 
       targetTheme.baseColor = updatedBaseColorProperties;
       targetTheme.semanticColors = updateSemanticColors(
-        updatedTheme,
-        themeType,
-        newColorRamp,
-        mode,
-      );
-      targetTheme.brandColors = updateBrandColors(
         updatedTheme,
         themeType,
         newColorRamp,
@@ -500,9 +490,11 @@ export const useEditor = (location: Location) => {
     });
 
     const colors = {
-      success: 0,
-      warning: 1,
-      danger: 2,
+      primary: 0,
+      secondary: 1,
+      success: 2,
+      warning: 3,
+      danger: 4,
     };
 
     const themesTypes = {
@@ -540,9 +532,11 @@ export const useEditor = (location: Location) => {
     colorMode?: ColorMode,
   ) => {
     const colors = {
-      success: 0,
-      warning: 1,
-      danger: 2,
+      primary: 0,
+      secondary: 1,
+      success: 2,
+      warning: 3,
+      danger: 4,
     };
 
     const themeTypes = {
@@ -582,9 +576,11 @@ export const useEditor = (location: Location) => {
     colorMode?: ColorMode,
   ) => {
     const colors = {
-      success: 0,
-      warning: 1,
-      danger: 2,
+      primary: 0,
+      secondary: 1,
+      success: 2,
+      warning: 3,
+      danger: 4,
     };
 
     const themeTypes = {
@@ -633,3 +629,4 @@ export const useEditor = (location: Location) => {
 
   return { themeType, theme, themeActions };
 };
+

@@ -5,6 +5,7 @@
   .editor_semanticColors_title {
     font-weight: var(--font_weight_bold);
     margin-left: 16px;
+    text-transform: capitalize;
   }
   .editor_semanticColors_color {
     display: flex;
@@ -176,3 +177,4 @@
     }
   }
 }
+

@@ -2,7 +2,12 @@ export type ThemeType = 'simple' | 'dual';
 
 export type ColorMode = 'light' | 'dark';
 
-export type SemanticColors = 'success' | 'warning' | 'danger';
+export type SemanticColors =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger';
 
 export type ColorVariable = {
   name: string;
@@ -10,7 +15,7 @@ export type ColorVariable = {
 };
 
 export interface CustomColor {
-  name: string;
+  name: SemanticColors;
   colorRamp: string[];
   //Color Ramp Abstraction
   variants: ColorVariable[];
@@ -32,7 +37,6 @@ type ThemeContent = {
   contrastPercentages: number[];
   baseColor: BaseColor;
   semanticColors: CustomColor[];
-  brandColors: CustomColor[];
 };
 
 interface BaseThemeContent {
@@ -111,3 +115,4 @@ export interface EditorContextProps {
     ) => void;
   };
 }
+
